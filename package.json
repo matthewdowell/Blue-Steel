@@ -1,0 +1,39 @@
+{
+  "name": "bluesteel",
+  "version": "1.0.0",
+  "description": "// README",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/index.js",
+    "react-dev": "webpack --config ./webpack.config.js  -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlueSteelDen15/bluesteel.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BlueSteelDen15/bluesteel/issues"
+  },
+  "homepage": "https://github.com/BlueSteelDen15/bluesteel#readme",
+  "dependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.8",
+    "@babel/plugin-transform-runtime": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-react": "^7.14.5",
+    "axios": "^0.24.0",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.2.3",
+    "lodash": "^4.17.21",
+    "nodemon": "^2.0.14",
+    "prettier": "^2.4.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webpack": "^5.60.0",
+    "webpack-cli": "^4.9.1"
+  }
+}
