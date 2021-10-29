@@ -2285,7 +2285,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function getFashionData() {
   axios__WEBPACK_IMPORTED_MODULE_0___default().get('/products').then(function (res) {
-    console.log(res.data);
+    console.log('got data back!', res.data);
   });
 }
 
