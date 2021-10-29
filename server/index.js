@@ -1,29 +1,25 @@
 const path = require('path');
 const express = require('express'); // npm installed
-const axios = require('axios');
-const router = require('./controllers');
+const productsRouter = require('./controllers/productsController.js');
+const questionsRouter = require('./controllers/questionsController.js');
+const cartRouter = require('./controllers/cartController.js');
+const reviewsRouter = require('./controllers/reviewsController.js');
+const interactionsRouter = require('./controllers/interactionsController.js')
 
 const app = express();
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
+app.use('/products', productsRouter);
 
+app.use('/reviews', reviewsRouter);
 
-// other configuration...
+app.use('/questions', questionsRouter);
 
-//const githubToken = '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';
+app.use('/cart', cartRouter);
 
-// axios.interceptors.request.use((config) => {
-//   config.headers.Authorization = githubToken;
-//   return config;
-// });
-
-//axios.defaults.headers.common.Authorization = githubToken;
-
-app.use('/products', router);
-
-app.use('/reviews', router);
+app.use('/interactions', interactionsRouter);
 
 app.listen(3000, () => {
   console.log('Server listening on port 3000');
