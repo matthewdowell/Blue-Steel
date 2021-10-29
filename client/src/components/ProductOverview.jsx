@@ -1,17 +1,7 @@
 import React from 'react';
 
-
-const ProductOverview = () => {
-
-  return (
-    <div>ProductOverview</div>
-  )
-
-}
-
-
-
-
-
+const ProductOverview = () => (
+  <div>ProductOverview</div>
+);
 
 export default ProductOverview;
