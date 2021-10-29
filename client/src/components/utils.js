@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 function getFashionData() {
-  axios.get('/products')
+  axios.get('/reviews')
     .then((res) => {
-      console.log(res.data);
+      console.log('got data back!', res.data);
     });
 }
 

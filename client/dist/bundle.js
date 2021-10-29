@@ -2284,8 +2284,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function getFashionData() {
-  axios__WEBPACK_IMPORTED_MODULE_0___default().get('/products').then(function (res) {
-    console.log(res.data);
+  axios__WEBPACK_IMPORTED_MODULE_0___default().get('/reviews').then(function (res) {
+    console.log('got data back!', res.data);
   });
 }
 
