@@ -1,10 +1,10 @@
 const path = require('path');
 const express = require('express'); // npm installed
-const productsRouter = require('./controllers/productsController.js');
-const questionsRouter = require('./controllers/questionsController.js');
-const cartRouter = require('./controllers/cartController.js');
-const reviewsRouter = require('./controllers/reviewsController.js');
-const interactionsRouter = require('./controllers/interactionsController.js')
+const productsRouter = require('./controllers/productsController');
+const questionsRouter = require('./controllers/questionsController');
+const cartRouter = require('./controllers/cartController');
+const reviewsRouter = require('./controllers/reviewsController');
+const interactionsRouter = require('./controllers/interactionsController');
 
 const app = express();
 
