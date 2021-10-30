@@ -3,7 +3,7 @@
 /* eslint-disable object-shorthand */
 import axios from 'axios';
 
-export default function getProducts(page, count) {
+export function getProducts(page, count) {
   axios.get('/products', {
     params: {
       page: page,
@@ -12,6 +12,48 @@ export default function getProducts(page, count) {
   })
     .then((res) => {
       console.log('got allProducts data back!', res.data);
+    })
+    .catch((err) => { console.log(err); });
+}
+
+export function getProductsById(page, count, id) {
+  axios.get(`/products/${id}`, {
+    params: {
+      page: page,
+      count: count,
+      id: id
+    },
+  })
+    .then((res) => {
+      console.log('got allProductsById data back!', res.data);
+    })
+    .catch((err) => { console.log(err); });
+}
+
+export function getRelatedProducts(page, count, id) {
+  axios.get(`/products/${id}/related`, {
+    params: {
+      page: page,
+      count: count,
+      id: id
+    },
+  })
+    .then((res) => {
+      console.log('got allRelatedProducts data back!', res.data);
+    })
+    .catch((err) => { console.log(err); });
+}
+
+export function getStyles(page, count, id) {
+  axios.get(`/products/${id}/styles`, {
+    params: {
+      page: page,
+      count: count,
+      id: id
+    },
+  })
+    .then((res) => {
+      console.log('got Styles data back!', res.data);
     })
     .catch((err) => { console.log(err); });
 }
