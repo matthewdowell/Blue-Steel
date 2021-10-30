@@ -37,4 +37,12 @@ router.post('/', (req, res) => {
     .catch((err) => console.log(err));
 });
 
+router.post('/post-answer', (req, res) => {
+  axios.post(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-den/qa/questions/${req.body.question_id}/answers`, req.body, {
+    headers: { Authorization: process.env.REACT_APP_API_KEY },
+  })
+    .then((results) => res.send(results.data))
+    .catch((err) => console.log(err));
+});
+
 module.exports = router;

@@ -2176,13 +2176,18 @@ var App = function App() {
   // const [data, getData] = useState([]);
   //getProducts();
   //getQuestionsAnswers(44388, (data) => console.log('QA callback works!', data));
-  //getAnswersForQuestion(367399, (data) => console.log('answers callback works!', data));
-  (0,_utils_questionsUtils_js__WEBPACK_IMPORTED_MODULE_6__.postQuestion)('Is this working?', 'Johnny Smith', 'JohnnyS@email.com', 44388, function (data) {
-    console.log('posted in app callback', data);
-    (0,_utils_questionsUtils_js__WEBPACK_IMPORTED_MODULE_6__.getQuestionsAnswers)(44388, function () {
-      return console.log('QA callback works!');
-    }, null, 100);
-  });
+  //getAnswersForQuestion(367399, (data) => console.log('answers callback works!', data), 1, 100);
+  // postQuestion(
+  //   'Is this working?',
+  //   'Johnny Smith',
+  //   'JohnnyS@email.com',
+  //   44388,
+  //   (data) => {
+  //     console.log('posted in app callback', data);
+  //     getQuestionsAnswers(44388, () => console.log('QA callback works!'), null, 100);
+  //   },
+  // );
+  //postAnswer(367399, 'It\'s a good product', 'MattyD', 'matt@mail.com', [], () => console.log('postAnswer worked!'));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ProductOverview_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_QuestionsAnswers_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RatingsReviews_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
 };
 
@@ -2323,7 +2328,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getQuestionsAnswers": () => (/* binding */ getQuestionsAnswers),
 /* harmony export */   "getAnswersForQuestion": () => (/* binding */ getAnswersForQuestion),
-/* harmony export */   "postQuestion": () => (/* binding */ postQuestion)
+/* harmony export */   "postQuestion": () => (/* binding */ postQuestion),
+/* harmony export */   "postAnswer": () => (/* binding */ postAnswer)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -2366,6 +2372,19 @@ function postQuestion(body, name, email, product_id) {
     name: name,
     email: email,
     product_id: product_id
+  }).then(callback())["catch"](function (err) {
+    console.log(err);
+  });
+}
+function postAnswer(question_id, body, name, email) {
+  var photos = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : [];
+  var callback = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : function () {};
+  axios__WEBPACK_IMPORTED_MODULE_0___default().post('/questions/post-answer', {
+    question_id: question_id,
+    body: body,
+    name: name,
+    email: email,
+    photos: photos
   }).then(callback())["catch"](function (err) {
     console.log(err);
   });
