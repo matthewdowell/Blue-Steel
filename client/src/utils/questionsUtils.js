@@ -52,7 +52,24 @@ export function markQuestionAsHelpful(question_id, callback = () => {}) {
     .catch((err) => { console.log(err); });
 }
 
-// test this one out still
+export function reportQuestion(question_id, callback = () => {}) {
+  axios
+    .put('/questions/report-question', {
+      question_id,
+    })
+    .then(callback())
+    .catch((err) => { console.log(err); });
+}
+
+export function markAnswerAsHelpful(answer_id, callback = () => {}) {
+  axios
+    .put('/questions/mark-answer-as-helpful', {
+      answer_id,
+    })
+    .then(callback())
+    .catch((err) => { console.log(err); });
+}
+
 export function reportAnswer(answer_id, callback = () => {}) {
   axios
     .put('/questions/report-answer', {
