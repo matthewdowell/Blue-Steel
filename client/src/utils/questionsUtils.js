@@ -11,10 +11,7 @@ export function getQuestionsAnswers(product_id, callback, page, count) {
       count,
     },
   })
-    .then((res) => {
-      console.log('got questionsAnswers data back!', res.data);
-      callback(res.data);
-    })
+    .then((res) => { callback(res.data); })
     .catch((err) => { console.log(err); });
 }
 
@@ -26,9 +23,14 @@ export function getAnswersForQuestion(question_id, callback, page, count) {
       count,
     },
   })
-    .then((res) => {
-      console.log('got answers for question data back!', res.data);
-      callback(res.data);
+    .then((res) => { callback(res.data); })
+    .catch((err) => { console.log(err); });
+}
+export function postQuestion(body, name, email, product_id, callback = () => {}) {
+  axios
+    .post('/questions', {
+      body, name, email, product_id,
     })
+    .then(callback())
     .catch((err) => { console.log(err); });
 }
