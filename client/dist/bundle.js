@@ -2162,10 +2162,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _RatingsReviews_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RatingsReviews.jsx */ "./client/src/components/RatingsReviews.jsx");
 /* harmony import */ var _QuestionsAnswers_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./QuestionsAnswers.jsx */ "./client/src/components/QuestionsAnswers.jsx");
 /* harmony import */ var _RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RelatedItems.jsx */ "./client/src/components/RelatedItems.jsx");
-/* harmony import */ var _utils_interactionsUtils_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/interactionsUtils.js */ "./client/src/utils/interactionsUtils.js");
-/* harmony import */ var _utils_reviewUtils_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/reviewUtils.js */ "./client/src/utils/reviewUtils.js");
-/* eslint-disable import/extensions */
-
+/* harmony import */ var _utils_productUtils_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/productUtils.js */ "./client/src/utils/productUtils.js");
 
 
 
@@ -2175,12 +2172,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var App = function App() {
   // const [data, getData] = useState([]);
-  (0,_utils_interactionsUtils_js__WEBPACK_IMPORTED_MODULE_5__["default"])('a', 'b', 'c'); // getReviewOfProduct(() => {}, 44388, 'newest', 1, 5);
-  // getReviewMetadata(() => {}, 44388);
-  // addReview(() => {}, 44388, 4, 'Review summary', 'Body', true, 'customerName', 'buyer@gmail.com', [], {});
-  // markReviewHelpful(() => {}, 1);
-  // reportReview(() => {}, 1);
-
+  (0,_utils_productUtils_js__WEBPACK_IMPORTED_MODULE_5__["default"])();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ProductOverview_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_QuestionsAnswers_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RatingsReviews_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
 };
 
@@ -2244,10 +2236,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _utils_reviewUtils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/reviewUtils.js */ "./client/src/utils/reviewUtils.js");
+
 
 
 var RatingsReviews = function RatingsReviews() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "RatingsReviews");
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "RatingsReviews") // TODO: Make a Review child component
+  // Star Rating
+  // Date written
+  // Review summary. Single sentence, max 60 chars, BOLD
+  // Review body. Free form input that can take text, images. 50-1000 chars.
+  // Show 250 chars by default. If longer, add 'Show More' button with proper functionality
+  // Recommended. If reviewer recommends, "I recommend this product" and checkmark icon beside it
+  // should be displayed under the review. If reviewer does NOT recommend: nothing should be displayed
+  // Username. Display username. If username associated with a sale, show 'Verified Purchaser'
+  // Response to Review. If review has company response, display 'Reponse from seller', then
+  // company reponse. Should be visually distinguishable
+  // Helpfulness. Show 'Was this review helpful?', then Yes(number) | No(number).
+  // Yes and No should be clickable.
+  // TODO: More Reviews Button
+  // Should only appear if there are additional unshown reviews
+  // Should add 2 reviews per click
+  // Should disappear if all reviews are shown
+  ;
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RatingsReviews);
@@ -2276,16 +2287,16 @@ var RelatedItems = function RelatedItems() {
 
 /***/ }),
 
-/***/ "./client/src/utils/interactionsUtils.js":
-/*!***********************************************!*\
-  !*** ./client/src/utils/interactionsUtils.js ***!
-  \***********************************************/
+/***/ "./client/src/utils/productUtils.js":
+/*!******************************************!*\
+  !*** ./client/src/utils/productUtils.js ***!
+  \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ postInteractions)
+/* harmony export */   "default": () => (/* binding */ getProducts)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -2295,15 +2306,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /* eslint-disable object-shorthand */
 
-function postInteractions(element, widget, time) {
-  axios__WEBPACK_IMPORTED_MODULE_0___default().post('/interactions', {
+function getProducts(page, count) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default().get('/products', {
     params: {
-      element: element,
-      widget: widget,
-      time: time
+      page: page,
+      count: count
     }
   }).then(function (res) {
-    console.log('got interactions data back!', res.data);
+    console.log('got allProducts data back!', res.data);
   })["catch"](function (err) {
     console.log(err);
   });
@@ -2365,17 +2375,15 @@ function getReviewMetadata(callback, product_id) {
 
 function addReview(callback, product_id, rating, summary, body, recommend, name, email, photos, characteristics) {
   axios__WEBPACK_IMPORTED_MODULE_0___default().post('/reviews', {
-    params: {
-      product_id: product_id,
-      rating: rating,
-      summary: summary,
-      body: body,
-      recommend: recommend,
-      name: name,
-      email: email,
-      photos: photos,
-      characteristics: characteristics
-    }
+    product_id: product_id,
+    rating: rating,
+    summary: summary,
+    body: body,
+    recommend: recommend,
+    name: name,
+    email: email,
+    photos: photos,
+    characteristics: characteristics
   }).then(function (res) {
     console.log('Review has been posted!');
     callback(res.data);
@@ -2384,22 +2392,18 @@ function addReview(callback, product_id, rating, summary, body, recommend, name,
   });
 }
 function markReviewHelpful(callback, review_id) {
-  axios__WEBPACK_IMPORTED_MODULE_0___default().put('/reviews/:review_id/helpful', {
-    params: {
-      review_id: review_id
-    }
+  axios__WEBPACK_IMPORTED_MODULE_0___default().put('/reviews/review_id/helpful', {
+    review_id: review_id
   }).then(function (res) {
-    console.log('Review marked helpful!', res.data);
+    console.log('Review marked', res.data);
     callback(res.data);
   })["catch"](function (err) {
     console.log(err);
   });
 }
 function reportReview(callback, review_id) {
-  axios__WEBPACK_IMPORTED_MODULE_0___default().put('/reviews/:review_id/report', {
-    params: {
-      review_id: review_id
-    }
+  axios__WEBPACK_IMPORTED_MODULE_0___default().put('/reviews/review_id/report', {
+    review_id: review_id
   }).then(function (res) {
     console.log('Review reported!', res.data);
     callback(res.data);
