@@ -3,12 +3,12 @@ import ProductOverview from './ProductOverview.jsx';
 import RatingsReviews from './RatingsReviews.jsx';
 import QuestionsAnswers from './QuestionsAnswers.jsx';
 import RelatedItems from './RelatedItems.jsx';
-import getFashionData from './utils.js';
+import getProducts from '../utils/productUtils.js';
 
 const App = () => {
   // const [data, getData] = useState([]);
 
-  getFashionData();
+  getProducts();
 
   return (
     <div>
