@@ -2163,8 +2163,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _QuestionsAnswers_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./QuestionsAnswers.jsx */ "./client/src/components/QuestionsAnswers.jsx");
 /* harmony import */ var _RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RelatedItems.jsx */ "./client/src/components/RelatedItems.jsx");
 /* harmony import */ var _utils_productUtils_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/productUtils.js */ "./client/src/utils/productUtils.js");
-/* harmony import */ var _utils_questionsUtils_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/questionsUtils.js */ "./client/src/utils/questionsUtils.js");
-
 
 
 
@@ -2298,117 +2296,6 @@ function getProducts(page, count) {
   }).then(function (res) {
     console.log('got allProducts data back!', res.data);
   })["catch"](function (err) {
-    console.log(err);
-  });
-}
-
-/***/ }),
-
-/***/ "./client/src/utils/questionsUtils.js":
-/*!********************************************!*\
-  !*** ./client/src/utils/questionsUtils.js ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getQuestionsAnswers": () => (/* binding */ getQuestionsAnswers),
-/* harmony export */   "getAnswersForQuestion": () => (/* binding */ getAnswersForQuestion),
-/* harmony export */   "postQuestion": () => (/* binding */ postQuestion),
-/* harmony export */   "postAnswer": () => (/* binding */ postAnswer),
-/* harmony export */   "markQuestionAsHelpful": () => (/* binding */ markQuestionAsHelpful),
-/* harmony export */   "reportQuestion": () => (/* binding */ reportQuestion),
-/* harmony export */   "markAnswerAsHelpful": () => (/* binding */ markAnswerAsHelpful),
-/* harmony export */   "reportAnswer": () => (/* binding */ reportAnswer)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* eslint-disable camelcase */
-
-/* eslint-disable comma-dangle */
-
-/* eslint-disable object-shorthand */
-
-function getQuestionsAnswers(product_id, callback, page, count) {
-  axios__WEBPACK_IMPORTED_MODULE_0___default().get('/questions', {
-    params: {
-      product_id: product_id,
-      page: page,
-      count: count
-    }
-  }).then(function (res) {
-    callback(res.data);
-  })["catch"](function (err) {
-    console.log(err);
-  });
-}
-function getAnswersForQuestion(question_id, callback, page, count) {
-  axios__WEBPACK_IMPORTED_MODULE_0___default().get('/questions/question-answers', {
-    params: {
-      question_id: question_id,
-      page: page,
-      count: count
-    }
-  }).then(function (res) {
-    callback(res.data);
-  })["catch"](function (err) {
-    console.log(err);
-  });
-}
-function postQuestion(body, name, email, product_id) {
-  var callback = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : function () {};
-  axios__WEBPACK_IMPORTED_MODULE_0___default().post('/questions', {
-    body: body,
-    name: name,
-    email: email,
-    product_id: product_id
-  }).then(callback())["catch"](function (err) {
-    console.log(err);
-  });
-}
-function postAnswer(question_id, body, name, email) {
-  var photos = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : [];
-  var callback = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : function () {};
-  axios__WEBPACK_IMPORTED_MODULE_0___default().post('/questions/post-answer', {
-    question_id: question_id,
-    body: body,
-    name: name,
-    email: email,
-    photos: photos
-  }).then(callback())["catch"](function (err) {
-    console.log(err);
-  });
-}
-function markQuestionAsHelpful(question_id) {
-  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
-  axios__WEBPACK_IMPORTED_MODULE_0___default().put('/questions/mark-question-as-helpful', {
-    question_id: question_id
-  }).then(callback())["catch"](function (err) {
-    console.log(err);
-  });
-}
-function reportQuestion(question_id) {
-  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
-  axios__WEBPACK_IMPORTED_MODULE_0___default().put('/questions/report-question', {
-    question_id: question_id
-  }).then(callback())["catch"](function (err) {
-    console.log(err);
-  });
-}
-function markAnswerAsHelpful(answer_id) {
-  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
-  axios__WEBPACK_IMPORTED_MODULE_0___default().put('/questions/mark-answer-as-helpful', {
-    answer_id: answer_id
-  }).then(callback())["catch"](function (err) {
-    console.log(err);
-  });
-}
-function reportAnswer(answer_id) {
-  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
-  axios__WEBPACK_IMPORTED_MODULE_0___default().put('/questions/report-answer', {
-    answer_id: answer_id
-  }).then(callback())["catch"](function (err) {
     console.log(err);
   });
 }

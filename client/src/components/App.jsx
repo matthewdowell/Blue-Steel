@@ -4,7 +4,6 @@ import RatingsReviews from './RatingsReviews.jsx';
 import QuestionsAnswers from './QuestionsAnswers.jsx';
 import RelatedItems from './RelatedItems.jsx';
 import getProducts from '../utils/productUtils.js';
-import { getQuestionsAnswers, getAnswersForQuestion, postQuestion, postAnswer, reportAnswer, markQuestionAsHelpful, reportQuestion, markAnswerAsHelpful } from '../utils/questionsUtils.js';
 
 const App = () => {
   // const [data, getData] = useState([]);
