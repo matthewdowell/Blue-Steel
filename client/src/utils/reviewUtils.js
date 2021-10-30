@@ -36,17 +36,15 @@ export function getReviewMetadata(callback, product_id) {
 // eslint-disable-next-line max-len
 export function addReview(callback, product_id, rating, summary, body, recommend, name, email, photos, characteristics) {
   axios.post('/reviews', {
-    params: {
-      product_id: product_id,
-      rating: rating,
-      summary: summary,
-      body: body,
-      recommend: recommend,
-      name: name,
-      email: email,
-      photos: photos,
-      characteristics: characteristics
-    }
+    product_id: product_id,
+    rating: rating,
+    summary: summary,
+    body: body,
+    recommend: recommend,
+    name: name,
+    email: email,
+    photos: photos,
+    characteristics: characteristics
   })
     .then((res) => {
       console.log('Review has been posted!');
@@ -56,24 +54,16 @@ export function addReview(callback, product_id, rating, summary, body, recommend
 }
 
 export function markReviewHelpful(callback, review_id) {
-  axios.put('/reviews/:review_id/helpful', {
-    params: {
-      review_id: review_id,
-    },
-  })
+  axios.put('/reviews/review_id/helpful', { review_id: review_id })
     .then((res) => {
-      console.log('Review marked helpful!', res.data);
+      console.log('Review marked', res.data);
       callback(res.data);
     })
     .catch((err) => { console.log(err); });
 }
 
 export function reportReview(callback, review_id) {
-  axios.put('/reviews/:review_id/report', {
-    params: {
-      review_id: review_id,
-    },
-  })
+  axios.put('/reviews/review_id/report', { review_id: review_id })
     .then((res) => {
       console.log('Review reported!', res.data);
       callback(res.data);

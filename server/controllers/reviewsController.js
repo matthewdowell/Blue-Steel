@@ -7,7 +7,6 @@ const router = express.Router();
 
 // For a specific review
 router.get('/', (req, res) => {
-  console.log('reviews here', req.query.sort);
   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-den/reviews', {
     headers: { Authorization: process.env.REACT_APP_API_KEY },
     params: {
@@ -21,7 +20,6 @@ router.get('/', (req, res) => {
 
 // For review metadata
 router.get('/meta', (req, res) => {
-  console.log('reviews here', req.query.sort);
   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-den/reviews/meta', {
     headers: { Authorization: process.env.REACT_APP_API_KEY },
     params: {
@@ -34,44 +32,24 @@ router.get('/meta', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  console.log('POST a review', req.body);
-  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-den/reviews', {
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-den/reviews', req.body, {
     headers: { Authorization: process.env.REACT_APP_API_KEY },
-    params: {
-      product_id: req.body.product_id,
-      rating: req.body.rating,
-      summary: req.body.summary,
-      body: req.body.body,
-      recommend: req.body.recommend,
-      name: req.body.name,
-      email: req.body.email,
-      photos: req.body.photos,
-      characteristics: req.body.characteristics
-    }
   })
     .then(() => res.sendStatus(201))
     .catch((err) => console.log(err));
 });
 
-router.put('/:review_id/helpful', (req, res) => {
-  console.log('PUT/UPDATE - mark review helpful', req.body);
-  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-den/reviews/:review_id/helpful', {
+router.put('/review_id/helpful', (req, res) => {
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-den/reviews/${req.body.review_id}/helpful`, req.body, {
     headers: { Authorization: process.env.REACT_APP_API_KEY },
-    params: {
-      review_id: req.body.review_id,
-    }
   })
     .then(() => res.sendStatus(204))
     .catch((err) => console.log(err));
 });
 
-router.put('/:review_id/report', (req, res) => {
-  console.log('PUT/UPDATE - report a review', req.body);
-  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-den/reviews/:review_id/report', {
+router.put('/review_id/report', (req, res) => {
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-den/reviews/${req.body.review_id}/report`, req.body, {
     headers: { Authorization: process.env.REACT_APP_API_KEY },
-    params: {
-      review_id: req.body.review_id,
-    }
   })
     .then(() => res.sendStatus(204))
     .catch((err) => console.log(err));
