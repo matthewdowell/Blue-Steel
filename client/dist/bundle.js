@@ -2296,7 +2296,14 @@ var RelatedItems = function RelatedItems() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+<<<<<<< HEAD
 /* harmony export */   "default": () => (/* binding */ getProducts)
+=======
+/* harmony export */   "getProducts": () => (/* binding */ getProducts),
+/* harmony export */   "getProductsById": () => (/* binding */ getProductsById),
+/* harmony export */   "getRelatedProducts": () => (/* binding */ getRelatedProducts),
+/* harmony export */   "getStyles": () => (/* binding */ getStyles)
+>>>>>>> c8cafda326d2e79dec5395416256f9860e708bd3
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -2318,6 +2325,7 @@ function getProducts(page, count) {
     console.log(err);
   });
 }
+<<<<<<< HEAD
 
 /***/ }),
 
@@ -2356,10 +2364,22 @@ function getReviewOfProduct(callback, product_id, sort, page, count) {
   }).then(function (res) {
     console.log('got ReviewOfProduct data back!', res.data);
     callback(res.data);
+=======
+function getProductsById(page, count, id) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default().get("/products/".concat(id), {
+    params: {
+      page: page,
+      count: count,
+      id: id
+    }
+  }).then(function (res) {
+    console.log('got allProductsById data back!', res.data);
+>>>>>>> c8cafda326d2e79dec5395416256f9860e708bd3
   })["catch"](function (err) {
     console.log(err);
   });
 }
+<<<<<<< HEAD
 function getReviewMetadata(callback, product_id) {
   axios__WEBPACK_IMPORTED_MODULE_0___default().get('/reviews/meta', {
     params: {
@@ -2387,10 +2407,22 @@ function addReview(callback, product_id, rating, summary, body, recommend, name,
   }).then(function (res) {
     console.log('Review has been posted!');
     callback(res.data);
+=======
+function getRelatedProducts(page, count, id) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default().get("/products/".concat(id, "/related"), {
+    params: {
+      page: page,
+      count: count,
+      id: id
+    }
+  }).then(function (res) {
+    console.log('got allRelatedProducts data back!', res.data);
+>>>>>>> c8cafda326d2e79dec5395416256f9860e708bd3
   })["catch"](function (err) {
     console.log(err);
   });
 }
+<<<<<<< HEAD
 function markReviewHelpful(callback, review_id) {
   axios__WEBPACK_IMPORTED_MODULE_0___default().put('/reviews/review_id/helpful', {
     review_id: review_id
@@ -2407,6 +2439,17 @@ function reportReview(callback, review_id) {
   }).then(function (res) {
     console.log('Review reported!', res.data);
     callback(res.data);
+=======
+function getStyles(page, count, id) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default().get("/products/".concat(id, "/styles"), {
+    params: {
+      page: page,
+      count: count,
+      id: id
+    }
+  }).then(function (res) {
+    console.log('got Styles data back!', res.data);
+>>>>>>> c8cafda326d2e79dec5395416256f9860e708bd3
   })["catch"](function (err) {
     console.log(err);
   });
