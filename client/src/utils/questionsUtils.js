@@ -43,7 +43,14 @@ export function postAnswer(question_id, body, name, email, photos = [], callback
     .catch((err) => { console.log(err); });
 }
 
-
+export function markQuestionAsHelpful(question_id, callback = () => {}) {
+  axios
+    .put('/questions/mark-question-as-helpful', {
+      question_id,
+    })
+    .then(callback())
+    .catch((err) => { console.log(err); });
+}
 
 // test this one out still
 export function reportAnswer(answer_id, callback = () => {}) {

@@ -2175,10 +2175,10 @@ __webpack_require__.r(__webpack_exports__);
 var App = function App() {
   // const [data, getData] = useState([]);
   //getProducts();
-  //getQuestionsAnswers(44388, (data) => console.log('QA callback works!', data));
-  (0,_utils_questionsUtils_js__WEBPACK_IMPORTED_MODULE_6__.getAnswersForQuestion)(367399, function (data) {
-    return console.log('answers callback works!', data);
-  }, 1, 100); // postQuestion(
+  (0,_utils_questionsUtils_js__WEBPACK_IMPORTED_MODULE_6__.getQuestionsAnswers)(44388, function (data) {
+    return console.log('QA callback works!', data);
+  }); //getAnswersForQuestion(367399, (data) => console.log('answers callback works!', data), 1, 100);
+  // postQuestion(
   //   'Is this working?',
   //   'Johnny Smith',
   //   'JohnnyS@email.com',
@@ -2188,11 +2188,10 @@ var App = function App() {
   //     getQuestionsAnswers(44388, () => console.log('QA callback works!'), null, 100);
   //   },
   // );
-  //postAnswer(367399, 'It\'s a good product', 'MattyD', 'matt@mail.com', [], () => console.log('postAnswer worked!'));
+  // postAnswer(367399, 'It\'s a good product', 'MattyD', 'matt@mail.com', [], () => console.log('postAnswer worked!'));
+  // reportAnswer(5087339, () => console.log('answer reported'));
+  // markQuestionAsHelpful(367399, () => console.log('question marked as helpful!'));
 
-  (0,_utils_questionsUtils_js__WEBPACK_IMPORTED_MODULE_6__.reportAnswer)(5087339, function () {
-    return console.log('answer reported');
-  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_ProductOverview_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RelatedItems_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_QuestionsAnswers_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RatingsReviews_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
 };
 
@@ -2335,6 +2334,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getAnswersForQuestion": () => (/* binding */ getAnswersForQuestion),
 /* harmony export */   "postQuestion": () => (/* binding */ postQuestion),
 /* harmony export */   "postAnswer": () => (/* binding */ postAnswer),
+/* harmony export */   "markQuestionAsHelpful": () => (/* binding */ markQuestionAsHelpful),
 /* harmony export */   "reportAnswer": () => (/* binding */ reportAnswer)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -2391,6 +2391,14 @@ function postAnswer(question_id, body, name, email) {
     name: name,
     email: email,
     photos: photos
+  }).then(callback())["catch"](function (err) {
+    console.log(err);
+  });
+}
+function markQuestionAsHelpful(question_id) {
+  var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
+  axios__WEBPACK_IMPORTED_MODULE_0___default().put('/questions/mark-question-as-helpful', {
+    question_id: question_id
   }).then(callback())["catch"](function (err) {
     console.log(err);
   });
