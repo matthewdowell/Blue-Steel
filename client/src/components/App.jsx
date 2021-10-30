@@ -4,14 +4,14 @@ import RatingsReviews from './RatingsReviews.jsx';
 import QuestionsAnswers from './QuestionsAnswers.jsx';
 import RelatedItems from './RelatedItems.jsx';
 import getProducts from '../utils/productUtils.js';
-import { getQuestionsAnswers, getAnswersForQuestion, postQuestion, postAnswer } from '../utils/questionsUtils.js';
+import { getQuestionsAnswers, getAnswersForQuestion, postQuestion, postAnswer, reportAnswer } from '../utils/questionsUtils.js';
 
 const App = () => {
   // const [data, getData] = useState([]);
 
   //getProducts();
   //getQuestionsAnswers(44388, (data) => console.log('QA callback works!', data));
-  //getAnswersForQuestion(367399, (data) => console.log('answers callback works!', data), 1, 100);
+  getAnswersForQuestion(367399, (data) => console.log('answers callback works!', data), 1, 100);
   // postQuestion(
   //   'Is this working?',
   //   'Johnny Smith',
@@ -23,6 +23,7 @@ const App = () => {
   //   },
   // );
   //postAnswer(367399, 'It\'s a good product', 'MattyD', 'matt@mail.com', [], () => console.log('postAnswer worked!'));
+  reportAnswer(5087339, () => console.log('answer reported'));
 
   return (
     <div>

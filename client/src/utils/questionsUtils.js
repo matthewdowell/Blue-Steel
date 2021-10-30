@@ -42,3 +42,15 @@ export function postAnswer(question_id, body, name, email, photos = [], callback
     .then(callback())
     .catch((err) => { console.log(err); });
 }
+
+
+
+// test this one out still
+export function reportAnswer(answer_id, callback = () => {}) {
+  axios
+    .put('/questions/report-answer', {
+      answer_id,
+    })
+    .then(callback())
+    .catch((err) => { console.log(err); });
+}
