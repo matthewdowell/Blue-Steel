@@ -1,6 +1,5 @@
-server/token.js
 client/dist/bundle.js
 client/dist/bundle.js.map
 node_modules/
 .env
-.webpack.config.js
+webpack.config.js
