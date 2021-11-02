@@ -16,7 +16,7 @@ export function getProducts(page, count) {
     .catch((err) => { console.log(err); });
 }
 
-export function getProductsById(page, count, id) {
+export function getProductsById(callback, page, count, id) {
   axios.get(`/products/${id}`, {
     params: {
       page: page,
@@ -26,6 +26,7 @@ export function getProductsById(page, count, id) {
   })
     .then((res) => {
       console.log('got allProductsById data back!', res.data);
+      callback(res.data);
     })
     .catch((err) => { console.log(err); });
 }

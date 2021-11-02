@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import currentProductContext from '../../context/globalContext.js';
 import { addReview, getReviewMetadata, getReviewOfProduct, markReviewHelpful, reportReview } from '../../utils/reviewUtils.js';
 
-const RatingsReviews = () => (
-  <div>RatingsReviews</div>
+const RatingsReviews = () => {
+
+  // const [currentProduct, getProductsById] = useContext(currentProductContext);
+  // const currentProduct = useContext(ProductContext);
+
+  return (
+    <div>
+      {/* <currentProductContext.Consumer>
+        {() =>
+          <div>
+            RatingsReviews {JSON.stringify(currentProduct)}
+          </div>
+        }
+      </currentProductContext.Consumer> */}
+    </div>
+  )
+
   // TODO: Make a Review child component
     // Star Rating
     // Date written
@@ -20,6 +36,6 @@ const RatingsReviews = () => (
     // Should only appear if there are additional unshown reviews
       // Should add 2 reviews per click
     // Should disappear if all reviews are shown
-);
+};
 
 export default RatingsReviews;
