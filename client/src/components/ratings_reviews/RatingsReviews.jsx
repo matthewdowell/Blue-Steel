@@ -6,14 +6,13 @@ const RatingsReviews = () => {
 
   const currentProduct = useContext(ProductContext).currentProduct;
   const setCurrentProduct = useContext(ProductContext).setCurrentProduct;
-  console.log(currentProduct);
-  console.log(setCurrentProduct);
+
   return (
     <div>
       <ProductContext.Consumer>
         {() =>
           <div>
-            RatingsReviews {JSON.stringify(currentProduct)}
+            RatingsReviews
           </div>
         }
       </ProductContext.Consumer>
