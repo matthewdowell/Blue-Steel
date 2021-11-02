@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import ProductOverview from '../product_overview/ProductOverview.jsx';
 import RatingsReviews from '../ratings_reviews/RatingsReviews.jsx';
 import QuestionsAnswers from '../questions/QuestionsAnswers.jsx';
@@ -8,10 +8,7 @@ import { ProductContext, ProductProvider } from '../../context/globalContext.js'
 import { render } from 'react-dom';
 
 const App = () => {
-  // 44388 is our default product_id
-
-  // const currentProduct = useContext(ProductContext);
-  // const setCurrentProduct = useContext(ProductContext);
+  // Bring in first product: product_id 44388
   const [currentProduct, setCurrentProduct] = useState({
       campus: "hr-den",
       category: "Jackets",
@@ -23,15 +20,21 @@ const App = () => {
       slogan: "Blend in to your crowd",
       updated_at: "2021-08-13T14:40:29.181Z"
   });
-  // console.log('setCurrentPRoduct:', setCurrentProduct);
-  // console.log('current product:', currentProduct);
-  getProducts();
-  getProductsById(() => {}, 1, 5, 44389);
+
+  const [products, setProducts] = useState([]);
+
+  // Bring in all products
+  useEffect(() => {
+    getProducts(null, null, (data) => {
+      setProducts(data);
+    })
+  }, []);
+
+  // getProductsById(1, 5, 44389, () => {});
 
   return (
     <div>
-      <ProductContext.Provider value={{currentProduct, setCurrentProduct}}>
-        <h1>Cant turn left {JSON.stringify(setCurrentProduct)}</h1>
+      <ProductContext.Provider value={{currentProduct, setCurrentProduct, products, setProducts}}>
         <div><ProductOverview /></div>
         <div><RelatedItems /></div>
         <div><QuestionsAnswers /></div>

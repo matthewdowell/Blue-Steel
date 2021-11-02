@@ -3,7 +3,7 @@
 /* eslint-disable object-shorthand */
 import axios from 'axios';
 
-export function getProducts(page, count) {
+export function getProducts(page, count, callback) {
   axios.get('/products', {
     params: {
       page: page,
@@ -12,11 +12,12 @@ export function getProducts(page, count) {
   })
     .then((res) => {
       console.log('got allProducts data back!', res.data);
+      callback(res.data);
     })
     .catch((err) => { console.log(err); });
 }
 
-export function getProductsById(callback, page, count, id) {
+export function getProductsById(page, count, id, callback) {
   axios.get(`/products/${id}`, {
     params: {
       page: page,
