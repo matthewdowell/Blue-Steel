@@ -23,8 +23,8 @@ const App = () => {
       slogan: "Blend in to your crowd",
       updated_at: "2021-08-13T14:40:29.181Z"
   });
-  console.log('setCurrentPRoduct:', setCurrentProduct);
-  console.log('current product:', currentProduct);
+  // console.log('setCurrentPRoduct:', setCurrentProduct);
+  // console.log('current product:', currentProduct);
   getProducts();
   getProductsById(() => {}, 1, 5, 44389);
 

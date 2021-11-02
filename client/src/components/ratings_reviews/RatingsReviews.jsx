@@ -1,21 +1,22 @@
 import React, { useContext } from 'react';
-import currentProductContext from '../../context/globalContext.js';
+import { ProductContext } from '../../context/globalContext.js';
 import { addReview, getReviewMetadata, getReviewOfProduct, markReviewHelpful, reportReview } from '../../utils/reviewUtils.js';
 
 const RatingsReviews = () => {
 
-  // const [currentProduct, getProductsById] = useContext(currentProductContext);
-  // const currentProduct = useContext(ProductContext);
-
+  const currentProduct = useContext(ProductContext).currentProduct;
+  const setCurrentProduct = useContext(ProductContext).setCurrentProduct;
+  console.log(currentProduct);
+  console.log(setCurrentProduct);
   return (
     <div>
-      {/* <currentProductContext.Consumer>
+      <ProductContext.Consumer>
         {() =>
           <div>
             RatingsReviews {JSON.stringify(currentProduct)}
           </div>
         }
-      </currentProductContext.Consumer> */}
+      </ProductContext.Consumer>
     </div>
   )
 
