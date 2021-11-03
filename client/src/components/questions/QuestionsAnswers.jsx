@@ -17,16 +17,12 @@ const QuestionsAnswers = () => {
 
   return (
     <><h5>{'QUESTIONS & ANSWERS'}</h5>
-    <qaContext.Provider value={currentQuestions}>
-      <Search />
-      <QuestionsList />
-    </qaContext.Provider>
-    {/* <div>{JSON.stringify(currentQuestions)}</div> */}
     <ProductContext.Consumer>
       {() => (
-        <div>
-          {/* {JSON.stringify(currentQuestions)} */}
-        </div>)
+        <qaContext.Provider value={currentQuestions}>
+          <Search />
+          <QuestionsList />
+        </qaContext.Provider>)
       }
     </ProductContext.Consumer></>
   )

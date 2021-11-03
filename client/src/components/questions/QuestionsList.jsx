@@ -10,7 +10,7 @@ const QuestionsList = () => {
       <div>Questions List Component</div>
       <qaContext.Consumer>
         {(questions) => (
-          questions.map(question => <Question />)
+          questions.map(question => <Question question={question}/>)
         )}
       </qaContext.Consumer>
     </div>
