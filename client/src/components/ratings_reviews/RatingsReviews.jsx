@@ -1,41 +1,87 @@
-import React, { useContext } from 'react';
+/* eslint-disable no-plusplus */
+/* eslint-disable import/extensions */
+import React, { useContext, useState, useEffect } from 'react';
 import { ProductContext } from '../../context/globalContext.js';
-import { addReview, getReviewMetadata, getReviewOfProduct, markReviewHelpful, reportReview } from '../../utils/reviewUtils.js';
+import { RatingsReviewsContext } from '../../context/ratingsReviewsContext.js';
+import { addReview, getReviewMetadata, getReviewsOfProduct } from '../../utils/reviewUtils.js';
+import RatingsReviewsTile from './RatingsReviewsTile.jsx';
+import '../../../dist/ratingsReviewsStyle.css';
 
+const sortRatingsReviewsList = (sortBy) => {
+
+};
+
+const handleSortByChange = () => {
+  const sortBy = document.getElementById('sortBy').value;
+  sortRatingsReviewsList(sortBy);
+};
+
+const getAverageRating = (ratings) => {
+  let numRatings = 0;
+  let totalScore = 0;
+  const keys = Object.keys(ratings);
+  for (let i = 0; i < keys.length; i++) {
+    numRatings += ratings[keys[i]];
+    totalScore += keys[i] * ratings[keys[i]];
+  }
+  return totalScore / numRatings;
+};
+
+// Functional component
 const RatingsReviews = () => {
+  const { currentProduct } = useContext(ProductContext);
+  const [currentRatingsReviewsList, setCurrentRatingsReviewsList] = useState([]);
+  const [currentMetaData, setCurrentMetaData] = useState({ ratings: { 0: 0 } });
 
-  const currentProduct = useContext(ProductContext).currentProduct;
-  const setCurrentProduct = useContext(ProductContext).setCurrentProduct;
+  useEffect(() => {
+    getReviewsOfProduct((data) => {
+      setCurrentRatingsReviewsList(data.results);
+    }, currentProduct.id, 'relevance', null, null);
+  }, [currentProduct]);
+
+  useEffect(() => {
+    getReviewMetadata((data) => {
+      setCurrentMetaData(data);
+    }, currentProduct.id);
+  }, [currentProduct]);
+  console.log('METADATA:', currentMetaData);
 
   return (
     <div>
       <ProductContext.Consumer>
-        {() =>
+        {() => (
           <div>
-            RatingsReviews
+            <h2 className="header">Ratings and Reviews</h2>
+            <h3>
+              Average rating:
+              {getAverageRating(currentMetaData.ratings)}
+            </h3>
+            <div>
+              {currentRatingsReviewsList.length}
+              {' '}
+              reviews, sorted by
+              {' '}
+              <select name="sortBy" id="sortBy" onChange={handleSortByChange}>
+                <option value="relevance">relevance</option>
+                <option value="newest">newest</option>
+                <option value="helpful">helpfulness</option>
+              </select>
+              <RatingsReviewsContext.Provider value={currentRatingsReviewsList}>
+                {/* TODO: Iterate all reviews and display first two */}
+                {/* TODO: Show the rest if MORE REVIEWS button is clicked */}
+                {currentRatingsReviewsList.map((tile) => {
+                  return <RatingsReviewsTile tile={tile} />;
+                })}
+              </RatingsReviewsContext.Provider>
+            </div>
+            {/* TODO: MORE REVIEWS button should only appear if there are unshown reviews. Add 2 reviews per click  */}
+            <button type="submit" className="reviewButton">MORE REVIEWS</button>
+            <button type="submit" className="reviewButton" onClick={addReview}>ADD A REVIEW +</button>
           </div>
-        }
+        )}
       </ProductContext.Consumer>
     </div>
-  )
-
-  // TODO: Make a Review child component
-    // Star Rating
-    // Date written
-    // Review summary. Single sentence, max 60 chars, BOLD
-    // Review body. Free form input that can take text, images. 50-1000 chars.
-      // Show 250 chars by default. If longer, add 'Show More' button with proper functionality
-    // Recommended. If reviewer recommends, "I recommend this product" and checkmark icon beside it
-      // should be displayed under the review. If reviewer does NOT recommend: nothing should be displayed
-    // Username. Display username. If username associated with a sale, show 'Verified Purchaser'
-    // Response to Review. If review has company response, display 'Reponse from seller', then
-      // company reponse. Should be visually distinguishable
-    // Helpfulness. Show 'Was this review helpful?', then Yes(number) | No(number).
-      // Yes and No should be clickable.
-  // TODO: More Reviews Button
-    // Should only appear if there are additional unshown reviews
-      // Should add 2 reviews per click
-    // Should disappear if all reviews are shown
+  );
 };
 
 export default RatingsReviews;
