@@ -18,9 +18,9 @@ const QuestionsList = () => {
           ? <button>Submit A New Question</button>
           : <><div>{questions
               .map((question, index) => 
-                <Question key={index} question={question}/>)
+                <Question key={index} question={question} helpfulness={question.question_helpfulness}/>)
               .slice(0, numberOfQsDisplayed)
-              .sort((a, b) => a.question_helpfulness - b.question_helpfulness)}
+              .sort((a, b) => b.props.helpfulness - a.props.helpfulness)}
              </div>
              <button onClick={HandleMoreQsClick}>More Answered Questions</button></>
         )}
