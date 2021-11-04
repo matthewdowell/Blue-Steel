@@ -1,3 +1,79 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+/* RatingsReviews.jsx */
+.ratingsReviewsAll {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+}
+.aggregateReviewInfo {
+    margin-right: 60px;
+}
+.ratingsReviewsHeader {
+    display: flex;
+    font: helvetica;
+    margin-bottom: 10px;
+    justify-content: flex-start;
+}
+.averageRating {
+    font-size: 50px;
+    font-weight: bold;
+    color: rgb(57, 56, 56);
+}
+.ratingsDistribution {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.sortBy, .sortDropdown {
+    font: helvetica;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(57, 56, 56);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+}
+.reviewButton {
+    font-size: medium;
+    font-weight: bold;
+    background-color: white;
+    width: 160px;
+    height: 65px;
+    margin-top: 5px;
+    border-radius: 0px;
+}
+.addReviewButton {
+    width: 190px;
+    margin-left: 20px;
+}
+
+/* RatingsReviewsTiles.jsx */
+.ratingsReviewsTile {
+    width: 670px;
+    margin-bottom: 40px;
+}
+.rating{
+    display: flex;
+    justify-self: flex-start;
+}
+.reviewerInfo {
+    display: flex;
+    justify-content: space-between;
+    color:rgb(65, 65, 65)
+}
+.reviewSummary {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: rgb(57, 56, 56);
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+.markReviewHelpfulButton, .reportReviewButton {
+    background-color: white;
+    border: none;
+    text-decoration: underline;
+    font-size: 1em;
+    cursor: pointer
+}

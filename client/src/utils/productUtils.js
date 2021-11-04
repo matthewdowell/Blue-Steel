@@ -11,7 +11,6 @@ export function getProducts(page, count, callback) {
     },
   })
     .then((res) => {
-      console.log('got allProducts data back!', res.data);
       callback(res.data);
     })
     .catch((err) => { console.log(err); });

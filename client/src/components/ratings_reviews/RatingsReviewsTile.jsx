@@ -1,19 +1,22 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable arrow-body-style */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/extensions */
 import React from 'react';
 import { markReviewHelpful, reportReview } from '../../utils/reviewUtils.js';
-import { RatingsReviewsContext } from '../../context/ratingsReviewsContext.js';
 
 const RatingsReviewsTile = (props) => {
   const date = new Date(props.tile.date);
   const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   return (
-    <RatingsReviewsContext.Consumer>
-      {() => (
-        <div>
-          <span className="rating">Star Rating</span>
+    <div className="ratingsReviewsTile">
+      <span className="reviewerInfo">
+        <span className="rating">Star Rating</span>
+        {/* Star Rating */}
+        <span>
+          <span>{props.tile.reviewer_name}</span>
           <span className="date">
             {' '}
             {monthNames[date.getMonth()]}
@@ -22,22 +25,22 @@ const RatingsReviewsTile = (props) => {
             {', '}
             {date.getFullYear()}
           </span>
-          <div>
-            Review Summary:
-            {props.tile.summary}</div>
-          <div>Review Body</div>
-          <div>Recommended</div>
-          <div onClick={markReviewHelpful}>
-            Helpful?
-            <button type="submit" className="markHelpfulButton">Yes</button>
-            {'NUMBER'}
-            {' '}
-            {'|'}
-          </div>
-          <button type="submit" onClick={reportReview}>Report</button>
-        </div>
-      )}
-    </RatingsReviewsContext.Consumer>
+        </span>
+      </span>
+      <div className="reviewSummary">{props.tile.summary}</div>
+      <div className="reviewBody">{props.tile.body}</div>
+      <div className="reviewRecommended">{props.tile.recommend ? '✔ I recommended this product' : ''}</div>
+      <div className="reviewResponse">{props.tile.response}</div>
+      <div>
+        Helpful?
+        <button type="submit" className="markReviewHelpfulButton" onClick={markReviewHelpful}>Yes</button>
+        ({props.tile.helpfulness})
+        {' '}
+        {'|'}
+        {' '}
+        <button type="submit" className="reportReviewButton" onClick={reportReview}>Report</button>
+      </div>
+    </div>
   );
 };
 
