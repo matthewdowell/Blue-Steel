@@ -5,9 +5,16 @@ import { ProductContext } from '../../context/globalContext.js';
 import { RatingsReviewsContext } from '../../context/ratingsReviewsContext.js';
 import { addReview, getReviewMetadata, getReviewsOfProduct } from '../../utils/reviewUtils.js';
 import RatingsReviewsTile from './RatingsReviewsTile.jsx';
-import '../../../dist/ratingsReviewsStyle.css';
+import RatingsDistribution from './RatingsDistribution.jsx';
 
 const sortRatingsReviewsList = (sortBy) => {
+  if (sortBy === 'relevant') { // review.date AND review.helpfulness
+  } else if (sortBy === 'newest') { // review.date
+  } else if (sortBy === 'helpful') { // review.helpfulness
+  }
+};
+
+const sortByNewest = (arrayOfObj) => {
 
 };
 
@@ -16,6 +23,15 @@ const handleSortByChange = () => {
   sortRatingsReviewsList(sortBy);
 };
 
+const getPercentRecommended = (reviews) => {
+  let numRecommended = 0;
+  for (let i = 0; i < reviews.length; i++) {
+    if (reviews[i].recommend) { numRecommended++; }
+  }
+  return (numRecommended / reviews.length) * 100;
+};
+
+// TODO: Might need to move this into a global file to share
 const getAverageRating = (ratings) => {
   let numRatings = 0;
   let totalScore = 0;
@@ -44,39 +60,45 @@ const RatingsReviews = () => {
       setCurrentMetaData(data);
     }, currentProduct.id);
   }, [currentProduct]);
-  console.log('METADATA:', currentMetaData);
 
   return (
     <div>
       <ProductContext.Consumer>
         {() => (
-          <div>
-            <h2 className="header">Ratings and Reviews</h2>
-            <h3>
-              Average rating:
-              {getAverageRating(currentMetaData.ratings)}
-            </h3>
+          <div className="ratingsReviewsAll">
+            <div className="aggregateReviewInfo">
+              <span className="ratingsReviewsHeader">Ratings and Reviews</span>
+              <span className="averageRating">{getAverageRating(currentMetaData.ratings).toFixed(1)}</span>
+              <span>Star Component Here</span>
+              <div className="percentRecommended">
+                {getPercentRecommended(currentRatingsReviewsList)}
+                % of reviews recommend this product
+              </div>
+              <div><RatingsDistribution reviews={currentRatingsReviewsList} /></div>
+              <div>Size Rating</div>
+              <div>Comfort Rating</div>
+            </div>
             <div>
-              {currentRatingsReviewsList.length}
-              {' '}
-              reviews, sorted by
-              {' '}
-              <select name="sortBy" id="sortBy" onChange={handleSortByChange}>
-                <option value="relevance">relevance</option>
-                <option value="newest">newest</option>
-                <option value="helpful">helpfulness</option>
-              </select>
+              <div className="sortBy">
+                {currentRatingsReviewsList.length}
+                {' '}
+                reviews, sorted by
+                {' '}
+                <select className="sortDropdown" onChange={handleSortByChange}>
+                  <option value="relevant">relevant</option>
+                  <option value="newest">newest</option>
+                  <option value="helpful">helpful</option>
+                </select>
+              </div>
               <RatingsReviewsContext.Provider value={currentRatingsReviewsList}>
                 {/* TODO: Iterate all reviews and display first two */}
                 {/* TODO: Show the rest if MORE REVIEWS button is clicked */}
-                {currentRatingsReviewsList.map((tile) => {
-                  return <RatingsReviewsTile tile={tile} />;
-                })}
+                {currentRatingsReviewsList.map((tile) => <RatingsReviewsTile tile={tile} />)}
               </RatingsReviewsContext.Provider>
+              {/* TODO: MORE REVIEWS button should only appear if there are unshown reviews. Add 2 reviews per click  */}
+              <button type="submit" className="reviewButton">MORE REVIEWS</button>
+              <button type="submit" className="reviewButton addReviewButton" onClick={addReview}>ADD A REVIEW +</button>
             </div>
-            {/* TODO: MORE REVIEWS button should only appear if there are unshown reviews. Add 2 reviews per click  */}
-            <button type="submit" className="reviewButton">MORE REVIEWS</button>
-            <button type="submit" className="reviewButton" onClick={addReview}>ADD A REVIEW +</button>
           </div>
         )}
       </ProductContext.Consumer>
