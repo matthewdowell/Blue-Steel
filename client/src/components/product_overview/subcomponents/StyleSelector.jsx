@@ -2,7 +2,7 @@ import React from 'react';
 import ReviewsStars from './styleSelectorSubComponents/ReviewsStars.jsx';
 
 
-const StyleSelector = ({product}) => {
+const StyleSelector = ({product, styles}) => {
 
     var testItems = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -17,11 +17,12 @@ const StyleSelector = ({product}) => {
                 <span>SELECTED STYLE</span>
             </div>
             {/* Style Images  */}
-            <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', padding: '20px' }}>
-                {
-                    testItems.map(item => {
-                        return <span style={{ fontSize: '3em', flexBasis: '21%', padding: '5px' }}>{item}</span>
+            <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', padding: '20px', width: '450px' }}>
+                { styles[0] ?
+                    styles.map(style => {
+                        return <div style={{ width: '70px', height: '70px', padding: '.75em' }}><img src={style.photos[0].thumbnail_url} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', marginBottom: '1em', borderRadius: '50px' }} /></div>
                     })
+                    : <img></img>
                 }
             </div>
             {/* Options */}
