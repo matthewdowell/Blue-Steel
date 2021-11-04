@@ -45,7 +45,7 @@ export function getRelatedProducts(page, count, id) {
     .catch((err) => { console.log(err); });
 }
 
-export function getStyles(page, count, id) {
+export function getStyles(page, count, id, callback) {
   axios.get(`/products/${id}/styles`, {
     params: {
       page: page,
@@ -53,8 +53,6 @@ export function getStyles(page, count, id) {
       id: id
     },
   })
-    .then((res) => {
-      console.log('got Styles data back!', res.data);
-    })
+    .then((res) => { callback(res.data); })
     .catch((err) => { console.log(err); });
 }
