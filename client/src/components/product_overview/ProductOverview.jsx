@@ -27,7 +27,7 @@ const ProductOverview = () => {
 
   return (
     <ProductContext.Consumer>
-      {() => 
+      {() =>
 
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ border: 'none', width: '80%' }} >
