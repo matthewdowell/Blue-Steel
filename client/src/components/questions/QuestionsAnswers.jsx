@@ -10,7 +10,7 @@ const QuestionsAnswers = () => {
   const [currentQuestions, setCurrentQuestions] = useState([]);
 
   useEffect(() => {
-    getQuestionsAnswers(currentProduct.id, (data) => {
+    getQuestionsAnswers(/*currentProduct.id*/44389, (data) => {
       setCurrentQuestions(data.results);
     })
   }, [currentProduct])
