@@ -1,47 +1,16 @@
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable no-plusplus */
 /* eslint-disable import/extensions */
 import React, { useContext, useState, useEffect } from 'react';
 import { ProductContext } from '../../context/globalContext.js';
 import { RatingsReviewsContext } from '../../context/ratingsReviewsContext.js';
 import { addReview, getReviewMetadata, getReviewsOfProduct } from '../../utils/reviewUtils.js';
+import ratingsReviewsHelpers from './ratingsReviewsHelpers.js';
+import ReviewForm from './ReviewForm.jsx';
 import RatingsReviewsTile from './RatingsReviewsTile.jsx';
 import RatingsDistribution from './RatingsDistribution.jsx';
-
-const sortRatingsReviewsList = (sortBy) => {
-  if (sortBy === 'relevant') { // review.date AND review.helpfulness
-  } else if (sortBy === 'newest') { // review.date
-  } else if (sortBy === 'helpful') { // review.helpfulness
-  }
-};
-
-const sortByNewest = (arrayOfObj) => {
-
-};
-
-const handleSortByChange = () => {
-  const sortBy = document.getElementById('sortBy').value;
-  sortRatingsReviewsList(sortBy);
-};
-
-const getPercentRecommended = (reviews) => {
-  let numRecommended = 0;
-  for (let i = 0; i < reviews.length; i++) {
-    if (reviews[i].recommend) { numRecommended++; }
-  }
-  return (numRecommended / reviews.length) * 100;
-};
-
-// TODO: Might need to move this into a global file to share
-const getAverageRating = (ratings) => {
-  let numRatings = 0;
-  let totalScore = 0;
-  const keys = Object.keys(ratings);
-  for (let i = 0; i < keys.length; i++) {
-    numRatings += ratings[keys[i]];
-    totalScore += keys[i] * ratings[keys[i]];
-  }
-  return totalScore / numRatings;
-};
+import SizeDistribution from './SizeDistribution.jsx';
 
 // Functional component
 const RatingsReviews = () => {
@@ -60,22 +29,21 @@ const RatingsReviews = () => {
       setCurrentMetaData(data);
     }, currentProduct.id);
   }, [currentProduct]);
-
   return (
     <div>
       <ProductContext.Consumer>
         {() => (
           <div className="ratingsReviewsAll">
             <div className="aggregateReviewInfo">
-              <span className="ratingsReviewsHeader">Ratings and Reviews</span>
-              <span className="averageRating">{getAverageRating(currentMetaData.ratings).toFixed(1)}</span>
+              <span className="ratingsReviewsHeader">Ratings {'&'} Reviews</span>
+              <span className="averageRating">{ratingsReviewsHelpers.getAverageRating(currentMetaData.ratings).toFixed(1)}</span>
               <span>Star Component Here</span>
               <div className="percentRecommended">
-                {getPercentRecommended(currentRatingsReviewsList)}
+                {ratingsReviewsHelpers.getPercentRecommended(currentRatingsReviewsList)}
                 % of reviews recommend this product
               </div>
               <div><RatingsDistribution reviews={currentRatingsReviewsList} /></div>
-              <div>Size Rating</div>
+              <div><SizeDistribution size={currentProduct} /></div>
               <div>Comfort Rating</div>
             </div>
             <div>
@@ -84,7 +52,7 @@ const RatingsReviews = () => {
                 {' '}
                 reviews, sorted by
                 {' '}
-                <select className="sortDropdown" onChange={handleSortByChange}>
+                <select className="sortDropdown" onChange={ratingsReviewsHelpers.handleSortByChange}>
                   <option value="relevant">relevant</option>
                   <option value="newest">newest</option>
                   <option value="helpful">helpful</option>
@@ -95,9 +63,27 @@ const RatingsReviews = () => {
                 {/* TODO: Show the rest if MORE REVIEWS button is clicked */}
                 {currentRatingsReviewsList.map((tile) => <RatingsReviewsTile tile={tile} />)}
               </RatingsReviewsContext.Provider>
-              {/* TODO: MORE REVIEWS button should only appear if there are unshown reviews. Add 2 reviews per click  */}
+              {/* TODO: MORE REVIEWS only appears if there are hidden reviews.
+              Add 2 reviews per click */}
               <button type="submit" className="reviewButton">MORE REVIEWS</button>
-              <button type="submit" className="reviewButton addReviewButton" onClick={addReview}>ADD A REVIEW +</button>
+              <button
+                type="submit"
+                className="reviewButton addReviewButton"
+                onClick={ratingsReviewsHelpers.openReviewForm}
+              >
+                ADD A REVIEW +
+              </button>
+              {/* Form to add a review */}
+              <div className="form-popup" id="myForm">
+                <form action="/action_page.php" className="form-container">
+                  <h1>Add a Review</h1>
+                  <label><b>Rating</b></label>
+                  <input type="number" placeholder="Enter Rating" required></input>
+                  <label><b>Recommended?</b></label>
+                  <input type="text" placeholder="Yes or No" required></input>
+                  <button type="submit" className="reviewButton">Submit Review</button>
+                </form>
+              </div>
             </div>
           </div>
         )}
