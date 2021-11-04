@@ -3,7 +3,7 @@
 /* eslint-disable import/extensions */
 import React from 'react';
 import { markReviewHelpful, reportReview } from '../../utils/reviewUtils.js';
-import '../../../dist/ratingsReviewsTileStyle.css';
+// import '../../../dist/ratingsReviewsTileStyle.css';
 import { RatingsReviewsContext } from '../../context/ratingsReviewsContext.js';
 
 const RatingsReviewsTile = (props) => {

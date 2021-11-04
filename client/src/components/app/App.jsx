@@ -7,7 +7,6 @@ import QuestionsAnswers from '../questions/QuestionsAnswers.jsx';
 import RelatedItems from '../related_items/RelatedItems.jsx';
 import { getProducts } from '../../utils/productUtils.js';
 import { ProductContext } from '../../context/globalContext.js';
-import '../../../dist/style.css';
 
 const App = () => {
   // Bring in first product: product_id 44388

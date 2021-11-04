@@ -12,6 +12,8 @@ const ProductOverview = () => {
 
   const currentProduct = useContext(ProductContext).currentProduct;
   const setCurrentProduct = useContext(ProductContext).setCurrentProduct;
+  
+  console.log(currentProduct);
 
   return (
     <ProductContext.Consumer>
@@ -24,11 +26,11 @@ const ProductOverview = () => {
             {/* Image Gallery and Style Selector Container */}
             <div style={{ display: 'flex', width: '100%', background: 'none', minHeight: '650px'}}>
               <ImageGallery/>
-              <StyleSelector/>
+              <StyleSelector key={currentProduct.product_id} product={currentProduct}/>
             </div>
             {/* Product Description Section */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' ,width: '100%', background: 'none', minHeight: '200px'}}>
-              <ProductDescription/>
+              <ProductDescription key={currentProduct.product_id} product={currentProduct}/>
               <ProductBulletPoints/>
             </div>
         </div>

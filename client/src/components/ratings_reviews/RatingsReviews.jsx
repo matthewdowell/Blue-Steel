@@ -5,7 +5,6 @@ import { ProductContext } from '../../context/globalContext.js';
 import { RatingsReviewsContext } from '../../context/ratingsReviewsContext.js';
 import { addReview, getReviewMetadata, getReviewsOfProduct } from '../../utils/reviewUtils.js';
 import RatingsReviewsTile from './RatingsReviewsTile.jsx';
-import '../../../dist/ratingsReviewsStyle.css';
 
 const sortRatingsReviewsList = (sortBy) => {
 
