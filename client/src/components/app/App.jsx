@@ -35,10 +35,10 @@ const App = () => {
     <div>
       {/* eslint-disable-next-line object-curly-newline */}
       <ProductContext.Provider value={{ currentProduct, setCurrentProduct, products, setProducts }}>
-        <div><ProductOverview /></div>
+        {/* <div><ProductOverview /></div> */}
         {/* <div><RelatedItems /></div> */}
         <div><QuestionsAnswers /></div>
-        <div><RatingsReviews /></div>
+        {/* <div><RatingsReviews /></div> */}
       </ProductContext.Provider>
     </div>
   );

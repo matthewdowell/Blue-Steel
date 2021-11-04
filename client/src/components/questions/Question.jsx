@@ -16,8 +16,9 @@ const Question = (props) => {
         <p style={{paddingRight: '5px'}}><b>A:  </b></p>
         <div>{Object
           .values(props.question.answers)
-          .map(answer => <Answer answer={answer} key={answer.id}/>)
-          .slice(0, 2)}
+          .map(answer => <Answer answer={answer} key={answer.id} helpfulness={answer.helpfulness}/>)
+          .slice(0, 2)
+          .sort((a, b) => b.props.helpfulness - a.props.helpfulness)}
         </div>
       </div>
     </>
