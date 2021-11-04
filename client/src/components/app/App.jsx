@@ -7,7 +7,6 @@ import QuestionsAnswers from '../questions/QuestionsAnswers.jsx';
 import RelatedItems from '../related_items/RelatedItems.jsx';
 import { getProducts } from '../../utils/productUtils.js';
 import { ProductContext } from '../../context/globalContext.js';
-import '../../../dist/style.css';
 
 const App = () => {
   // Bring in first product: product_id 44388
@@ -36,10 +35,10 @@ const App = () => {
     <div>
       {/* eslint-disable-next-line object-curly-newline */}
       <ProductContext.Provider value={{ currentProduct, setCurrentProduct, products, setProducts }}>
-        {/* <div><ProductOverview /></div> */}
-        {/* <div><RelatedItems /></div> */}
+        <div><ProductOverview /></div>
+        <div><RelatedItems /></div>
         <div><QuestionsAnswers /></div>
-        {/* <div><RatingsReviews /></div> */}
+        <div><RatingsReviews /></div>
       </ProductContext.Provider>
     </div>
   );
