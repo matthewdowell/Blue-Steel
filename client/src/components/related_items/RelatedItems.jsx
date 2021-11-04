@@ -1,17 +1,15 @@
-
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getProductsById, getStyles } from '../../utils/productUtils';
-import { ProductContext } from '../../context/globalContext';
 import ProductCompare from './ProductCompare.jsx';
 import StarRating from './StarRating.jsx';
 
 const RelatedItems = () => {
-  const [showModal, setModal] = useState(() => false);
-  const [products, setProducts] = useState([]);
-  const [selectedProduct, setSelectProduct] = useState([]);
-  const closeModal = () => {
-    setModal(false);
-  };
+  // const [showModal, setModal] = useState(() => false);
+  // const [products, setProducts] = useState([]);
+  // const [selectedProduct, setSelectProduct] = useState([]);
+  // const closeModal = () => {
+  //   setModal(false);
+  // };
   const [leftCount, setLeftCount] = useState(0);
   const increment = () => {
     setLeftCount((prev) => prev + 1);
@@ -27,7 +25,7 @@ const RelatedItems = () => {
     });
   };
 
-  const currentProduct  = useContext({ ProductContext });
+  const { currentProduct } = useContext(ProductContext);
 
   useEffect(() => {
     getRelatedProducts(
@@ -135,7 +133,6 @@ const RelatedItems = () => {
                   <p className="p-category">{item.category}</p>
                   <p className="p-title">{item.name}</p>
                   <p className="p-price">{item.default_price}</p>
-                  <StarRating productId={item.id} />
                 </div>
               );
             }
@@ -151,12 +148,7 @@ const RelatedItems = () => {
           ) : (
             ''
           )}
-          <ProductCompare
-            displayModal={showModal}
-            closeModal={closeModal}
-            currentProduct={currentProduct}
-            clickedProduct={selectedProduct}
-          />
+
         </div>
       </div>
     </div>
