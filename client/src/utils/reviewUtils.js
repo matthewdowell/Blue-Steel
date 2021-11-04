@@ -31,8 +31,9 @@ export function getReviewMetadata(callback, product_id) {
     .catch((err) => { console.log(err); });
 }
 
-// eslint-disable-next-line max-len
-export function addReview(callback, product_id, rating, summary, body, recommend, name, email, photos, characteristics) {
+export function addReview(
+  callback, product_id, rating, summary, body, recommend, name, email, photos, characteristics
+) {
   axios.post('/reviews', {
     product_id: product_id,
     rating: rating,

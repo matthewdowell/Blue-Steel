@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ProductContext } from '../../context/globalContext';
 import { getProducts, getProductsById, getRelatedProducts, getStyles } from '../../utils/productUtils';
 import Header from './subcomponents/Header.jsx';
@@ -12,6 +12,18 @@ const ProductOverview = () => {
 
   const currentProduct = useContext(ProductContext).currentProduct;
   const setCurrentProduct = useContext(ProductContext).setCurrentProduct;
+  const [currentStyles, setCurrentStyles] = useState([]);
+  const [currentStyle, setCurrentStyle] = useState([]);
+
+  useEffect(() => {
+    getStyles(null, null, currentProduct.id, (data) => {
+      setCurrentStyles(data.results);
+      setCurrentStyle(data.results[0]);
+    })
+    
+  }, [currentProduct])
+  
+  //console.log(currentProduct);
 
   return (
     <ProductContext.Consumer>
@@ -22,13 +34,13 @@ const ProductOverview = () => {
             <Header/>
             <SubHeader/>
             {/* Image Gallery and Style Selector Container */}
-            <div style={{ display: 'flex', width: '100%', background: 'none', minHeight: '650px'}}>
-              <ImageGallery/>
-              <StyleSelector/>
+            <div style={{ display: 'flex', width: '100%', background: 'none', maxHeight: '700px'}}>
+              <ImageGallery key={currentStyles.style_id} styles={currentStyles}/>
+              <StyleSelector key={currentProduct.product_id} product={currentProduct} styles={currentStyles}/>
             </div>
             {/* Product Description Section */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around' ,width: '100%', background: 'none', minHeight: '200px'}}>
-              <ProductDescription/>
+              <ProductDescription key={currentProduct.product_id} product={currentProduct}/>
               <ProductBulletPoints/>
             </div>
         </div>
