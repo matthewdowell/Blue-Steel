@@ -1,6 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { getProductsById, getStyles } from '../../utils/productUtils';
+import { ProductContext } from '../../context/globalContext';
 import ProductCompare from './ProductCompare.jsx';
 import StarRating from './StarRating.jsx';
 
@@ -26,7 +27,7 @@ const RelatedItems = () => {
     });
   };
 
-  const { currentProduct } = useContext(ProductContext);
+  const currentProduct  = useContext({ ProductContext });
 
   useEffect(() => {
     getRelatedProducts(
