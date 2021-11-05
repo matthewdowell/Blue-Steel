@@ -24,54 +24,34 @@ const Answer = ({ answer }) => {
   }
 
   return (
-    <><p>{answer.body}</p>
+    <>
+      <p>{answer.body}</p>
+      <div style={{display: 'flex'}}>
+          <div style={{paddingRight: '10px'}}>
             {answer.answerer_name === 'Seller'
-              ? <div style={{display: 'flex'}}>
-                  <div style={{paddingRight: '10px'}}>
-                    {`by `}<b>{answer.answerer_name}</b>{`, ${new Date(answer.date).toDateString().slice(4)}`}
-                  </div>
-                  <div style={{padding: '0px 10px', borderLeft: '2px solid black'}}>Helpful? </div>
-                  <div 
-                    style={{
-                      textDecoration: 'underline',
-                      paddingRight: '5px',
-                      cursor: 'pointer'
-                    }}
-                    onClick={handleYesClick}
-                  >Yes</div>
-                  <div style={{paddingRight: '10px', borderRight: '2px solid black'}}>{`(${helpfulVotes})`}</div>
-                  {reported 
-                    ? <div style={{paddingLeft: '10px'}}>Reported</div>
-                    : <div 
-                        style={{paddingLeft: '10px', textDecoration: 'underline', cursor: 'pointer'}}
-                        onClick={handleReportClick}
-                      >Report</div>
-                  }
-                </div>
-              : <div style={{display: 'flex'}}>
-                  <div style={{paddingRight: '10px'}}>
-                    {`by ${answer.answerer_name}, ${new Date(answer.date).toDateString().slice(4)}`}
-                  </div>
-                  <div style={{padding: '0px 10px', borderLeft: '2px solid black'}}>Helpful? </div>
-                  <div 
-                    style={{
-                      textDecoration: 'underline',
-                      paddingRight: '5px',
-                      cursor: 'pointer'
-                    }}
-                    onClick={handleYesClick}
-                  >Yes</div>
-                  <div style={{paddingRight: '10px', borderRight: '2px solid black'}}>{`(${helpfulVotes})`}</div>
-                  {reported 
-                    ? <div style={{paddingLeft: '10px'}}>Reported</div>
-                    : <div 
-                        style={{paddingLeft: '10px', textDecoration: 'underline', cursor: 'pointer'}}
-                        onClick={handleReportClick}
-                      >Report</div>
-                  }
-                </div>
+              ? <>{`by `}<b>{answer.answerer_name}</b>{`, ${new Date(answer.date).toDateString().slice(4)}`}</>
+              : <>{`by ${answer.answerer_name}, ${new Date(answer.date).toDateString().slice(4)}`}</>
             }
-  </>
+          </div>
+          <div style={{padding: '0px 10px', borderLeft: '2px solid black'}}>Helpful? </div>
+          <div 
+            style={{
+              textDecoration: 'underline',
+              paddingRight: '5px',
+              cursor: 'pointer'
+            }}
+            onClick={handleYesClick}
+          >Yes</div>
+          <div style={{paddingRight: '10px', borderRight: '2px solid black'}}>{`(${helpfulVotes})`}</div>
+          {reported 
+            ? <div style={{paddingLeft: '10px'}}>Reported</div>
+            : <div 
+                style={{paddingLeft: '10px', textDecoration: 'underline', cursor: 'pointer'}}
+                onClick={handleReportClick}
+              >Report</div>
+          }
+      </div>
+    </>
   )
 }
 
