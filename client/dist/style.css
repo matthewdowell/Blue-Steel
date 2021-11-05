@@ -193,9 +193,12 @@ progress.ratingBar:hover:before {
     outline: blue;
 }
 
+<<<<<<< HEAD
 /* ReviewForm.jsx */
 .reviewFormContainer {
     display: flex;
     justify-content: center;
     width: 100%;
 }
+=======
+>>>>>>> 00340a0e7b16efec8c2d5fa9d30ac5a0a2ea5eec
