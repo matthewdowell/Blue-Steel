@@ -1,18 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { qaContext } from '../../context/qaContext.js';
 import Question from './Question.jsx';
+import QuestionModal from './QuestionModal.jsx';
 
 const QuestionsList = () => {
   const currentQuestions = useContext(qaContext);
-  const [numberOfQsDisplayed, setNumberOfQsDisplayed] = useState(2)
-
-  function HandleMoreQsClick() {
-    setNumberOfQsDisplayed(numberOfQsDisplayed + 2);
-  }
-
-  function handleAddQuestionClick() {
-    console.log('add question button clicked');
-  }
+  const [numberOfQsDisplayed, setNumberOfQsDisplayed] = useState(2);
+  const [modelDisplayed, setModelDisplayed] = useState(false);
 
   return (
     <div>
@@ -35,7 +29,7 @@ const QuestionsList = () => {
               <div style={{display: 'flex'}}>
                 {numberOfQsDisplayed < currentQuestions.length
                 ? <div 
-                    onClick={HandleMoreQsClick}
+                    onClick={() => { setNumberOfQsDisplayed(numberOfQsDisplayed + 2); }}
                     style={{
                       height: '50px',
                       lineHeight: '50px',
@@ -60,12 +54,13 @@ const QuestionsList = () => {
                     justifyContent: 'space-between',
                     padding: '0 20px'                   
                   }}
-                  onClick={handleAddQuestionClick}
+                  onClick={() => { setModelDisplayed(true); }}
                 >
                   <div>ADD A QUESTION</div>
-                  <i class="fas fa-plus"></i>
-                </div>
+                  <i className="fas fa-plus"></i>
+                </div >
               </div>
+              { modelDisplayed && <QuestionModal />}
             </>
         )}
       </qaContext.Consumer>
