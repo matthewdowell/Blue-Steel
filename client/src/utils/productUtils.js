@@ -2,6 +2,7 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable object-shorthand */
 import axios from 'axios';
+import React from 'react';
 
 export function getProducts(page, count, callback) {
   axios.get('/products', {
@@ -55,4 +56,10 @@ export function getStyles(page, count, id, callback) {
   })
     .then((res) => { callback(res.data); })
     .catch((err) => { console.log(err); });
+}
+
+export function renderStyles(styles, currentStyle) {
+  styles[currentStyle].photos.map((photo, index) => {
+      return <img src={photo.thumbnail_url} key={`${currentStyle}`} id={index} onClick={(e) => {setImageIndex(e.target.id)}} alt='' style={{ width: '100%', height: '100%', objectFit: 'cover', marginBottom: '1em' }} /> 
+  })
 }
