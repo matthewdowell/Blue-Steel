@@ -29,6 +29,31 @@ export function getProductsById(id, callback) {
     .catch((err) => { console.log(err); });
 }
 
-export function getSharedFeatures() {
-  //to do 
-};
+
+
+// export function getStyleFeaturesById(id, styleId, callback) {
+//   axios.get(`/products/${id}/styles`, {
+//     params: {
+//       id: id,
+//       styleId: styleId
+//     },
+//   })
+//     .then((res) => {
+//       console.log('got shared featuresById data back! ', res.data);
+//       callback(res.data);
+//     })
+//     .catch((err) => console.log(err));
+// }
+
+export function getStyleFeatures(id, callback) {
+  axios.get(`/products/${id}/styles`, {
+    params: {
+      id: id
+    },
+  })
+    .then((res) => {
+      console.log('got stylefeaturesById data back! ', res.data);
+      callback(res.data);
+    })
+    .catch((err) => console.log(err));
+}
