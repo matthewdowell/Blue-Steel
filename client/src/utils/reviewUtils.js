@@ -52,20 +52,18 @@ export function addReview(
     .catch((err) => { console.log(err); });
 }
 
-export function markReviewHelpful(callback, review_id) {
+export function markReviewHelpful(review_id) {
   axios.put('/reviews/review_id/helpful', { review_id: review_id })
     .then((res) => {
-      console.log('Review marked', res.data);
-      callback(res.data);
+      console.log('Review marked helpful!', res.data);
     })
     .catch((err) => { console.log(err); });
 }
 
-export function reportReview(callback, review_id) {
+export function reportReview(review_id) {
   axios.put('/reviews/review_id/report', { review_id: review_id })
     .then((res) => {
       console.log('Review reported!', res.data);
-      callback(res.data);
     })
     .catch((err) => { console.log(err); });
 }

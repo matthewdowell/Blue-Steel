@@ -1,10 +1,11 @@
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState }from 'react';
 import ratingsReviewsHelpers from './ratingsReviewsHelpers';
 
 const RatingsDistribution = (props) => {
   const { reviews } = props;
+  const [] = useState({});
   return (
     <div className="ratingDistribution">
       <div className="ratingBarContainer">
@@ -12,6 +13,7 @@ const RatingsDistribution = (props) => {
         <progress
           className="ratingBar"
           value={ratingsReviewsHelpers.countReviewsWithRating(reviews, 5) / reviews.length}
+          onClick={''}
         >
         </progress>
         {ratingsReviewsHelpers.countReviewsWithRating(reviews, 5)}
