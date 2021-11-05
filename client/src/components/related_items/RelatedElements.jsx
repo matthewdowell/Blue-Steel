@@ -10,7 +10,7 @@ const RelatedElements = (props) => {
   useEffect(() => {
     getRelatedData(),
     getRelatedPhotos(),
-  }, currentProduct.features)
+  }, currentProduct.features);
 
   let getRelatedData = () => {
     let uniqueArr = [];
@@ -20,7 +20,7 @@ const RelatedElements = (props) => {
         .then(() => (setDataArr(uniqueArr)))
         .catch((err) => (console.log(err)));
     })
-  }
+  };
 
   let getRelatedPhotos = () => {
     getRelatedProductsById.map(item => {
