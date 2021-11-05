@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 
-const Search = () => {
-
-  const[inputValue, setInputValue] = useState('')
-
-  function handleInputChange(e) {
-    setInputValue(e.target.value);
-  }
+const Search = ({ inputValue, handleInputChange }) => {
 
   return (
     <div style={{display: 'flex', border: '2px solid black', height: '50px'}}>
