@@ -92,4 +92,4 @@ const RatingsReviews = () => {
   );
 };
 
-// export default RatingsReviews;
+export default RatingsReviews;
