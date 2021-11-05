@@ -1,30 +1,31 @@
 import { useEffect, useState, useContext} from "react";
-import ProductContext from '../..context/globalContext.js'
+import ProductContext from '../../context/globalContext.js';
+import getRelatedProductsById from '../../utils/relatedUtils.js';
 
-const RelatedElements = () => {
+const RelatedElements = (props) => {
   const currentProduct = useContext(ProductContext);
-  const [dataArr, updateDataArr] = useState([]);
-  const [dataStyle, updateDataStyle] = useState([]);
+  const [dataArr, setDataArr] = useState([]);
+  const [dataStyle, setDataStyle] = useState([]);
 
   useEffect(() => {
     getRelatedData(),
     getRelatedPhotos(),
-  }, currentProduct.features)
+  }, currentProduct.features);
 
   let getRelatedData = () => {
     let uniqueArr = [];
-    relatedItemsIds.map(item => {
+    getRelatedProductsById.map(item => {
       getSharedFeatures(item)
         .then((results) => (uniqueArr.push(results.data)))
-        .then(() => (updateDataArr(uniqueArr)))
+        .then(() => (setDataArr(uniqueArr)))
         .catch((err) => (console.log(err)));
     })
-  }
+  };
 
   let getRelatedPhotos = () => {
-    relatedItemsIds.map(item => {
+    getRelatedProductsById.map(item => {
       getSharedStyleFeatures(item)
-        .then((results) => (updateDataStyle(dataStyle => ([...dataStyle, results.data]))))
+        .then((results) => (setDataStyle(dataStyle => ([...dataStyle, results.data]))))
         .catch((err) => (console.log(err)));
     })
   }
