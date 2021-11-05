@@ -5,7 +5,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { ProductContext } from '../../context/globalContext.js';
 import { RatingsReviewsContext } from '../../context/ratingsReviewsContext.js';
-import { addReview, getReviewMetadata, getReviewsOfProduct } from '../../utils/reviewUtils.js';
+import { getReviewMetadata, getReviewsOfProduct } from '../../utils/reviewUtils.js';
 import ratingsReviewsHelpers from './ratingsReviewsHelpers.js';
 import ReviewForm from './ReviewForm.jsx';
 import RatingsReviewsTile from './RatingsReviewsTile.jsx';
@@ -15,6 +15,9 @@ import SizeDistribution from './SizeDistribution.jsx';
 // Functional component
 const RatingsReviews = () => {
   const { currentProduct } = useContext(ProductContext);
+  const currentReviews = useContext(RatingsReviewsContext);
+  const [numReviewsDisplayed, setNumReviewsDisplayed] = useState(2);
+  const [addReview, setAddReview] = useState(false);
   const [currentRatingsReviewsList, setCurrentRatingsReviewsList] = useState([]);
   const [currentMetaData, setCurrentMetaData] = useState({ ratings: { 0: 0 } });
 
@@ -29,6 +32,11 @@ const RatingsReviews = () => {
       setCurrentMetaData(data);
     }, currentProduct.id);
   }, [currentProduct]);
+
+  function toggleReviewForm () {
+    setAddReview(!addReview);
+  }
+
   return (
     <div>
       <ProductContext.Consumer>
@@ -58,32 +66,39 @@ const RatingsReviews = () => {
                   <option value="helpful">helpful</option>
                 </select>
               </div>
-              <RatingsReviewsContext.Provider value={currentRatingsReviewsList}>
-                {/* TODO: Iterate all reviews and display first two */}
-                {/* TODO: Show the rest if MORE REVIEWS button is clicked */}
-                {currentRatingsReviewsList.map((tile) => <RatingsReviewsTile tile={tile} />)}
-              </RatingsReviewsContext.Provider>
-              {/* TODO: MORE REVIEWS only appears if there are hidden reviews.
-              Add 2 reviews per click */}
-              <button type="submit" className="reviewButton">MORE REVIEWS</button>
+              {currentRatingsReviewsList
+                .map((tile) => <RatingsReviewsTile tile={tile} />)
+                .slice(0, numReviewsDisplayed)
+              }
               <button
                 type="submit"
                 className="reviewButton addReviewButton"
-                onClick={ratingsReviewsHelpers.openReviewForm}
+                onClick={() => { setAddReview(true) }}
               >
                 ADD A REVIEW +
               </button>
-              {/* Form to add a review */}
-              <div className="form-popup" id="myForm">
-                <form action="/action_page.php" className="form-container">
-                  <h1>Add a Review</h1>
-                  <label><b>Rating</b></label>
-                  <input type="number" placeholder="Enter Rating" required></input>
-                  <label><b>Recommended?</b></label>
-                  <input type="text" placeholder="Yes or No" required></input>
-                  <button type="submit" className="reviewButton">Submit Review</button>
-                </form>
+              <div>
+              {(
+                (numReviewsDisplayed >= currentRatingsReviewsList.length)
+                ? <button type="submit" className="reviewButton"
+                  onClick={() => { setNumReviewsDisplayed(2); }}>COLLAPSE REVIEWS
+                  </button>
+                : <div></div>
+              )}
               </div>
+              <div>
+                {(
+                  (numReviewsDisplayed < currentRatingsReviewsList.length)
+                  ? <button type="submit" className="reviewButton"
+                    onClick={() => { setNumReviewsDisplayed(numReviewsDisplayed + 2); }}>MORE REVIEWS</button>
+                  : <div></div>
+                )}
+              </div>
+              {(
+                addReview
+                ? (<ReviewForm closeReviewForm={() => { setAddReview(false); }} name={currentProduct.name} />)
+                : ''
+              )}
             </div>
           </div>
         )}
@@ -92,4 +107,4 @@ const RatingsReviews = () => {
   );
 };
 
-// export default RatingsReviews;
+export default RatingsReviews;
