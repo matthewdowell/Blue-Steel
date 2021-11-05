@@ -49,18 +49,22 @@ const Question = (props) => {
       <div style={{display: 'flex'}}>
           <p style={{paddingRight: '5px'}}><b>A:  </b></p>
           {showMoreAnswers
-            ? <div>{Object
-                .values(props.question.answers)
-                .map(answer => <Answer answer={answer} key={answer.id} helpfulness={answer.helpfulness}/>)
-                .sort((a, b) => b.props.helpfulness - a.props.helpfulness)}
+            ? <div>
+                {Object
+                  .values(props.question.answers)
+                  .map(answer => <Answer answer={answer} key={answer.id} helpfulness={answer.helpfulness}/>)
+                  .sort((a, b) => b.props.helpfulness - a.props.helpfulness)
+                }
               </div>
-            : <><div>{Object
-                .values(props.question.answers)
-                .map(answer => <Answer answer={answer} key={answer.id} helpfulness={answer.helpfulness}/>)
-                .slice(0, 2)
-                .sort((a, b) => b.props.helpfulness - a.props.helpfulness)}
+            : <div>
+                {Object
+                  .values(props.question.answers)
+                  .map(answer => <Answer answer={answer} key={answer.id} helpfulness={answer.helpfulness}/>)
+                  .slice(0, 2)
+                  .sort((a, b) => b.props.helpfulness - a.props.helpfulness)
+                }
               </div>
-              </>}
+          }
       </div>
       <div>
         {Object.values(props.question.answers).length > 2
