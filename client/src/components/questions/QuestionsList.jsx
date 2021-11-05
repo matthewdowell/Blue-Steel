@@ -10,6 +10,10 @@ const QuestionsList = () => {
     setNumberOfQsDisplayed(numberOfQsDisplayed + 2);
   }
 
+  function handleAddQuestionClick() {
+    console.log('add question button clicked');
+  }
+
   return (
     <div>
       <qaContext.Consumer>
@@ -27,24 +31,41 @@ const QuestionsList = () => {
                 <Question key={index} question={question} helpfulness={question.question_helpfulness}/>)
               .slice(0, numberOfQsDisplayed)
               .sort((a, b) => b.props.helpfulness - a.props.helpfulness)}
-             </div>
-             <div style={{display: 'flex'}}>
-               {numberOfQsDisplayed < currentQuestions.length
-               ? <div 
-                   onClick={HandleMoreQsClick}
-                   style={{
-                     height: '50px',
-                     lineHeight: '50px',
-                     width: '300px',
-                     border: '2px solid black',
-                     textAlign: 'center',
-                     cursor: 'pointer'
-                   }}>
-                   MORE ANSWERED QUESTIONS
-                 </div>
-               : null
-               }
-             </div>
+              </div>
+              <div style={{display: 'flex'}}>
+                {numberOfQsDisplayed < currentQuestions.length
+                ? <div 
+                    onClick={HandleMoreQsClick}
+                    style={{
+                      height: '50px',
+                      lineHeight: '50px',
+                      width: '300px',
+                      border: '2px solid black',
+                      textAlign: 'center',
+                      cursor: 'pointer',
+                      marginRight: '20px'
+                    }}>
+                    MORE ANSWERED QUESTIONS
+                  </div>
+                : null
+                }
+                <div 
+                  style={{
+                    display: 'flex',
+                    height: '50px',
+                    width: '170px',
+                    border: '2px solid black',
+                    cursor: 'pointer',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '0 20px'                   
+                  }}
+                  onClick={handleAddQuestionClick}
+                >
+                  <div>ADD A QUESTION</div>
+                  <i class="fas fa-plus"></i>
+                </div>
+              </div>
             </>
         )}
       </qaContext.Consumer>
