@@ -3,6 +3,76 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* modal */
+/* .modalBackground {
+    background-color: rgba(200, 200, 200);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modalContainer {
+    width: 500px;
+    height: 500px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+  }
+
+  .modalContainer .title {
+    display: inline-block;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .titleCloseBtn {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .titleCloseBtn button {
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  .modalContainer .body {
+    flex: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    text-align: center;
+  }
+
+  .modalContainer .footer {
+    flex: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modalContainer .footer button {
+    width: 150px;
+    height: 45px;
+    margin: 10px;
+    border: none;
+    background-color: cornflowerblue;
+    color: white;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  #cancelBtn {
+    background-color: crimson;
+  } */
+
 /* RatingsReviews.jsx */
 .ratingsReviewsAll {
     display: flex;
@@ -40,6 +110,10 @@ body {
 .sortDropdown {
     text-decoration: underline;
 }
+.reviewButtons {
+    display: flex;
+    flex-direction: row;
+}
 .reviewButton, .submitReviewButton, .closeReviewButton {
     font-size: medium;
     font-weight: bold;
@@ -49,16 +123,14 @@ body {
     margin-top: 5px;
     border-radius: 0px;
 }
-.reviewButtons {
-    display: flex;
-}
 .addReviewButton {
     width: 190px;
     margin-right: 20px;
 }
 
-/* RatingsReviewsTiles.jsx */
+/* RatingsReviewsTile.jsx */
 .ratingsReviewsTile {
+    font-weight: normal;
     width: 670px;
     margin-bottom: 40px;
 }
@@ -81,6 +153,9 @@ body {
 .reviewBody {
     margin-top: 7px;
     margin-bottom: 7px;
+}
+.reviewRecommended {
+    font-weight: bold;
 }
 .markReviewHelpfulButton, .reportReviewButton {
     background-color: white;
@@ -124,8 +199,3 @@ progress.ratingBar:hover:before {
     justify-content: center;
     width: 100%;
 }
-
-.reviewForm {
-
-}
-

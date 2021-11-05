@@ -1,28 +1,15 @@
 import React from 'react';
 
-const ReviewForm = (props) => {
-  const isOpen = props.addReview;
+const ReviewForm = ({ addReview, setShowReviewForm }) => {
+  const isOpen = addReview;
 
   return (
     <div className="reviewFormContainer">
       <form action="/action_page.php" className="reviewForm">
-        <h2>Write Your Review</h2>
-        <h3>About the {props.name}</h3>
-        <label>Rating</label>
-        <input type="number" placeholder="Enter Rating" required></input>
-        <div className="recommendProduct">
-          <p>Do you recommend this product?</p>
-          <div>
-            <input type="radio" id="yes" name="recommendProduct"></input>
-            <label htmlFor="yes">Yes</label>
-          </div>
-          <div>
-            <input type="radio" id="no" name="recommendProduct"></input>
-            <label htmlFor="no">No</label>
-          </div>
-        </div>
         <div className="characteristics">
           <p>Characteristics</p>
+          {/* TODO: Map over an array of 1 to 5, for each characteristics */}
+          {/* TODO: Make the name dynamic so we can capture which one was clicked */}
           <div class="reviewCategory">
             <p>Size</p>
             <input type="radio" id="size" name="size"></input>
@@ -108,7 +95,9 @@ const ReviewForm = (props) => {
         </div>
         <div>
           <button type="submit" className="submitReviewButton">Submit Review</button>
-          <button type="submit" className="closeReviewButton" onClick={props.closeReviewForm}>Close Review</button>
+          <button type="submit" className="closeReviewButton" onClick={() => {
+            setShowReviewForm(false);
+          }}>Close Review</button>
         </div>
       </form>
     </div>
