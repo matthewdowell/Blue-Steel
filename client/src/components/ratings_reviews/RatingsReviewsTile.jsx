@@ -4,20 +4,41 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/extensions */
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { ProductContext } from '../../context/globalContext.js';
 import { markReviewHelpful, reportReview } from '../../utils/reviewUtils.js';
 
-const RatingsReviewsTile = (props) => {
-  const date = new Date(props.tile.date);
+const RatingsReviewsTile = ({ tile }) => {
+  const { currentProduct } = useContext(ProductContext);
+  const [helpfulness, setHelpfulness] = useState(tile.helpfulness);
+  const [foundHelpful, setFoundHelpful] = useState(false);
+  const [reported, setReported] = useState(false);
+  const date = new Date(tile.date);
+  // TODO: Move this to its own file
   const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  function findHelpful() {
+    if(!foundHelpful) {
+      markReviewHelpful(tile.review_id);
+      setFoundHelpful(true);
+      setHelpfulness(helpfulness + 1);
+    }
+  }
+
+  function report () {
+    if(!reported) {
+      reportReview(tile.review_id);
+      setReported(true);
+    }
+  }
 
   return (
     <div className="ratingsReviewsTile">
       <span className="reviewerInfo">
-        <span className="rating">Rating: {props.tile.rating}</span>
+        <span className="rating">Rating: {tile.rating}</span>
         <span>
           <span>
-            {props.tile.reviewer_name},
+            {tile.reviewer_name},
           </span>
           <span className="date">
             {' '}
@@ -29,18 +50,30 @@ const RatingsReviewsTile = (props) => {
           </span>
         </span>
       </span>
-      <div className="reviewSummary">{props.tile.summary}</div>
-      <div className="reviewBody">{props.tile.body}</div>
-      <div className="reviewRecommended">{props.tile.recommend ? '✔ I recommended this product' : ''}</div>
-      <div className="reviewResponse">{props.tile.response}</div>
+      <div className="reviewSummary">{tile.summary}</div>
+      <div className="reviewBody">{tile.body}</div>
+      <div className="reviewRecommended">{tile.recommend ? '✔ I recommended this product' : ''}</div>
+      <div className="reviewResponse">{tile.response}</div>
       <div>
         Helpful?
-        <button type="submit" className="markReviewHelpfulButton" onClick={markReviewHelpful}>Yes</button>
+        <button
+          type="submit"
+          className="markReviewHelpfulButton"
+          onClick={findHelpful}
+        >
+          Yes
+        </button>
         (
-        {props.tile.helpfulness}
+        {helpfulness}
         )
         {' |'}
-        <button type="submit" className="reportReviewButton" onClick={reportReview}>Report</button>
+        <button
+          type="submit"
+          className="reportReviewButton"
+          onClick={report}
+        >
+          {reported ? 'Reported' : 'Report'}
+        </button>
       </div>
     </div>
   );

@@ -5,18 +5,23 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { ProductContext } from '../../context/globalContext.js';
 import { RatingsReviewsContext } from '../../context/ratingsReviewsContext.js';
-import { addReview, getReviewMetadata, getReviewsOfProduct } from '../../utils/reviewUtils.js';
+import { getReviewMetadata, getReviewsOfProduct } from '../../utils/reviewUtils.js';
 import ratingsReviewsHelpers from './ratingsReviewsHelpers.js';
-import ReviewForm from './ReviewForm.jsx';
-import RatingsReviewsTile from './RatingsReviewsTile.jsx';
+import ReviewFormModal from './ReviewFormModal.jsx';
+import SortRatingsBy from './SortRatingsBy.jsx';
 import RatingsDistribution from './RatingsDistribution.jsx';
 import SizeDistribution from './SizeDistribution.jsx';
+import ComfortDistribution from './ComfortDistribution.jsx';
 
-// Functional component
 const RatingsReviews = () => {
   const { currentProduct } = useContext(ProductContext);
+  const currentReviews = useContext(RatingsReviewsContext);
+  const [numReviewsDisplayed, setNumReviewsDisplayed] = useState(2);
+  const [showReviewForm, setShowReviewForm] = useState(false);
   const [currentRatingsReviewsList, setCurrentRatingsReviewsList] = useState([]);
-  const [currentMetaData, setCurrentMetaData] = useState({ ratings: { 0: 0 } });
+  const [ratingsToDisplay, setRatingsToDisplay] = useState([1, 2, 3, 4, 5]);
+  const [currentMetaData, setCurrentMetaData] = useState({});
+  // const [ratingsObj, setRatingsObj] = useState({});
 
   useEffect(() => {
     getReviewsOfProduct((data) => {
@@ -26,68 +31,64 @@ const RatingsReviews = () => {
 
   useEffect(() => {
     getReviewMetadata((data) => {
+      console.log('METADATA:', data);
       setCurrentMetaData(data);
+      // setRatingsObj(data.ratings);
     }, currentProduct.id);
   }, [currentProduct]);
+  console.log('current reviews:', currentRatingsReviewsList);
+  // console.log('ARRAY of ratings:', ratingsObj);
   return (
     <div>
-      <ProductContext.Consumer>
-        {() => (
-          <div className="ratingsReviewsAll">
-            <div className="aggregateReviewInfo">
-              <span className="ratingsReviewsHeader">Ratings {'&'} Reviews</span>
-              <span className="averageRating">{ratingsReviewsHelpers.getAverageRating(currentMetaData.ratings).toFixed(1)}</span>
-              <span>Star Component Here</span>
-              <div className="percentRecommended">
-                {ratingsReviewsHelpers.getPercentRecommended(currentRatingsReviewsList)}
-                % of reviews recommend this product
-              </div>
-              <div><RatingsDistribution reviews={currentRatingsReviewsList} /></div>
-              <div><SizeDistribution size={currentProduct} /></div>
-              <div>Comfort Rating</div>
+      <div className="ratingsReviewsAll">
+        <div className="aggregateReviewInfo">
+          <span className="ratingsReviewsHeader">Ratings {'&'} Reviews</span>
+          {/* <span className="averageRating">{ratingsReviewsHelpers.getAverageRating(currentMetaData.ratings).toFixed(1)}</span> */}
+          <span>Star Component Here</span>
+          <div className="percentRecommended">
+            {ratingsReviewsHelpers.getPercentRecommended(currentRatingsReviewsList)}
+            % of reviews recommend this product
+          </div>
+          <RatingsDistribution reviews={currentRatingsReviewsList} />
+          <SizeDistribution size={currentProduct} />
+          <ComfortDistribution comfort={currentProduct}/>
+        </div>
+        <div>
+          <SortRatingsBy
+            currentRatingsReviewsList={currentRatingsReviewsList}
+            numReviewsDisplayed={numReviewsDisplayed}
+            ratingsToDisplay={ratingsToDisplay}
+          />
+          {/* BUTTONS */}
+          {showReviewForm && <ReviewFormModal setShowReviewForm={setShowReviewForm}/>}
+          <div className="reviewButtons">
+            <button
+              type="submit"
+              className="reviewButton addReviewButton"
+              onClick={() => { setShowReviewForm(true) }}
+            >
+              ADD A REVIEW +
+            </button>
+            <div>
+            {(
+              (numReviewsDisplayed < currentRatingsReviewsList.length)
+              ? <button type="submit" className="reviewButton"
+              onClick={() => { setNumReviewsDisplayed(numReviewsDisplayed + 2); }}>MORE REVIEWS</button>
+              : null
+            )}
             </div>
             <div>
-              <div className="sortBy">
-                {currentRatingsReviewsList.length}
-                {' '}
-                reviews, sorted by
-                {' '}
-                <select className="sortDropdown" onChange={ratingsReviewsHelpers.handleSortByChange}>
-                  <option value="relevant">relevant</option>
-                  <option value="newest">newest</option>
-                  <option value="helpful">helpful</option>
-                </select>
-              </div>
-              <RatingsReviewsContext.Provider value={currentRatingsReviewsList}>
-                {/* TODO: Iterate all reviews and display first two */}
-                {/* TODO: Show the rest if MORE REVIEWS button is clicked */}
-                {currentRatingsReviewsList.map((tile) => <RatingsReviewsTile tile={tile} />)}
-              </RatingsReviewsContext.Provider>
-              {/* TODO: MORE REVIEWS only appears if there are hidden reviews.
-              Add 2 reviews per click */}
-              <button type="submit" className="reviewButton">MORE REVIEWS</button>
-              <button
-                type="submit"
-                className="reviewButton addReviewButton"
-                onClick={ratingsReviewsHelpers.openReviewForm}
-              >
-                ADD A REVIEW +
+            {(
+            (numReviewsDisplayed >= currentRatingsReviewsList.length)
+            ? <button type="submit" className="reviewButton"
+            onClick={() => { setNumReviewsDisplayed(2); }}>COLLAPSE REVIEWS
               </button>
-              {/* Form to add a review */}
-              <div className="form-popup" id="myForm">
-                <form action="/action_page.php" className="form-container">
-                  <h1>Add a Review</h1>
-                  <label><b>Rating</b></label>
-                  <input type="number" placeholder="Enter Rating" required></input>
-                  <label><b>Recommended?</b></label>
-                  <input type="text" placeholder="Yes or No" required></input>
-                  <button type="submit" className="reviewButton">Submit Review</button>
-                </form>
-              </div>
+            : null
+            )}
             </div>
           </div>
-        )}
-      </ProductContext.Consumer>
+        </div>
+      </div>
     </div>
   );
 };

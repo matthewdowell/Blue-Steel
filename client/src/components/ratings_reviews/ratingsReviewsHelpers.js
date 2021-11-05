@@ -1,8 +1,4 @@
 /* eslint-disable no-plusplus */
-const openReviewForm = () => {
-
-};
-
 const sortRatingsReviewsList = (sortBy) => {
   if (sortBy === 'relevant') { // review.date AND review.helpfulness
   } else if (sortBy === 'newest') { // review.date
@@ -15,10 +11,6 @@ const sortByNewest = (arrayOfObj) => {
 };
 
 // Filter to only show reviews that gave a certain rating
-const filterForRating = (rating) => {
-
-};
-
 const handleSortByChange = () => {
   const sortBy = document.getElementById('sortBy').value;
   sortRatingsReviewsList(sortBy);
@@ -35,7 +27,7 @@ const getPercentRecommended = (reviews) => {
 };
 
 // TODO: Might need to move this into a global file to share
-const getAverageRating = (ratings) => {
+const getAverageRating = (ratings) => { // ratings is an object
   let numRatings = 0;
   let totalScore = 0;
   const keys = Object.keys(ratings);
