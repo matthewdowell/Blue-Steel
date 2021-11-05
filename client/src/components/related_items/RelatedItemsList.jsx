@@ -4,8 +4,8 @@ import { getRelatedProductsById, getSharedFeatures } from '../../utils/relatedUt
 import RelatedElements from './RelatedElements.jsx';
 
 const RelatedItemsList = () => {
-  const [currentFeatures, setCurrentFeatures] = useState([]);
-  const [RelatedItemsIds, setRelatedItemsIds] = useState([]);
+  const [currentFeatures, setCurrentFeatures] = useState(currentFeatures =[]);
+  const [RelatedItemsIds, setRelatedItemsIds] = useState(RelatedItemsIds = []);
   const currentProduct = useContext(ProductContext);
   const currentProductId = currentProduct.id;
 
@@ -17,6 +17,7 @@ const RelatedItemsList = () => {
       setRelatedItemsIds(data.results);
     });
   }, [currentProduct]);
+
 
   let getCurrentFeatures = (
     getSharedFeatures(currentProductId)

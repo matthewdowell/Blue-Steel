@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import ProductOverview from '../product_overview/ProductOverview.jsx';
 import RatingsReviews from '../ratings_reviews/RatingsReviews.jsx';
 import QuestionsAnswers from '../questions/QuestionsAnswers.jsx';
-import RelatedItems from '../related_items/RelatedItems.jsx';
+import RelatedItemsList from '../related_items/RelatedItems.jsx';
 import { getRelatedProducts } from '../../utils/productUtils.js';
 import { getProducts } from '../../utils/productUtils.js';
 import { ProductContext } from '../../context/globalContext.js';
@@ -38,8 +38,8 @@ const App = () => {
       <ProductContext.Provider value={{ currentProduct, setCurrentProduct, products, setProducts }}>
         {/* <div><ProductOverview /></div>
         <div><RelatedItems /></div> */}
-        <div><ProductOverview /></div>
-        {/* <div><RelatedItemsList /></div> */}
+        {/* <div><ProductOverview /></div> */}
+        <div><RelatedItemsList /></div>
         {/* <div><QuestionsAnswers /></div> */}
         {/* <div><RatingsReviews /></div> */}
       </ProductContext.Provider>

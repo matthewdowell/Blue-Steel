@@ -123,4 +123,4 @@ const RelatedCard = () => {
   }
 }
 
-export default RelatedItemCard
+export default RelatedCard;
