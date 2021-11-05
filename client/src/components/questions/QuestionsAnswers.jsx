@@ -9,22 +9,27 @@ const QuestionsAnswers = () => {
   const { currentProduct } = useContext(ProductContext);
   const [currentQuestions, setCurrentQuestions] = useState([]);
   const [inputValue, setInputValue] = useState('')
+  const [allQuestions, setAllQuestions] = useState([])
 
 
   function handleInputChange(e) {
     setInputValue(e.target.value);
-    if (e.target.value.length >= 3) {
-      filterSearchResults(e.target.value);
-    }
+    filterSearchResults(e.target.value);
   }
 
   function filterSearchResults(search) {
-    setCurrentQuestions(currentQuestions.filter(question => question.question_body.indexOf(search) > -1));
+    search = search.toLowerCase();
+    if (search.length >= 3) {
+      setCurrentQuestions(allQuestions.filter(question => question.question_body.toLowerCase().indexOf(search) > -1));
+    } else {
+      setCurrentQuestions(allQuestions);
+    }
   }
 
   useEffect(() => {
     getQuestionsAnswers(/*currentProduct.id*/44389, (data) => {
       setCurrentQuestions(data.results);
+      setAllQuestions(data.results);
     })
   }, [currentProduct])
 
