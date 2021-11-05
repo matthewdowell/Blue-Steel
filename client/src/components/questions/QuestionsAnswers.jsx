@@ -34,7 +34,7 @@ const QuestionsAnswers = () => {
   }, [currentProduct])
 
   return (
-    <><h5>{'QUESTIONS & ANSWERS'}</h5>
+    <div style={{margin: '0 10%'}}><h5>{'QUESTIONS & ANSWERS'}</h5>
     <ProductContext.Consumer>
       {() => (
         <qaContext.Provider value={currentQuestions}>
@@ -42,7 +42,7 @@ const QuestionsAnswers = () => {
           <QuestionsList />
         </qaContext.Provider>)
       }
-    </ProductContext.Consumer></>
+    </ProductContext.Consumer></div>
   )
   
 };
