@@ -1,7 +1,7 @@
 import React from 'react';
 import QuestionForm from './QuestionForm.jsx';
 
-const QuestionModal = () => {
+const QuestionModal = ({ setModalDisplayed }) => {
   return (
     <div style={{
       width: '100vw',
@@ -14,8 +14,12 @@ const QuestionModal = () => {
       justifyContent: 'center',
       alignItems: 'center',
       zIndex: '2',
-    }}>
-      <QuestionForm />
+    }}
+    onClick={(e) => {if (e.target === e.currentTarget) {
+      setModalDisplayed(false)}
+    }}
+    >
+      <QuestionForm setModalDisplayed={setModalDisplayed} />
     </div>
   )
 }

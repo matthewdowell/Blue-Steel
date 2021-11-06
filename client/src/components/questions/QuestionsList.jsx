@@ -6,7 +6,7 @@ import QuestionModal from './QuestionModal.jsx';
 const QuestionsList = () => {
   const currentQuestions = useContext(qaContext);
   const [numberOfQsDisplayed, setNumberOfQsDisplayed] = useState(2);
-  const [modelDisplayed, setModelDisplayed] = useState(false);
+  const [modalDisplayed, setModalDisplayed] = useState(false);
 
   return (
     <div>
@@ -52,13 +52,13 @@ const QuestionsList = () => {
                 justifyContent: 'space-between',
                 padding: '0 20px'                   
               }}
-              onClick={() => { setModelDisplayed(true); }}
+              onClick={() => { setModalDisplayed(true); }}
             >
               <div>ADD A QUESTION</div>
               <i className="fas fa-plus"></i>
             </div >
           </div>
-          { modelDisplayed && <QuestionModal />}
+          { modalDisplayed && <QuestionModal setModalDisplayed={setModalDisplayed}/>}
         </>
       }
     </div>
