@@ -19,18 +19,13 @@ const ProductOverview = () => {
       setCurrentStyles(data.results);
       // setCurrentStyle(data.results[0]);
     })
-    
+
   }, [currentProduct])
 
-  
+
   //console.log(currentProduct);
 
   return (
-<<<<<<< HEAD
-=======
-    <ProductContext.Consumer>
-      {() =>
->>>>>>> 3a57e69bd7a22e7a976e177a71f3fcbfa6744907
 
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ border: 'none', width: '80%' }} >

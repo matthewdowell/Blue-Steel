@@ -3,76 +3,6 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* modal */
-/* .modalBackground {
-    background-color: rgba(200, 200, 200);
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .modalContainer {
-    width: 500px;
-    height: 500px;
-    border-radius: 12px;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    display: flex;
-    flex-direction: column;
-    padding: 25px;
-  }
-
-  .modalContainer .title {
-    display: inline-block;
-    text-align: center;
-    margin-top: 10px;
-  }
-
-  .titleCloseBtn {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .titleCloseBtn button {
-    background-color: transparent;
-    border: none;
-    font-size: 25px;
-    cursor: pointer;
-  }
-
-  .modalContainer .body {
-    flex: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.7rem;
-    text-align: center;
-  }
-
-  .modalContainer .footer {
-    flex: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .modalContainer .footer button {
-    width: 150px;
-    height: 45px;
-    margin: 10px;
-    border: none;
-    background-color: cornflowerblue;
-    color: white;
-    border-radius: 8px;
-    font-size: 20px;
-    cursor: pointer;
-  }
-
-  #cancelBtn {
-    background-color: crimson;
-  } */
-
 /* RatingsReviews.jsx */
 .ratingsReviewsAll {
     display: flex;
@@ -80,12 +10,14 @@ body {
     width: 80%;
 }
 .aggregateReviewInfo {
-    margin-right: 60px;
+    justify-self: flex-start;
+    font-size: 25px;
+    margin-right: 100px;
 }
 .ratingsReviewsHeader {
     display: flex;
     font: helvetica;
-    font-size: 20px;
+    font-size: 30px;
     margin-bottom: 10px;
     justify-content: flex-start;
 }
@@ -94,17 +26,21 @@ body {
     font-weight: bold;
     color: rgb(57, 56, 56);
 }
-.ratingsDistribution {
+.ratingCount {
+    font-size: 25px;
+}
+.ratingBarContainer {
+    font-size: 5em;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 .sortBy, .sortDropdown {
     font: helvetica;
-    font-size: 20px;
+    font-size: 29px;
     font-weight: bold;
     color: rgb(57, 56, 56);
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     border: none;
 }
 .sortDropdown {
@@ -144,18 +80,21 @@ body {
     color:rgb(65, 65, 65)
 }
 .reviewSummary {
-    font-size: 1.2em;
+    font-size: 25px;
     font-weight: bold;
     color: rgb(57, 56, 56);
     margin-top: 7px;
     margin-bottom: 7px;
 }
 .reviewBody {
+    font-size: 25px;
     margin-top: 7px;
     margin-bottom: 7px;
 }
 .reviewRecommended {
-    font-weight: bold;
+    color: rgb(3, 3, 140);
+    margin-top: 7px;
+    margin-bottom: 7px;
 }
 .markReviewHelpfulButton, .reportReviewButton {
     background-color: white;
@@ -178,27 +117,23 @@ body {
 .ratingCount {
     text-decoration: underline;
 }
-.ratingBar {
-    color: red;
+progress::-webkit-progress-value {
+    background: rgb(29, 189, 4);
     background-color:rgb(184, 184, 184);
-    height: 10px;
+}
+progress {
+    height: 40px;
     margin-left: 10px;
     margin-right: 10px;
     cursor: pointer;
 }
-progress.ratingBar:hover:before {
-    outline: blue;
-}
-.ratingBar progress:hover {
-    outline: blue;
+progress:hover {
+    outline: rgb(47, 47, 74);
 }
 
-<<<<<<< HEAD
 /* ReviewForm.jsx */
 .reviewFormContainer {
     display: flex;
     justify-content: center;
     width: 100%;
 }
-=======
->>>>>>> 00340a0e7b16efec8c2d5fa9d30ac5a0a2ea5eec

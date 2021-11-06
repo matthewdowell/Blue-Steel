@@ -1,8 +1,8 @@
 import React from 'react';
 import ratingsReviewsHelpers from './ratingsReviewsHelpers.js';
 
-const SizeDistribution = (props) => {
-  const { size } = props;
+const SizeDistribution = ({ size }) => {
+  console.log('SIZE:', size);
   return (
     <div className="sizeBarContainer">
       Size

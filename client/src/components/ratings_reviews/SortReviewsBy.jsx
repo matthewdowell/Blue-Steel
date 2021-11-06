@@ -2,7 +2,7 @@ import React from 'react';
 import RatingsReviewsTile from './RatingsReviewsTile.jsx';
 import ratingsReviewsHelpers from './ratingsReviewsHelpers.js';
 
-const SortRatingsBy = ({ currentRatingsReviewsList, numReviewsDisplayed, ratingsToDisplay }) => {
+const SortReviewsBy = ({ currentRatingsReviewsList, numReviewsDisplayed, ratingsToDisplay }) => {
   return (
     <div className="sortBy">
       {currentRatingsReviewsList.length}
@@ -11,7 +11,7 @@ const SortRatingsBy = ({ currentRatingsReviewsList, numReviewsDisplayed, ratings
       {' '}
       <select className="sortDropdown" onChange={ratingsReviewsHelpers.handleSortByChange}>
         <option value="relevant">relevant</option>
-        <option value="newest">newest</option>
+        <option value="newest">new</option>
         <option value="helpful">helpful</option>
       </select>
     {currentRatingsReviewsList
@@ -23,4 +23,4 @@ const SortRatingsBy = ({ currentRatingsReviewsList, numReviewsDisplayed, ratings
   );
 };
 
-export default SortRatingsBy;
+export default SortReviewsBy;
