@@ -53,7 +53,13 @@ const Question = (props) => {
                 {Object
                   .values(props.question.answers)
                   .map(answer => <Answer answer={answer} key={answer.id} helpfulness={answer.helpfulness}/>)
-                  .sort((a, b) => b.props.helpfulness - a.props.helpfulness)
+                  .sort((a, b) => {
+                    if (a.props.answer.answerer_name === 'seller') {
+                      return 1;
+                    } else {
+                      return b.props.helpfulness - a.props.helpfulness;
+                    }
+                  })
                 }
               </div>
             : <div>
@@ -73,10 +79,11 @@ const Question = (props) => {
               fontWeight: 'bold',
               cursor: 'pointer',
               paddingLeft: '22px',
-              paddingTop: '5px'
+              paddingTop: '10px',
+              paddingBottom: '5px'
             }}
             onClick={handleMoreAnswersClick}
-          >SEE MORE ANSWERS</div>
+          >{showMoreAnswers ? 'SHOW LESS ANSWERS' : 'SHOW MORE ANSWERS'}</div>
         : null
         }
       </div>
