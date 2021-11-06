@@ -51,7 +51,7 @@ const Question = (props) => {
         </div>
       </div>
       <div style={{display: 'flex'}}>
-          <p style={{paddingRight: '5px'}}><b>A:  </b></p>
+          <p style={{paddingRight: '15px'}}></p>
           {showMoreAnswers
             ? <div>
                 {Object

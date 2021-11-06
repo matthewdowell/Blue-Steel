@@ -11,7 +11,20 @@ const QuestionsList = () => {
   return (
     <div>
       {currentQuestions.length === 0
-      ? <button>Submit A New Question</button>
+      ? <div 
+          style={{
+            height: '50px',
+            width: '200px',
+            lineHeight: '50px',
+            border: '2px solid black',
+            cursor: 'pointer',
+            textAlign: 'center',
+            marginTop: '25px'                  
+          }}
+          onClick={() => { setModalDisplayed(true); }}
+        >
+          <div>SUBMIT A QUESTION</div>
+        </div >
       : <><div 
             style={{
               height: '400px',
@@ -58,9 +71,9 @@ const QuestionsList = () => {
               <i className="fas fa-plus"></i>
             </div >
           </div>
-          { modalDisplayed && <QuestionModal setModalDisplayed={setModalDisplayed}/>}
         </>
       }
+      { modalDisplayed && <QuestionModal setModalDisplayed={setModalDisplayed}/>}
     </div>
   )
 }
