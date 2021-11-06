@@ -19,7 +19,7 @@ const Answer = ({ answer }) => {
   function handleReportClick() {
     if(!reported) {
       setReported(true)
-      // reportAnswer(answer.id)
+      //reportAnswer(answer.id)
     }
   }
 

@@ -58,7 +58,7 @@ const Question = (props) => {
                   .values(props.question.answers)
                   .map(answer => <Answer answer={answer} key={answer.id} helpfulness={answer.helpfulness}/>)
                   .sort((a, b) => {
-                    if (a.props.answer.answerer_name === 'seller') {
+                    if (b.props.answer.answerer_name === 'Seller') {
                       return 1;
                     } else {
                       return b.props.helpfulness - a.props.helpfulness;
@@ -70,8 +70,14 @@ const Question = (props) => {
                 {Object
                   .values(props.question.answers)
                   .map(answer => <Answer answer={answer} key={answer.id} helpfulness={answer.helpfulness}/>)
+                  .sort((a, b) => {
+                    if (b.props.answer.answerer_name === 'Seller') {
+                      return 1;
+                    } else {
+                      return b.props.helpfulness - a.props.helpfulness;
+                    }
+                  })
                   .slice(0, 2)
-                  .sort((a, b) => b.props.helpfulness - a.props.helpfulness)
                 }
               </div>
           }

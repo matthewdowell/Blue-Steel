@@ -19,8 +19,8 @@ const QuestionForm = ({ setModalDisplayed }) => {
       && emailInputVal.length > 0
       && emailInputVal.includes('@')
     ) {
-      postQuestion(questionInputVal, nameInputVal, emailInputVal, /*currentProduct.id*/44389, () => {
-        getQuestionsAnswers(/*currentProduct.id*/44389, (data) => {
+      postQuestion(questionInputVal, nameInputVal, emailInputVal, currentProduct.id, () => {
+        getQuestionsAnswers(currentProduct.id, (data) => {
           setCurrentQuestions(data.results);
           setAllQuestions(data.results);
           setModalDisplayed(false);

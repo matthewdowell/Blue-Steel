@@ -20,7 +20,7 @@ const AnswerForm = ({ setModalDisplayed, question }) => {
       && emailInputVal.includes('@')
     ) {
       postAnswer(question.question_id, answerInputVal, nameInputVal, emailInputVal, [], () => {
-        getQuestionsAnswers(/*currentProduct.id*/44389, (data) => {
+        getQuestionsAnswers(currentProduct.id, (data) => {
           console.log(data.results)
           setCurrentQuestions(data.results);
           setAllQuestions(data.results);
