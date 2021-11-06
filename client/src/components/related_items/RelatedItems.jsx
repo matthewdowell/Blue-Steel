@@ -26,19 +26,6 @@
 //           {products.slice(leftCount, rightCount).map((item, idx) => {
 //             if (index < 4) {
 //               return (
-<<<<<<< HEAD
-
-
-//   //   <ProductCompare
-//   //     displayModal={showModal}
-//   //     closeModal={closeModal}
-//   //     currentProduct={currentProduct}
-//   //     clickedProduct={selectedProduct}
-//   // />
-//   );
-// };
-
-=======
                 
 
 //   //   <ProductCompare
@@ -50,5 +37,4 @@
 //   );
 // };
 
->>>>>>> 00340a0e7b16efec8c2d5fa9d30ac5a0a2ea5eec
 // export default RelatedItems;

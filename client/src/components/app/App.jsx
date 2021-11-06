@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import ProductOverview from '../product_overview/ProductOverview.jsx';
 import RatingsReviews from '../ratings_reviews/RatingsReviews.jsx';
 import QuestionsAnswers from '../questions/QuestionsAnswers.jsx';
-import RelatedItemsList from '../related_items/RelatedItems.jsx';
+import RelatedItems from '../related_items/RelatedItems.jsx';
 import { getRelatedProducts } from '../../utils/productUtils.js';
 import { getProducts } from '../../utils/productUtils.js';
 import { ProductContext } from '../../context/globalContext.js';
@@ -17,7 +17,7 @@ const App = () => {
     created_at: '2021-08-13T14:40:29.181Z',
     default_price: '140.00',
     description: 'The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest, surroundings.',
-    id: 44389,
+    id: 44388,
     name: 'Camo Onesie',
     slogan: 'Blend in to your crowd',
     updated_at: '2021-08-13T14:40:29.181Z'

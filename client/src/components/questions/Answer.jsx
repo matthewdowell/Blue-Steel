@@ -19,15 +19,15 @@ const Answer = ({ answer }) => {
   function handleReportClick() {
     if(!reported) {
       setReported(true)
-      // reportAnswer(answer.id)
+      //reportAnswer(answer.id)
     }
   }
 
   return (
-    <>
-      <p>{answer.body}</p>
-      <div style={{display: 'flex'}}>
-          <div style={{paddingRight: '10px'}}>
+    <div style={{marginBottom: '10px'}}>
+      <p><b>A: </b>{answer.body}</p>
+      <div style={{display: 'flex', color: 'gray'}}>
+          <div style={{padding: '0 10px'}}>
             {answer.answerer_name === 'Seller'
               ? <>{`by `}<b>{answer.answerer_name}</b>{`, ${new Date(answer.date).toDateString().slice(4)}`}</>
               : <>{`by ${answer.answerer_name}, ${new Date(answer.date).toDateString().slice(4)}`}</>
@@ -51,7 +51,7 @@ const Answer = ({ answer }) => {
               >Report</div>
           }
       </div>
-    </>
+    </div>
   )
 }
 
