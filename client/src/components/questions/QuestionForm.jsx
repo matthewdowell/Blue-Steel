@@ -5,7 +5,7 @@ import { qaContext } from '../../context/qaContext';
 import { getQuestionsAnswers, postQuestion } from '../../utils/questionsUtils';
 
 const QuestionForm = ({ setModalDisplayed }) => {
-  const { currentProduct, setCurrentProduct } = useContext(ProductContext);
+  const { currentProduct } = useContext(ProductContext);
   const { setCurrentQuestions, setAllQuestions } = useContext(qaContext);
   const [questionInputVal, setQuestionInputVal] = useState('');
   const [nameInputVal, setNameInputVal] = useState('');
@@ -21,7 +21,6 @@ const QuestionForm = ({ setModalDisplayed }) => {
     ) {
       postQuestion(questionInputVal, nameInputVal, emailInputVal, /*currentProduct.id*/44389, () => {
         getQuestionsAnswers(/*currentProduct.id*/44389, (data) => {
-          console.log(data.results)
           setCurrentQuestions(data.results);
           setAllQuestions(data.results);
           setModalDisplayed(false);

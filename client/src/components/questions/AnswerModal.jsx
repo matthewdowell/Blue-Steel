@@ -1,6 +1,7 @@
 import React from 'react';
+import AnswerForm from './AnswerForm.jsx';
 
-const AnswerModal = ({ setModalDisplayed }) => {
+const AnswerModal = ({ setModalDisplayed, question }) => {
   return (
     <div style={{
       width: '100vw',
@@ -18,7 +19,7 @@ const AnswerModal = ({ setModalDisplayed }) => {
       setModalDisplayed(false)}
     }}
     >
-      <QuestionForm setModalDisplayed={setModalDisplayed} />
+      <AnswerForm setModalDisplayed={setModalDisplayed} question={question}/>
     </div>
   )
 }

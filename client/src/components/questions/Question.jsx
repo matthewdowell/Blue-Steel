@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { markQuestionAsHelpful } from '../../utils/questionsUtils.js';
 import Answer from './Answer.jsx';
+import AnswerModal from './AnswerModal.jsx';
 
 const Question = (props) => {
 
-  const[showMoreAnswers, setShowMoreAnswers] = useState(false)
+  const [showMoreAnswers, setShowMoreAnswers] = useState(false)
   const [helpfulVotes, setHelpfulVotes] = useState(props.helpfulness);
   const [voted, setVoted] = useState(false);
+  const [modalDisplayed, setModalDisplayed] = useState(false);
 
   function handleMoreAnswersClick() {
      setShowMoreAnswers(!showMoreAnswers)
@@ -23,6 +25,7 @@ const Question = (props) => {
 
   function handleAddAnswerClick() {
     console.log('add answer button clicked!')
+    setModalDisplayed(true);
   }
 
   return (
@@ -44,6 +47,7 @@ const Question = (props) => {
             style={{paddingLeft: '10px', textDecoration: 'underline', cursor: 'pointer'}}
             onClick={handleAddAnswerClick}
           >Add Answer</div>
+          {modalDisplayed && <AnswerModal question={props.question} setModalDisplayed={setModalDisplayed}/>}
         </div>
       </div>
       <div style={{display: 'flex'}}>
