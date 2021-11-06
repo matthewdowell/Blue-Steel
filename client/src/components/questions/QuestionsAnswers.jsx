@@ -30,12 +30,12 @@ const QuestionsAnswers = () => {
     getQuestionsAnswers(/*currentProduct.id*/44389, (data) => {
       setCurrentQuestions(data.results);
       setAllQuestions(data.results);
-    })
+    }, null, 100)
   }, [currentProduct])
 
   return (
     <div style={{margin: '0 10%'}}><h5>{'QUESTIONS & ANSWERS'}</h5>
-        <qaContext.Provider value={currentQuestions}>
+        <qaContext.Provider value={{currentQuestions, setCurrentQuestions, setAllQuestions}}>
           <Search inputValue={inputValue} handleInputChange={handleInputChange}/>
           <QuestionsList />
         </qaContext.Provider>

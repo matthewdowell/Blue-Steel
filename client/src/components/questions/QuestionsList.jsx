@@ -4,7 +4,7 @@ import Question from './Question.jsx';
 import QuestionModal from './QuestionModal.jsx';
 
 const QuestionsList = () => {
-  const currentQuestions = useContext(qaContext);
+  const { currentQuestions } = useContext(qaContext);
   const [numberOfQsDisplayed, setNumberOfQsDisplayed] = useState(2);
   const [modalDisplayed, setModalDisplayed] = useState(false);
 
@@ -25,9 +25,9 @@ const QuestionsList = () => {
           .sort((a, b) => b.props.helpfulness - a.props.helpfulness)}
           </div>
           <div style={{display: 'flex'}}>
-            {numberOfQsDisplayed < currentQuestions.length
+            {numberOfQsDisplayed < currentQuestions.length - 1
             ? <div 
-                onClick={() => { setNumberOfQsDisplayed(numberOfQsDisplayed + 2); }}
+                onClick={() => { setNumberOfQsDisplayed(currentQuestions.length); }}
                 style={{
                   height: '50px',
                   lineHeight: '50px',

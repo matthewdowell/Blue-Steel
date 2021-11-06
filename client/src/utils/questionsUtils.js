@@ -30,7 +30,7 @@ export function postQuestion(body, name, email, product_id, callback = () => {})
     .post('/questions', {
       body, name, email, product_id,
     })
-    .then(callback())
+    .then(() => {callback()})
     .catch((err) => { console.log(err); });
 }
 
