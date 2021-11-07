@@ -11,7 +11,7 @@ body {
 }
 .aggregateReviewInfo {
     justify-self: flex-start;
-    font-size: 25px;
+    font-size: 22px;
     margin-right: 100px;
 }
 .ratingsReviewsHeader {
@@ -21,13 +21,19 @@ body {
     margin-bottom: 10px;
     justify-content: flex-start;
 }
+.percentRecommended {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 27px;
+}
 .averageRating {
-    font-size: 50px;
+    font-size: 65px;
     font-weight: bold;
     color: rgb(57, 56, 56);
 }
 .ratingCount {
     font-size: 25px;
+    width: 95px;
 }
 .ratingBarContainer {
     font-size: 5em;
@@ -50,7 +56,7 @@ body {
     display: flex;
     flex-direction: row;
 }
-.reviewButton, .submitReviewButton, .closeReviewButton {
+.reviewButton, .addPhotoButton, .submitReviewButton, .closeReviewButton {
     font-size: medium;
     font-weight: bold;
     background-color: white;
@@ -105,7 +111,7 @@ body {
 }
 
 /* RatingsDistribution.jsx */
-.ratingDistribution {
+.ratingDistribution, .characteristics {
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -123,8 +129,9 @@ progress::-webkit-progress-value {
 }
 progress {
     height: 40px;
+    width: 260px;
     margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 25px;
     cursor: pointer;
 }
 progress:hover {
@@ -135,5 +142,20 @@ progress:hover {
 .reviewFormContainer {
     display: flex;
     justify-content: center;
+    overflow: scroll;
     width: 100%;
+}
+
+/* [Characteristic]Distribution.jsx */
+.sizeBarContainer,
+.widthBarContainer,
+.comfortBarContainer,
+.qualityBarContainer,
+.lengthBarContainer,
+.fitBarContainer {
+    display: flex;
+    align-items: center;
+}
+.characteristic {
+    width: 90px;
 }

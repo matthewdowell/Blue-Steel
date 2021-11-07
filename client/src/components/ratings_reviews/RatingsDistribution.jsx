@@ -14,28 +14,34 @@ const RatingsDistribution = (props) => {
 
   return (
     <div className="ratingDistribution">
-      {ratingsArr.map((rating) => {
-        return (
+      <b>Ratings</b>
+      {ratingsArr.map((rating) => (
         <div className="ratingBarContainer">
-          <span className="ratingCount">{rating} stars</span>
-          <progress
-            className="ratingBar"
-            value={
-              ratingsReviewsHelpers.countReviewsWithRating(ratings, rating)
-              / ratingsReviewsHelpers.getNumRatings(ratings)
-            }
+          <span className="ratingCount">
+            {rating}
+            {' '}
+            stars
+          </span>
+          <div
             // TODO: Implement click handler for rating bars
             onMouseEnter={(e) => {  }}
             onMouseLeave={(e) => {  }}
             onClick={() => {}}
           >
-          </progress>
+            <progress
+              className="ratingBar"
+              value={
+                ratingsReviewsHelpers.countReviewsWithRating(ratings, rating)
+                / ratingsReviewsHelpers.getNumRatings(ratings)
+              }
+            >
+            </progress>
+          </div>
           <div className="ratingCount">
-            {/* {ratingsReviewsHelpers.countReviewsWithRating(reviews, rating)} */}
+            ({ratingsReviewsHelpers.countReviewsWithRating(ratings, rating)})
           </div>
         </div>
-        )
-      })}
+      ))}
     </div>
   );
 };

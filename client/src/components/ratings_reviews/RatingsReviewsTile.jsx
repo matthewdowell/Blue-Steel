@@ -18,15 +18,15 @@ const RatingsReviewsTile = ({ tile }) => {
   const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   function findHelpful() {
-    if(!foundHelpful) {
+    if (!foundHelpful) {
       markReviewHelpful(tile.review_id);
       setFoundHelpful(true);
       setHelpfulness(helpfulness + 1);
     }
   }
 
-  function report () {
-    if(!reported) {
+  function report() {
+    if (!reported) {
       reportReview(tile.review_id);
       setReported(true);
     }

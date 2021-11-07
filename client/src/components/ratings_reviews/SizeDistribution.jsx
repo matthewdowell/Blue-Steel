@@ -1,16 +1,34 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable import/extensions */
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable arrow-body-style */
 import React from 'react';
-import ratingsReviewsHelpers from './ratingsReviewsHelpers.js';
 
 const SizeDistribution = ({ size }) => {
-  console.log('SIZE:', size);
+  const sizeRating = Math.round(size.value);
+  let sizeDescription = '';
+
+  if (sizeRating === 1) {
+    sizeDescription = 'A size too small';
+  } else if (sizeRating === 2) {
+    sizeDescription = 'Half a size too small';
+  } else if (sizeRating === 3) {
+    sizeDescription = 'Perfect';
+  } else if (sizeRating === 4) {
+    sizeDescription = 'Half a size too big';
+  } else if (sizeRating === 5) {
+    sizeDescription = 'A size too wide';
+  }
+
   return (
     <div className="sizeBarContainer">
-      Size
+      <span className="characteristic">Size</span>
       <progress
         className="sizeBar"
-        value={'Size Distribution'}
+        value={size.value / 5}
       >
       </progress>
+      {sizeDescription}
     </div>
   );
 };
