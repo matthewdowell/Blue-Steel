@@ -1,6 +1,7 @@
 import React from 'react';
 
 const PhotoModal = ({ photo, setModalDisplayed }) => {
+  console.log('photo address', photo);
   return (
     <div style={{
       width: '100vw',

@@ -4,6 +4,7 @@ import PhotoModal from './PhotoModal.jsx';
 const AnswerPhotos = ({ photos }) => {
   
   const [modalDisplayed, setModalDisplayed] = useState(false);
+  const [currentPhoto, setCurrentPhoto] = useState('');
   
   
   return (
@@ -20,11 +21,13 @@ const AnswerPhotos = ({ photos }) => {
                 marginTop: '10px',
                 marginLeft: '10px'
               }}
-              onClick={() => { setModalDisplayed(true); }}
+              onClick={() => { setModalDisplayed(true); setCurrentPhoto(photo); }}
             >
             </img>
             <div>
-              {modalDisplayed && <PhotoModal photo={photo} setModalDisplayed={setModalDisplayed}/>}
+              {modalDisplayed 
+                && currentPhoto === photo 
+                && <PhotoModal photo={photo} setModalDisplayed={setModalDisplayed}/>}
             </div>
           </div>
         )
