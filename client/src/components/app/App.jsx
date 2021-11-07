@@ -1,50 +1,133 @@
-/* eslint-disable comma-dangle */
-/* eslint-disable import/extensions */
-import React, { useState, useEffect } from 'react';
-import ProductOverview from '../product_overview/ProductOverview.jsx';
-import RatingsReviews from '../ratings_reviews/RatingsReviews.jsx';
-import QuestionsAnswers from '../questions/QuestionsAnswers.jsx';
-import RelatedItemsList from '../related_items/RelatedItems.jsx';
-import { getRelatedProducts } from '../../utils/productUtils.js';
-import { getProducts } from '../../utils/productUtils.js';
-import { ProductContext } from '../../context/globalContext.js';
+import React from 'react';
+import axios from 'axios';
+import RelatedListContainer from './RelatedItems&Comparison/RelatedListContainer.jsx';
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentSearch: 44388,
+      productId: 44388,
+      productList: [
+        {
+          id: 17069, campus: null, name: null, slogan: null, description: null, category: null, default_price: null, created_at: null, updated_at: null,
+        },
+      ],
+      selectProductId: 44389,
+      selectProductInfo: {
+        id: 44389,
+        campus: null,
+        name: null,
+        slogan: null,
+        description: null,
+        category: null,
+        default_price: null,
+        created_at: null,
+        updated_at: null,
+        features: [{ feature: null, value: null }, { feature: null, value: null }],
+      },
+      userOutfits: [],
+      productSpecificsLoaded: false,
+      reviewData: {
+        product_id: '1',
+        ratings: {
+          1: '0',
+          2: '0',
+          3: '0',
+          4: '0',
+          5: '0',
+        },
+        recommended: {
+          false: '0',
+          true: '0',
+        },
+        characteristics: {},
+      },
+      totalReviews: 1,
+    };
 
-const App = () => {
-  // Bring in first product: product_id 44388
-  const [currentProduct, setCurrentProduct] = useState({
-    campus: 'hr-den',
-    category: 'Jackets',
-    created_at: '2021-08-13T14:40:29.181Z',
-    default_price: '140.00',
-    description: 'The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest, surroundings.',
-    id: 44388,
-    name: 'Camo Onesie',
-    slogan: 'Blend in to your crowd',
-    updated_at: '2021-08-13T14:40:29.181Z'
-  });
+    this.retrieveAllProductInfo = this.retrieveAllProductInfo.bind(this);
+    this.retrieveSelectProductInfo = this.retrieveSelectProductInfo.bind(this);
+    this.addNewOutfit = this.addNewOutfit.bind(this);
+    this.deleteOutfit = this.deleteOutfit.bind(this);
 
-  const [products, setProducts] = useState([]);
+  componentDidMount() {
+    this.retrieveAllProductInfo();
+    this.retrieveSelectProductInfo();
+  }
 
-  // Bring in all products
-  useEffect(() => {
-    getProducts(null, null, (data) => {
-      setProducts(data);
+  retrieveAllProductInfo() {
+    axios
+      .get('/products')
+      .then((response) => {
+        this.setState({
+          productList: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log('Get total product list failed...', error);
+      });
+  },
+
+  retrieveSelectProductInfo() {
+    const { selectProductId } = this.state;
+    axios
+      .get(`/products/${selectProductId}`)
+      .then((response) => {
+        this.setState(() => ({
+          selectProductInfo: response.data,
+        }));
+      })
+      .then(() => {
+        this.setState(
+          () => ({
+            productSpecificsLoaded: true,
+          }),
+        );
+      })
+      .catch((error) => {
+        console.log('Get product data by id failed...', error);
+      });
+  }
+
+  selectAnotherProduct(id) {
+    this.setState({
+      selectProductId: id,
     });
-  }, []);
+    this.retrieveSelectProductInfo();
+  }
 
-  return (
-    <div>
-      {/* eslint-disable-next-line object-curly-newline */}
-      <ProductContext.Provider value={{ currentProduct, setCurrentProduct, products, setProducts }}>
-        {/* <div><ProductOverview /></div>
-        <div><RelatedItems /></div> */}
-        {/* <div><ProductOverview /></div> */}
-        <div><RelatedItemsList /></div>
-        {/* <div><QuestionsAnswers /></div> */}
-        {/* <div><RatingsReviews /></div> */}
-      </ProductContext.Provider>
-    </div>
-  );
-};
+  addNewOutfit(id) {
+    const { userOutfits } = this.state;
+    if (!userOutfits.includes(id)) {
+      userOutfits.push(id);
+      this.setState({
+        userOutfits,
+      });
+    }
+  }
+
+  deleteOutfit(id) {
+    const { userOutfits } = this.state;
+    const index = userOutfits.indexOf(id);
+    userOutfits.splice(index, 1);
+    this.setState({
+      userOutfits,
+    });
+  }
+
+  render() {
+    const {
+      productList, selectProductId, selectProductInfo, productSpecificsLoaded, userOutfits,
+    } = this.state;
+    if (!productSpecificsLoaded) {
+      return (
+        <div>LOADING</div>
+      );
+    }
+    return (
+      <div>
+        <RelatedListContainer selectProductId={selectProductId} selectProductInfo={{ name: selectProductInfo.name, features: selectProductInfo.features }} selectAnotherProduct={this.selectAnotherProduct} addNewOutfit={this.addNewOutfit} deleteOutfit={this.deleteOutfit} userOutfits={userOutfits} />
+      </div>
+    );
 
 export default App;
