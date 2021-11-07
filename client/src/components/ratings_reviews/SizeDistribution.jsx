@@ -5,7 +5,10 @@
 import React from 'react';
 
 const SizeDistribution = ({ size }) => {
-  const sizeRating = Math.round(size.value);
+  let sizeRating = 0;
+  if (size) {
+    sizeRating = Math.round(size.value);
+  }
   let sizeDescription = '';
 
   if (sizeRating === 1) {
@@ -18,6 +21,8 @@ const SizeDistribution = ({ size }) => {
     sizeDescription = 'Half a size too big';
   } else if (sizeRating === 5) {
     sizeDescription = 'A size too wide';
+  } else {
+    sizeDescription = 'No reviews';
   }
 
   return (
@@ -25,7 +30,7 @@ const SizeDistribution = ({ size }) => {
       <span className="characteristic">Size</span>
       <progress
         className="sizeBar"
-        value={size.value / 5}
+        value={size ? size.value / 5 : 0}
       >
       </progress>
       {sizeDescription}

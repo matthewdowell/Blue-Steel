@@ -36,14 +36,13 @@ const RatingsReviews = () => {
       setCurrentMetaData(data);
     }, currentProduct.id);
   }, [currentProduct]);
-  // console.log('currentRatingsReviewsList:', currentRatingsReviewsList);
-  // console.log('METADATA', currentMetaData);
+
   return (
     <div className="ratingsReviewsAll">
       <div className="aggregateReviewInfo">
-        <span className="ratingsReviewsHeader">Ratings {'&'} Reviews</span>
+        <span className="ratingsReviewsHeader"><b>Ratings {'&'} Reviews</b></span>
         {/* AVERAGE RATING */}
-        <span className="averageRating">
+        <span className="averageRating" style={{ fontSize: '50px' }}>
           {
             currentMetaData.ratings
               ? ratingsReviewsHelpers.getAverageRating(currentMetaData.ratings).toFixed(1)
@@ -51,31 +50,44 @@ const RatingsReviews = () => {
           }
         </span>
         <span>Star Component Here</span>
-        <PercentRecommended currentRatingsReviewsList={currentRatingsReviewsList} />
+        {/* USER RECOMMENDATION */}
+        <div>
+          <b>User Recommendation</b>
+          <PercentRecommended currentRatingsReviewsList={currentRatingsReviewsList} />
+        </div>
+        {/* RATINGS */}
         {currentMetaData.ratings ? <RatingsDistribution ratings={currentMetaData.ratings} /> : null}
+        {/* CHARACTERISTICS */}
         <div className="characteristics">
           <b>Characteristics</b>
-          {(currentMetaData.characteristics && currentMetaData.characteristics.Size)
+          {(currentMetaData.characteristics)
             ? <SizeDistribution size={currentMetaData.characteristics.Size} />
             : null}
-          {(currentMetaData.characteristics && currentMetaData.characteristics.Width)
+          {(currentMetaData.characteristics)
             ? <WidthDistribution width={currentMetaData.characteristics.Width} />
             : null}
-          {(currentMetaData.characteristics && currentMetaData.characteristics.Comfort)
+          {(currentMetaData.characteristics)
             ? <ComfortDistribution comfort={currentMetaData.characteristics.Comfort} />
             : null}
-          {(currentMetaData.characteristics && currentMetaData.characteristics.Quality)
+          {(currentMetaData.characteristics)
             ? <QualityDistribution quality={currentMetaData.characteristics.Quality} />
             : null}
-          {(currentMetaData.characteristics && currentMetaData.characteristics.Length)
+          {(currentMetaData.characteristics)
             ? <LengthDistribution length={currentMetaData.characteristics.Length} />
             : null}
-          {(currentMetaData.characteristics && currentMetaData.characteristics.Fit)
+          {(currentMetaData.characteristics)
             ? <FitDistribution fit={currentMetaData.characteristics.Fit} />
             : null}
         </div>
+        <button
+            type="submit"
+            className="reviewButton addReviewButton"
+            onClick={() => { setShowReviewForm(true); }}
+        >
+          ADD A REVIEW +
+        </button>
       </div>
-      <div>
+      <div className="reviewList">
         <SortReviewsBy
           currentRatingsReviewsList={currentRatingsReviewsList}
           setCurrentRatingsReviewsList={setCurrentRatingsReviewsList}
@@ -85,13 +97,6 @@ const RatingsReviews = () => {
         {showReviewForm && <ReviewFormModal setShowReviewForm={setShowReviewForm} />}
         {/* BUTTONS */}
         <div className="reviewButtons">
-          <button
-            type="submit"
-            className="reviewButton addReviewButton"
-            onClick={() => { setShowReviewForm(true); }}
-          >
-            ADD A REVIEW +
-          </button>
           {
             (currentRatingsReviewsList.length > 0)
               ? (
@@ -104,7 +109,7 @@ const RatingsReviews = () => {
                           className="reviewButton"
                           onClick={() => { setNumReviewsDisplayed(numReviewsDisplayed + 2); }}
                         >
-                          MORE REVIEWS
+                          MORE REVIEWS +
                         </button>
                       )
                       : (

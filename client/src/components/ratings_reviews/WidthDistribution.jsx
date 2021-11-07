@@ -5,7 +5,10 @@
 import React from 'react';
 
 const WidthDistribution = ({ width }) => {
-  const widthRating = Math.round(width.value);
+  let widthRating = 0;
+  if (width) {
+    widthRating = Math.round(width.value);
+  }
   let widthDescription = '';
 
   if (widthRating === 1) {
@@ -18,6 +21,8 @@ const WidthDistribution = ({ width }) => {
     widthDescription = 'Slightly wide';
   } else if (widthRating === 5) {
     widthDescription = 'Too wide';
+  } else {
+    widthDescription = 'No reviews';
   }
 
   return (
@@ -25,7 +30,7 @@ const WidthDistribution = ({ width }) => {
       <span className="characteristic">Width</span>
       <progress
         className="widthBar"
-        value={width.value / 5}
+        value={width ? width.value / 5 : 0}
       >
       </progress>
       {widthDescription}

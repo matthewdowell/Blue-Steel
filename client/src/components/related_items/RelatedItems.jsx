@@ -26,14 +26,8 @@
 //           {products.slice(leftCount, rightCount).map((item, idx) => {
 //             if (index < 4) {
 //               return (
-<<<<<<< HEAD
-
-=======
-                
->>>>>>> 047b0feaf12a455d939caec04f70a772c2234f29
 
 //   //   <ProductCompare
-//   //     displayModal={showModal}
 //   //     closeModal={closeModal}
 //   //     currentProduct={currentProduct}
 //   //     clickedProduct={selectedProduct}

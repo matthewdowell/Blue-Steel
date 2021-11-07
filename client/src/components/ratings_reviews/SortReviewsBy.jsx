@@ -32,30 +32,46 @@ const SortReviewsBy = ({
       reviews.sort((a, b) => { return b.helpfulness - a.helpfulness; });
     }
   }
-  // console.log('SortReviewsBy reviews list:', sortedRatingsReviewsList);
+
   return (
     <div className="sortBy">
-      {currentRatingsReviewsList.length}
-      {' '}
-      reviews, sorted by
-      {' '}
-      <select className="sortDropdown" id="sortBy" onChange={() => {
-        const e = document.getElementById('sortBy');
-        setSortBy(e.value);
-        console.log('Sorting by: ', sortBy);
-        setSortedRatingsReviewsList(sortRatingsReviewsList(currentRatingsReviewsList, sortBy));
-      }}
+      <span
+        className="sortByTitle"
+        style={{
+          fontWeight: 'bold',
+          fontSize: '22px'
+        }}
       >
-        <option value="relevant">relevant</option>
-        <option value="new">new</option>
-        <option value="helpful">helpful</option>
-      </select>
-      {/* Render reviews */}
-      {sortedRatingsReviewsList
-        .filter((review) => { return ratingsToDisplay.includes(review.rating); })
-        .map((tile) => <RatingsReviewsTile tile={tile} />)
-        .slice(0, numReviewsDisplayed)
-      }
+        {currentRatingsReviewsList.length}
+        {' '}
+        reviews, sorted by
+        {' '}
+        <select
+          className="sortDropdown"
+          id="sortBy"
+          style={{
+            fontWeight: 'bold',
+            fontSize: '22px'
+          }}
+          onChange={() => {
+            const e = document.getElementById('sortBy');
+            setSortBy(e.value);
+            console.log('Sorting by: ', sortBy);
+            setSortedRatingsReviewsList(sortRatingsReviewsList(currentRatingsReviewsList, sortBy));
+          }}
+        >
+          <option value="relevant">relevant</option>
+          <option value="new">new</option>
+          <option value="helpful">helpful</option>
+        </select>
+      </span>
+      <div className="reviewScroll">
+        {/* Render list of reviews */}
+        {sortedRatingsReviewsList
+          .filter((review) => { return ratingsToDisplay.includes(review.rating); })
+          .map((tile) => <RatingsReviewsTile tile={tile} />)
+          .slice(0, numReviewsDisplayed)}
+      </div>
     </div>
   );
 };

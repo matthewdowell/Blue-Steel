@@ -24,9 +24,9 @@ const RatingsDistribution = (props) => {
           </span>
           <div
             // TODO: Implement click handler for rating bars
-            onMouseEnter={(e) => {  }}
-            onMouseLeave={(e) => {  }}
-            onClick={() => {}}
+            // onMouseEnter={(e) => {  }}
+            // onMouseLeave={(e) => {  }}
+            // onClick={() => {}}
           >
             <progress
               className="ratingBar"

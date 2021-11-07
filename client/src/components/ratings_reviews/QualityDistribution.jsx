@@ -5,7 +5,10 @@
 import React from 'react';
 
 const QualityDistribution = ({ quality }) => {
-  const qualityRating = Math.round(quality.value);
+  let qualityRating = 0;
+  if (quality) {
+    qualityRating = Math.round(quality.value);
+  }
   let qualityDescription = '';
 
   if (qualityRating === 1) {
@@ -18,6 +21,8 @@ const QualityDistribution = ({ quality }) => {
     qualityDescription = 'Pretty great';
   } else if (qualityRating === 5) {
     qualityDescription = 'Perfect';
+  } else {
+    qualityDescription = 'No reviews';
   }
 
   return (
@@ -25,7 +30,7 @@ const QualityDistribution = ({ quality }) => {
       <span className="characteristic">Quality</span>
       <progress
         className="qualityBar"
-        value={quality.value / 5}
+        value={quality ? quality.value / 5 : 0}
       >
       </progress>
       {qualityDescription}

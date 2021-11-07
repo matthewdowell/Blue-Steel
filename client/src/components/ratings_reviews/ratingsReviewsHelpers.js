@@ -25,6 +25,9 @@ const getPercentRecommended = (reviews) => {
       numRecommended++;
     }
   }
+  if (Number.isNaN(numRecommended / reviews.length)) {
+    return 0;
+  }
   return numRecommended / reviews.length;
 };
 

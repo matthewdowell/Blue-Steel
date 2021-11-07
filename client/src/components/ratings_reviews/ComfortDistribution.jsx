@@ -5,7 +5,10 @@
 import React from 'react';
 
 const comfortDistribution = ({ comfort }) => {
-  const comfortRating = Math.round(comfort.value);
+  let comfortRating = 0;
+  if (comfort) {
+    comfortRating = Math.round(comfort.value);
+  }
   let comfortDescription = '';
 
   if (comfortRating === 1) {
@@ -18,6 +21,8 @@ const comfortDistribution = ({ comfort }) => {
     comfortDescription = 'Comfortable';
   } else if (comfortRating === 5) {
     comfortDescription = 'Perfect';
+  } else {
+    comfortDescription = 'No reviews';
   }
 
   return (
@@ -25,7 +30,7 @@ const comfortDistribution = ({ comfort }) => {
       <span className="characteristic">Comfort</span>
       <progress
         className="comfortBar"
-        value={comfort.value / 5}
+        value={comfort ? comfort.value / 5 : 0}
       >
       </progress>
       {comfortDescription}

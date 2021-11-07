@@ -5,7 +5,10 @@
 import React from 'react';
 
 const LengthDistribution = ({ length }) => {
-  const lengthRating = Math.round(length.value);
+  let lengthRating = 0;
+  if (length) {
+    lengthRating = Math.round(length.value);
+  }
   let lengthDescription = '';
 
   if (lengthRating === 1) {
@@ -18,6 +21,8 @@ const LengthDistribution = ({ length }) => {
     lengthDescription = 'Runs slightly long';
   } else if (lengthRating === 5) {
     lengthDescription = 'Runs long';
+  } else {
+    lengthDescription = 'No reviews';
   }
 
   return (
@@ -25,7 +30,7 @@ const LengthDistribution = ({ length }) => {
       <span className="characteristic">Length</span>
       <progress
         className="lengthBar"
-        value={length.value / 5}
+        value={length ? length.value / 5 : 0}
       >
       </progress>
       {lengthDescription}
