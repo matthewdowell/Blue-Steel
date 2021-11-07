@@ -26,7 +26,10 @@ const ProductOverview = () => {
   //console.log(currentProduct);
 
   return (
+<<<<<<< HEAD
 
+=======
+>>>>>>> 047b0feaf12a455d939caec04f70a772c2234f29
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ border: 'none', width: '80%' }} >
             <Header/>
