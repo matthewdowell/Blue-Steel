@@ -15,11 +15,12 @@ const AnswerPhotos = ({ photos }) => {
             <img 
               src={photo} 
               style={{
-                height: '75px',
-                width: '75px',
+                maxHeight: '100px',
                 border: '2px solid black',
                 marginTop: '10px',
-                marginLeft: '10px'
+                marginLeft: '10px',
+                marginRight: '10px',
+                cursor: 'pointer'
               }}
               onClick={() => { setModalDisplayed(true); setCurrentPhoto(photo); }}
             >

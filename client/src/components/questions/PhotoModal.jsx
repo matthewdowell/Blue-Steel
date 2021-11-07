@@ -19,7 +19,16 @@ const PhotoModal = ({ photo, setModalDisplayed }) => {
       setModalDisplayed(false)}
     }}
     >
-      <img src={photo} style={{maxHeight: '80%', border: '5px solid white', borderRadius: '5px'}}></img>
+      <img 
+        src={photo} 
+        style={{
+          maxHeight: '80%',
+          maxWidth: '66%',
+          border: '5px solid white',
+          borderRadius: '5px'
+        }}
+      >
+      </img>
     </div>
   )
 }
