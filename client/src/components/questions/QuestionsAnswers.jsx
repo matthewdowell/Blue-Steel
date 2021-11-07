@@ -27,7 +27,7 @@ const QuestionsAnswers = () => {
   }
 
   useEffect(() => {
-    getQuestionsAnswers(currentProduct.id, (data) => {
+    getQuestionsAnswers(/*currentProduct.id*/44392, (data) => {
       setCurrentQuestions(data.results);
       setAllQuestions(data.results);
     }, null, 100)
