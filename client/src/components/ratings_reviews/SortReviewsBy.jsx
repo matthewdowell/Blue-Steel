@@ -5,33 +5,22 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react/cjs/react.development';
 import RatingsReviewsTile from './RatingsReviewsTile.jsx';
-// import ratingsReviewsHelpers from './ratingsReviewsHelpers.js';
+import ratingsReviewsHelpers from './ratingsReviewsHelpers.js';
 
 const SortReviewsBy = ({
   currentRatingsReviewsList,
   numReviewsDisplayed,
   ratingsToDisplay
 }) => {
-  // TODO: Sort reviews list by selected criteria
-  let [sortBy, setSortBy] = useState('relevant');
+  // let [sortBy, setSortBy] = useState('relevant');
   let [
     sortedRatingsReviewsList,
     setSortedRatingsReviewsList
-  ] = useState(currentRatingsReviewsList);
+  ] = useState([]);
 
   useEffect(() => {
     setSortedRatingsReviewsList(currentRatingsReviewsList);
   }, [currentRatingsReviewsList]);
-
-  function sortRatingsReviewsList(reviews, sortType) {
-    if (sortType === 'relevant') { // review.date AND review.helpfulness
-      reviews.sort((a, b) => {});
-    } else if (sortType === 'new') { // review.date
-      reviews.sort((a, b) => { return a.date - b.date; });
-    } else if (sortType === 'helpful') { // review.helpfulness
-      reviews.sort((a, b) => { return b.helpfulness - a.helpfulness; });
-    }
-  }
 
   return (
     <div className="sortBy">
@@ -55,9 +44,14 @@ const SortReviewsBy = ({
           }}
           onChange={() => {
             const e = document.getElementById('sortBy');
-            setSortBy(e.value);
-            console.log('Sorting by: ', sortBy);
-            setSortedRatingsReviewsList(sortRatingsReviewsList(currentRatingsReviewsList, sortBy));
+            // TODO: Rerender list of reviews when sortBy is changed
+            console.log('Sorting:', currentRatingsReviewsList);
+            console.log('Sorting by:', e.value);
+            console.log('Sorted:', ratingsReviewsHelpers.sortRatingsReviewsList(currentRatingsReviewsList, e.value));
+            setSortedRatingsReviewsList(
+              ratingsReviewsHelpers.sortRatingsReviewsList(currentRatingsReviewsList, e.value)
+            );
+            console.log('sortedRatingsReviewsList:', sortedRatingsReviewsList);
           }}
         >
           <option value="relevant">relevant</option>

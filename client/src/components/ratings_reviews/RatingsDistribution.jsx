@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState }from 'react';
 import ratingsReviewsHelpers from './ratingsReviewsHelpers';
+import Stars from '../stars/Stars.jsx';
 
 const RatingsDistribution = (props) => {
   const { ratings } = props;
@@ -16,11 +17,9 @@ const RatingsDistribution = (props) => {
     <div className="ratingDistribution">
       <b>Ratings</b>
       {ratingsArr.map((rating) => (
-        <div className="ratingBarContainer">
+        <div className="ratingBarContainer" key={rating}>
           <span className="ratingCount">
-            {rating}
-            {' '}
-            stars
+            <Stars rating={rating} />
           </span>
           <div
             // TODO: Implement click handler for rating bars

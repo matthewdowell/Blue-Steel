@@ -6,7 +6,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { ProductContext } from '../../context/globalContext.js';
 import { getReviewMetadata, getReviewsOfProduct } from '../../utils/reviewUtils.js';
 import ratingsReviewsHelpers from './ratingsReviewsHelpers.js';
-import ReviewFormModal from './ReviewFormModal.jsx';
+import Stars from '../stars/Stars.jsx';
 import SortReviewsBy from './SortReviewsBy.jsx';
 import RatingsDistribution from './RatingsDistribution.jsx';
 import PercentRecommended from './PercentRecommended.jsx';
@@ -16,6 +16,7 @@ import ComfortDistribution from './ComfortDistribution.jsx';
 import QualityDistribution from './QualityDistribution.jsx';
 import LengthDistribution from './LengthDistribution.jsx';
 import FitDistribution from './FitDistribution.jsx';
+import ReviewFormModal from './ReviewFormModal.jsx';
 
 const RatingsReviews = () => {
   const { currentProduct } = useContext(ProductContext);
@@ -40,19 +41,28 @@ const RatingsReviews = () => {
   return (
     <div className="ratingsReviewsAll">
       <div className="aggregateReviewInfo">
-        <span className="ratingsReviewsHeader"><b>Ratings {'&'} Reviews</b></span>
-        {/* AVERAGE RATING */}
-        <span className="averageRating" style={{ fontSize: '50px' }}>
-          {
-            currentMetaData.ratings
-              ? ratingsReviewsHelpers.getAverageRating(currentMetaData.ratings).toFixed(1)
-              : null
-          }
-        </span>
-        <span>Star Component Here</span>
+        <span className="ratingsReviewsHeader"><b style={{ fontSize: '22px' }}>Ratings {'&'} Reviews</b></span>
+        {/* AGGREGATE RATING */}
+        <div className="aggregateRating">
+          <div><b>Aggregate Rating</b></div>
+          <span className="averageRating" style={{ fontSize: '50px' }}>
+            {
+              currentMetaData.ratings
+                ? ratingsReviewsHelpers.getAverageRating(currentMetaData.ratings).toFixed(1)
+                : null
+            }
+          </span>
+          <div>
+            <Stars
+              rating={currentMetaData.ratings
+                ? Math.round(ratingsReviewsHelpers.getAverageRating(currentMetaData.ratings))
+                : null}
+            />
+          </div>
+        </div>
         {/* USER RECOMMENDATION */}
         <div>
-          <b>User Recommendation</b>
+          <b>User Feedback</b>
           <PercentRecommended currentRatingsReviewsList={currentRatingsReviewsList} />
         </div>
         {/* RATINGS */}
@@ -109,7 +119,7 @@ const RatingsReviews = () => {
                           className="reviewButton"
                           onClick={() => { setNumReviewsDisplayed(numReviewsDisplayed + 2); }}
                         >
-                          MORE REVIEWS +
+                          MORE REVIEWS
                         </button>
                       )
                       : (

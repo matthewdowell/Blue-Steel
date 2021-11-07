@@ -7,6 +7,7 @@
 import React, { useContext, useState } from 'react';
 import { ProductContext } from '../../context/globalContext.js';
 import { markReviewHelpful, reportReview } from '../../utils/reviewUtils.js';
+import Stars from '../stars/Stars.jsx';
 
 const RatingsReviewsTile = ({ tile }) => {
   const { currentProduct } = useContext(ProductContext);
@@ -33,9 +34,9 @@ const RatingsReviewsTile = ({ tile }) => {
   }
 
   return (
-    <div className="ratingsReviewsTile">
+    <div className="ratingsReviewsTile" key={tile.review_id}>
       <span className="reviewerInfo">
-        <span className="rating">Rating: {tile.rating}</span>
+        <span className="rating"><Stars rating={tile.rating} /></span>
         <span>
           <span>
             {tile.reviewer_name},

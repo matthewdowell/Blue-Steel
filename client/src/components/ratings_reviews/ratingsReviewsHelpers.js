@@ -3,14 +3,20 @@
 /* eslint-disable radix */
 /* eslint-disable no-plusplus */
 // TODO
-const sortRatingsReviewsList = (reviews, sortBy) => {
-  // if (sortBy === 'relevant') { // review.date AND review.helpfulness
-  //   reviews.sort((a, b) => {});
-  // } else if (sortBy === 'new') { // review.date
-  //   reviews.sort((a, b) => { return a.date - b.date; });
-  // } else if (sortBy === 'helpful') { // review.helpfulness
-  //   reviews.sort((a, b) => { return b.helpfulness - a.helpfulness; });
-  // }
+const sortRatingsReviewsList = (reviews, sortType) => {
+  if (sortType === 'relevant') { // review.date AND review.helpfulness
+    return reviews.sort((a, b) => {
+      return a - b;
+    });
+  } else if (sortType === 'new') {
+    return reviews.sort((a, b) => {
+      return new Date(b.date) - new Date(a.date);
+    });
+  } else if (sortType === 'helpful') { // review.helpfulness
+    return reviews.sort((a, b) => {
+      return b.helpfulness - a.helpfulness;
+    });
+  }
 };
 
 const handleSortByChange = () => {
@@ -54,6 +60,9 @@ const getNumRatings = (ratings) => { // ratings is an object
 };
 
 const getAverageRating = (ratings) => { // ratings is an object
+  if (Number.isNaN(getTotalScore(ratings) / getNumRatings(ratings))) {
+    return 0;
+  }
   return getTotalScore(ratings) / getNumRatings(ratings);
 };
 
