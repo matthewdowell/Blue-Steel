@@ -27,6 +27,18 @@
 //             if (index < 4) {
 //               return (
 
+
+//   //   <ProductCompare
+//   //     displayModal={showModal}
+//   //     closeModal={closeModal}
+//   //     currentProduct={currentProduct}
+//   //     clickedProduct={selectedProduct}
+//   // />
+//   );
+// };
+
+                
+
 //   //   <ProductCompare
 //   //     closeModal={closeModal}
 //   //     currentProduct={currentProduct}
