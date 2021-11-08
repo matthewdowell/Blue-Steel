@@ -1,18 +1,26 @@
+/* eslint-disable arrow-body-style */
+/* eslint-disable comma-dangle */
+/* eslint-disable radix */
 /* eslint-disable no-plusplus */
-const sortRatingsReviewsList = (sortBy) => {
-  if (sortBy === 'relevant') { // review.date AND review.helpfulness
-  } else if (sortBy === 'newest') { // review.date
-  } else if (sortBy === 'helpful') { // review.helpfulness
+// TODO
+const sortRatingsReviewsList = (reviews, sortType) => {
+  if (sortType === 'relevant') { // review.date AND review.helpfulness
+    return reviews.sort((a, b) => {
+      return a - b;
+    });
+  } else if (sortType === 'new') {
+    return reviews.sort((a, b) => {
+      return new Date(b.date) - new Date(a.date);
+    });
+  } else if (sortType === 'helpful') { // review.helpfulness
+    return reviews.sort((a, b) => {
+      return b.helpfulness - a.helpfulness;
+    });
   }
 };
 
-const sortByNewest = (arrayOfObj) => {
-
-};
-
-// Filter to only show reviews that gave a certain rating
 const handleSortByChange = () => {
-  const sortBy = document.getElementById('sortBy').value;
+  // const sortBy = document.getElementById('sortBy').value;
   sortRatingsReviewsList(sortBy);
 };
 
@@ -23,32 +31,60 @@ const getPercentRecommended = (reviews) => {
       numRecommended++;
     }
   }
-  return (numRecommended / reviews.length) * 100;
+  if (Number.isNaN(numRecommended / reviews.length)) {
+    return 0;
+  }
+  return numRecommended / reviews.length;
 };
 
-// TODO: Might need to move this into a global file to share
-const getAverageRating = (ratings) => { // ratings is an object
-  let numRatings = 0;
+const getTotalScore = (ratings) => { // ratings is an object
   let totalScore = 0;
   const keys = Object.keys(ratings);
   for (let i = 0; i < keys.length; i++) {
-    numRatings += ratings[keys[i]];
-    totalScore += keys[i] * ratings[keys[i]];
+    const rating = keys[i];
+    const numberOfRating = parseInt(ratings[rating]);
+    totalScore += rating * numberOfRating;
   }
-  return totalScore / numRatings;
+  return totalScore;
 };
 
-const countReviewsWithRating = (reviews, num) => {
-  const numReviews = reviews.filter((review) => (review.rating === num));
-  return numReviews.length;
+const getNumRatings = (ratings) => { // ratings is an object
+  let numRatings = 0;
+  const keys = Object.keys(ratings);
+  for (let i = 0; i < keys.length; i++) {
+    const rating = keys[i];
+    const numberOfRating = parseInt(ratings[rating]);
+    numRatings += numberOfRating;
+  }
+  return numRatings;
+};
+
+const getAverageRating = (ratings) => { // ratings is an object
+  if (Number.isNaN(getTotalScore(ratings) / getNumRatings(ratings))) {
+    return 0;
+  }
+  return getTotalScore(ratings) / getNumRatings(ratings);
+};
+
+const countReviewsWithRating = (ratings, num) => { // ratings is an object
+  let numRatings = 0;
+  const keys = Object.keys(ratings);
+  for (let i = 0; i < keys.length; i++) {
+    const rating = keys[i];
+    const numberOfRating = parseInt(ratings[rating]);
+    if (parseInt(rating) === num) {
+      numRatings += numberOfRating;
+    }
+  }
+  return numRatings;
 };
 
 module.exports = {
   sortRatingsReviewsList,
-  sortByNewest,
   handleSortByChange,
   getPercentRecommended,
+  getTotalScore,
+  getNumRatings,
   getAverageRating,
   countReviewsWithRating
 };
-

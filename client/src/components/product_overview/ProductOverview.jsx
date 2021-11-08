@@ -22,10 +22,10 @@ const ProductOverview = () => {
       setCurrentStyles(data.results);
       // setCurrentStyle(data.results[0]);
     })
-    
+
   }, [currentProduct])
 
-  
+
   //console.log(currentProduct);
 
   return (

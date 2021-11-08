@@ -1,7 +1,7 @@
 import React from 'react';
-import QuestionForm from './QuestionForm.jsx';
+import AnswerForm from './AnswerForm.jsx';
 
-const QuestionModal = ({ setModalDisplayed }) => {
+const AnswerModal = ({ setModalDisplayed, question }) => {
   return (
     <div style={{
       width: '100vw',
@@ -19,9 +19,9 @@ const QuestionModal = ({ setModalDisplayed }) => {
       setModalDisplayed(false)}
     }}
     >
-      <QuestionForm setModalDisplayed={setModalDisplayed} />
+      <AnswerForm setModalDisplayed={setModalDisplayed} question={question}/>
     </div>
   )
 }
 
-export default QuestionModal;
+export default AnswerModal;

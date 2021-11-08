@@ -30,7 +30,7 @@ export function postQuestion(body, name, email, product_id, callback = () => {})
     .post('/questions', {
       body, name, email, product_id,
     })
-    .then(callback())
+    .then(() => { callback(); })
     .catch((err) => { console.log(err); });
 }
 
@@ -39,7 +39,7 @@ export function postAnswer(question_id, body, name, email, photos = [], callback
     .post('/questions/post-answer', {
       question_id, body, name, email, photos,
     })
-    .then(callback())
+    .then(() => { callback(); })
     .catch((err) => { console.log(err); });
 }
 

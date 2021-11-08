@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { markQuestionAsHelpful } from '../../utils/questionsUtils.js';
 import Answer from './Answer.jsx';
+import AnswerModal from './AnswerModal.jsx';
 
 const Question = (props) => {
 
-  const[showMoreAnswers, setShowMoreAnswers] = useState(false)
+  const [showMoreAnswers, setShowMoreAnswers] = useState(false)
   const [helpfulVotes, setHelpfulVotes] = useState(props.helpfulness);
   const [voted, setVoted] = useState(false);
+  const [modalDisplayed, setModalDisplayed] = useState(false);
 
   function handleMoreAnswersClick() {
      setShowMoreAnswers(!showMoreAnswers)
@@ -23,6 +25,7 @@ const Question = (props) => {
 
   function handleAddAnswerClick() {
     console.log('add answer button clicked!')
+    setModalDisplayed(true);
   }
 
   return (
@@ -44,24 +47,37 @@ const Question = (props) => {
             style={{paddingLeft: '10px', textDecoration: 'underline', cursor: 'pointer'}}
             onClick={handleAddAnswerClick}
           >Add Answer</div>
+          {modalDisplayed && <AnswerModal question={props.question} setModalDisplayed={setModalDisplayed}/>}
         </div>
       </div>
       <div style={{display: 'flex'}}>
-          <p style={{paddingRight: '5px'}}><b>A:  </b></p>
+          <p style={{paddingRight: '15px'}}></p>
           {showMoreAnswers
             ? <div>
                 {Object
                   .values(props.question.answers)
                   .map(answer => <Answer answer={answer} key={answer.id} helpfulness={answer.helpfulness}/>)
-                  .sort((a, b) => b.props.helpfulness - a.props.helpfulness)
+                  .sort((a, b) => {
+                    if (b.props.answer.answerer_name === 'Seller') {
+                      return 1;
+                    } else {
+                      return b.props.helpfulness - a.props.helpfulness;
+                    }
+                  })
                 }
               </div>
             : <div>
                 {Object
                   .values(props.question.answers)
                   .map(answer => <Answer answer={answer} key={answer.id} helpfulness={answer.helpfulness}/>)
+                  .sort((a, b) => {
+                    if (b.props.answer.answerer_name === 'Seller') {
+                      return 1;
+                    } else {
+                      return b.props.helpfulness - a.props.helpfulness;
+                    }
+                  })
                   .slice(0, 2)
-                  .sort((a, b) => b.props.helpfulness - a.props.helpfulness)
                 }
               </div>
           }
@@ -73,10 +89,11 @@ const Question = (props) => {
               fontWeight: 'bold',
               cursor: 'pointer',
               paddingLeft: '22px',
-              paddingTop: '5px'
+              paddingTop: '10px',
+              paddingBottom: '5px'
             }}
             onClick={handleMoreAnswersClick}
-          >SEE MORE ANSWERS</div>
+          >{showMoreAnswers ? 'SHOW LESS ANSWERS' : 'SHOW MORE ANSWERS'}</div>
         : null
         }
       </div>

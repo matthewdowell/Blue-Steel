@@ -1,99 +1,59 @@
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable arrow-body-style */
 import React from 'react';
 
 const ReviewForm = ({ addReview, setShowReviewForm }) => {
   const isOpen = addReview;
-
+  const characteristics = ['size', 'width', 'comfort', 'quality', 'length', 'fit'];
+  const ratings = [1, 2, 3, 4, 5];
   return (
     <div className="reviewFormContainer">
       <form action="/action_page.php" className="reviewForm">
+        <div>Overall Rating</div> {/* REQUIRED */}
+        <div>Do you recommend this product?</div> {/* REQUIRED */}
         <div className="characteristics">
-          <p>Characteristics</p>
-          {/* TODO: Map over an array of 1 to 5, for each characteristics */}
+          <p>Characteristics</p> {/* REQUIRED */}
           {/* TODO: Make the name dynamic so we can capture which one was clicked */}
-          <div class="reviewCategory">
-            <p>Size</p>
-            <input type="radio" id="size" name="size"></input>
-            <label htmlFor="size">1</label>
-            <input type="radio" id="size" name="size"></input>
-            <label htmlFor="size">2</label>
-            <input type="radio" id="size" name="size"></input>
-            <label htmlFor="size">3</label>
-            <input type="radio" id="size" name="size"></input>
-            <label htmlFor="size">4</label>
-            <input type="radio" id="size" name="size"></input>
-            <label htmlFor="size">5</label>
-          </div>
-          <div class="reviewCategory">
-            <p>Width</p>
-            <input type="radio" id="width" name="width"></input>
-            <label htmlFor="width">1</label>
-            <input type="radio" id="width" name="width"></input>
-            <label htmlFor="width">2</label>
-            <input type="radio" id="width" name="width"></input>
-            <label htmlFor="width">3</label>
-            <input type="radio" id="width" name="width"></input>
-            <label htmlFor="width">4</label>
-            <input type="radio" id="width" name="width"></input>
-            <label htmlFor="width">5</label>
-          </div>
-          <div class="reviewCategory">
-            <p>Comfort</p>
-            <input type="radio" id="comfort" name="comfort"></input>
-            <label htmlFor="comfort">1</label>
-            <input type="radio" id="comfort" name="comfort"></input>
-            <label htmlFor="comfort">2</label>
-            <input type="radio" id="comfort" name="comfort"></input>
-            <label htmlFor="comfort">3</label>
-            <input type="radio" id="comfort" name="comfort"></input>
-            <label htmlFor="comfort">4</label>
-            <input type="radio" id="comfort" name="comfort"></input>
-            <label htmlFor="comfort">5</label>
-          </div>
-          <div class="reviewCategory">
-            <p>Quality</p>
-            <input type="radio" id="quality" name="quality"></input>
-            <label htmlFor="quality">1</label>
-            <input type="radio" id="quality" name="quality"></input>
-            <label htmlFor="quality">2</label>
-            <input type="radio" id="quality" name="quality"></input>
-            <label htmlFor="quality">3</label>
-            <input type="radio" id="quality" name="quality"></input>
-            <label htmlFor="quality">4</label>
-            <input type="radio" id="quality" name="quality"></input>
-            <label htmlFor="quality">5</label>
-          </div>
-          <div class="reviewCategory">
-            <p>Length</p>
-            <input type="radio" id="length" name="length"></input>
-            <label htmlFor="length">1</label>
-            <input type="radio" id="length" name="length"></input>
-            <label htmlFor="length">2</label>
-            <input type="radio" id="length" name="length"></input>
-            <label htmlFor="length">3</label>
-            <input type="radio" id="length" name="length"></input>
-            <label htmlFor="length">4</label>
-            <input type="radio" id="length" name="length"></input>
-            <label htmlFor="length">5</label>
-          </div>
-          <div class="reviewCategory">
-            <p>Fit</p>
-            <input type="radio" id="fit" name="fit"></input>
-            <label htmlFor="fit">1</label>
-            <input type="radio" id="fit" name="fit"></input>
-            <label htmlFor="fit">2</label>
-            <input type="radio" id="fit" name="fit"></input>
-            <label htmlFor="fit">3</label>
-            <input type="radio" id="fit" name="fit"></input>
-            <label htmlFor="fit">4</label>
-            <input type="radio" id="fit" name="fit"></input>
-            <label htmlFor="fit">5</label>
-          </div>
+          {characteristics.map((characteristic) => {
+            return (
+              <div className="reviewCategory">
+                <div className="characteristic">
+                  {characteristic}
+                </div>
+                {ratings.map((rating) => {
+                  return (
+                    <span>
+                      <input type="radio" id={characteristic} name={characteristic}></input>
+                      <label htmlFor={characteristic}>{rating}</label>
+                    </span>
+                  );
+                })}
+              </div>
+            );
+          })}
         </div>
         <div>
-          <p>Review Summary</p>
-          <input type="textarea" placeholder="Example: Best purchase ever!"></input>
+          <p>Review Summary</p> {/* Up to 60 characters*/}
+          <textarea placeholder="Example: Best purchase ever!"></textarea>
         </div>
         <div>
+          <p>Review Body</p> {/* Up to 1000 characters*/} {/* REQUIRED */}
+          <textarea placeholder="Why did you like the product or not?"></textarea>
+        </div>
+        {/* Upload Photos */}
+        <button className="addPhotoButton">Upload Photo</button>
+        <div>
+          <p>Nickname</p> {/* Up to 60 characters*/} {/* REQUIRED */}
+          <textarea placeholder="Example: jackson11!"></textarea>
+          <p>For privacy reasons, do not use your full name or email address.</p>
+        </div>
+        <div>
+          <p>email</p> {/* Up to 60 characters*/} {/* REQUIRED */}
+          <textarea placeholder="Example: jackson11@email.com"></textarea>
+          <p>For authentication reasons, you will not be emailed.</p>
+        </div>
+        <div>
+          {/* TODO: Validate inputs when submit button is clicked */}
           <button type="submit" className="submitReviewButton">Submit Review</button>
           <button type="submit" className="closeReviewButton" onClick={() => {
             setShowReviewForm(false);

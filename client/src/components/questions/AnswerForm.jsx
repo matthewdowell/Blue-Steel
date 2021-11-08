@@ -2,29 +2,30 @@ import React, { useContext, useState } from 'react';
 import ReactDom from 'react-dom';
 import { ProductContext } from '../../context/globalContext';
 import { qaContext } from '../../context/qaContext';
-import { getQuestionsAnswers, postQuestion } from '../../utils/questionsUtils';
+import { getQuestionsAnswers, postAnswer } from '../../utils/questionsUtils';
 
-const QuestionForm = ({ setModalDisplayed }) => {
+const AnswerForm = ({ setModalDisplayed, question }) => {
   const { currentProduct } = useContext(ProductContext);
   const { setCurrentQuestions, setAllQuestions } = useContext(qaContext);
-  const [questionInputVal, setQuestionInputVal] = useState('');
+  const [answerInputVal, setAnswerInputVal] = useState('');
   const [nameInputVal, setNameInputVal] = useState('');
   const [emailInputVal, setEmailInputVal] = useState('');
   const [errorDisplayed, setErrorDisplayed] = useState(false);
 
   const handleFormSubmit = () => {
     if (
-      questionInputVal.length > 0
+      answerInputVal.length > 0
       && nameInputVal.length > 0
       && emailInputVal.length > 0
       && emailInputVal.includes('@')
     ) {
-      postQuestion(questionInputVal, nameInputVal, emailInputVal, currentProduct.id, () => {
+      postAnswer(question.question_id, answerInputVal, nameInputVal, emailInputVal, [], () => {
         getQuestionsAnswers(currentProduct.id, (data) => {
+          console.log(data.results)
           setCurrentQuestions(data.results);
           setAllQuestions(data.results);
-          setModalDisplayed(false);
         }, null, 100);
+        setModalDisplayed(false);
       })
     } else {
       setErrorDisplayed(true);
@@ -44,17 +45,17 @@ const QuestionForm = ({ setModalDisplayed }) => {
         backgroundColor: 'white',
       }}
       >
-      <h3 style={{marginBottom: '0px'}}>Ask Your Question</h3>
-      <div style={{marginTop: '5px'}}>About the {currentProduct.name}</div>
+      <h3 style={{marginBottom: '0px'}}>Submit Your Answer</h3>
+      <div style={{marginTop: '5px'}}><b>{currentProduct.name}: </b>{question.question_body}</div>
       <div style={{margin: '20px'}}>
         <div>
-          <div><b>Your Question* </b></div>
+          <div><b>Your Answer* </b></div>
           <textarea 
             maxLength={1000} 
             rows={10}
             style={{resize: 'none', width: '98%', margin: '10px 0'}}
-            value={questionInputVal}
-            onChange={(e) => { setQuestionInputVal(e.target.value); }}
+            value={answerInputVal}
+            onChange={(e) => { setAnswerInputVal(e.target.value); }}
           ></textarea>
         </div>
         <div>
@@ -87,10 +88,10 @@ const QuestionForm = ({ setModalDisplayed }) => {
            lineHeight: '50px',
            textAlign: 'center',
            marginTop: '10px',
-           cursor: 'pointer',
+           cursor: `pointer`,
          }}
          onClick={handleFormSubmit}
-      >SUBMIT QUESTION</div>
+      >SUBMIT ANSWER</div>
       {errorDisplayed
         && <div style={{color: 'red', marginTop: '25px'}}>
              *Invalid Submission: All form fields must be filled out with a valid email address*
@@ -99,4 +100,4 @@ const QuestionForm = ({ setModalDisplayed }) => {
   )
 }
 
-export default QuestionForm;
+export default AnswerForm;

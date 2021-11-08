@@ -40,7 +40,6 @@
                 
 
 //   //   <ProductCompare
-//   //     displayModal={showModal}
 //   //     closeModal={closeModal}
 //   //     currentProduct={currentProduct}
 //   //     clickedProduct={selectedProduct}
