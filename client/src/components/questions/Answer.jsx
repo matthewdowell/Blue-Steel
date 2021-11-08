@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { markAnswerAsHelpful, reportAnswer } from '../../utils/questionsUtils';
+import AnswerPhotos from './AnswerPhotos.jsx';
 
 const Answer = ({ answer }) => {
-
+  
   const [helpfulVotes, setHelpfulVotes] = useState(answer.helpfulness);
   const [voted, setVoted] = useState(false);
   const [reported, setReported] = useState(false);
@@ -19,7 +20,7 @@ const Answer = ({ answer }) => {
   function handleReportClick() {
     if(!reported) {
       setReported(true)
-      //reportAnswer(answer.id)
+      reportAnswer(answer.id)
     }
   }
 
@@ -51,6 +52,7 @@ const Answer = ({ answer }) => {
               >Report</div>
           }
       </div>
+      {answer.photos.length > 0 && <AnswerPhotos photos={answer.photos}/>}
     </div>
   )
 }
