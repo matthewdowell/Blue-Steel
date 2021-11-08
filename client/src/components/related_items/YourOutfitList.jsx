@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import useLocalStorageState from 'use-local-storage-state';
-import OutfitCard from './your-outfit-card.jsx.js';
+import OutfitCard from './YourOutfitCard';
 import {CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import {PlusCircle} from 'react-bootstrap-icons';
-import api from '../../../api.js';
+import api from '../../utils/api.js';
 
 const YourOutfitList = ({product_id}) => {
   const [storageOutfitItems, setStorageOutfitItems] = useLocalStorageState('outfitItems', [])

@@ -1,5 +1,5 @@
 import React from "react";
-import RelatedProductsList from "../related_elements/RelatedProductsList.jsx"
+import RelatedProductsList from "../related_items/RelatedProductsList.jsx"
 
 class App extends React.Component {
   constructor() {
@@ -22,7 +22,7 @@ class App extends React.Component {
             product_id={this.state.product_id}
             renderNewProductId={this.renderNewProductId.bind(this)}
           />
-          {/* <YourOutfitList product_id={this.state.product_id} /> */}
+          <YourOutfitList product_id={this.state.product_id} />
     </div>
     );
   }
