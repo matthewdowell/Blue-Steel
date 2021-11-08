@@ -52,7 +52,7 @@ body {
     margin-right: 20px;
 }
 .reviewButton,
-.addPhotoButton,
+/* .addPhotoButton, */
 .submitReviewButton,
 .closeReviewButton {
     font-size: medium;
@@ -133,6 +133,11 @@ progress {
     overflow: scroll;
     width: 100%;
 }
+.characteristicsContainer {
+    display: flex;
+    margin-top: 1px;
+    justify-content: space-between;
+}
 
 /* [Characteristic]Distribution.jsx */
 .sizeBarContainer,
@@ -147,7 +152,7 @@ progress {
 }
 
 .likedIcon, .ratingCount, .characteristic {
-    width: 110px;
+    width: 100px;
 }
 
 /* Stars */

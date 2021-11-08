@@ -21,10 +21,10 @@ import ReviewFormModal from './ReviewFormModal.jsx';
 const RatingsReviews = () => {
   const { currentProduct } = useContext(ProductContext);
   const [numReviewsDisplayed, setNumReviewsDisplayed] = useState(2);
-  const [showReviewForm, setShowReviewForm] = useState(false);
   const [currentRatingsReviewsList, setCurrentRatingsReviewsList] = useState([]);
   const [ratingsToDisplay, setRatingsToDisplay] = useState([1, 2, 3, 4, 5]);
   const [currentMetaData, setCurrentMetaData] = useState({});
+  const [modalDisplayed, setModalDisplayed] = useState(false);
 
   useEffect(() => {
     getReviewsOfProduct((data) => {
@@ -93,8 +93,8 @@ const RatingsReviews = () => {
           <button
             type="submit"
             className="reviewButton addReviewButton"
-            style={{display: 'block'}}
-            onClick={() => { setShowReviewForm(true); }}
+            style={{ display: 'block' }}
+            onClick={() => { setModalDisplayed(true); }}
           >
             ADD A REVIEW +
           </button>
@@ -107,7 +107,7 @@ const RatingsReviews = () => {
           numReviewsDisplayed={numReviewsDisplayed}
           ratingsToDisplay={ratingsToDisplay}
         />
-        {showReviewForm && <ReviewFormModal setShowReviewForm={setShowReviewForm} />}
+        {modalDisplayed && <ReviewFormModal setModalDisplayed={setModalDisplayed} />}
         {/* BUTTONS */}
         <div className="reviewButtons">
           {
