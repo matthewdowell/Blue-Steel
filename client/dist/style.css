@@ -1,120 +1,144 @@
-<<<<<<< HEAD
-/* npm aud */
-=======
-body {
-    font-family: Arial, Helvetica, sans-serif;
-}
+html{
+    width:85%;
+    padding: 0;
+    margin: 0 auto 0 auto;
+  }
 
-/* RatingsReviews.jsx */
-.ratingsReviewsAll {
-    display: flex;
-    justify-content: center;
-    width: 80%;
-}
-.aggregateReviewInfo {
-    margin-right: 60px;
-}
-.ratingsReviewsHeader {
-    display: flex;
-    font: helvetica;
-    font-size: 20px;
-    margin-bottom: 10px;
-    justify-content: flex-start;
-}
-.averageRating {
-    font-size: 50px;
-    font-weight: bold;
-    color: rgb(57, 56, 56);
-}
-.ratingsDistribution {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-.sortBy, .sortDropdown {
-    font: helvetica;
-    font-size: 20px;
-    font-weight: bold;
-    color: rgb(57, 56, 56);
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: none;
-}
-.sortDropdown {
-    text-decoration: underline;
-}
-.reviewButton {
-    font-size: medium;
-    font-weight: bold;
-    background-color: white;
-    width: 160px;
-    height: 65px;
-    margin-top: 5px;
-    border-radius: 0px;
-}
-.addReviewButton {
-    width: 190px;
-    margin-left: 20px;
-}
-
-/* RatingsReviewsTiles.jsx */
-.ratingsReviewsTile {
-    width: 670px;
-    margin-bottom: 40px;
-}
-.rating{
-    display: flex;
-    justify-self: flex-start;
-}
-.reviewerInfo {
-    display: flex;
-    justify-content: space-between;
-    color:rgb(65, 65, 65)
-}
-.reviewSummary {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: rgb(57, 56, 56);
-    margin-top: 7px;
-    margin-bottom: 7px;
-}
-.reviewBody {
-    margin-top: 7px;
-    margin-bottom: 7px;
-}
-.markReviewHelpfulButton, .reportReviewButton {
-    background-color: white;
-    border: none;
-    text-decoration: underline;
-    font-size: 1em;
-    cursor: pointer
-}
-
-/* RatingsDistribution.jsx */
-.ratingDistribution {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-.ratingBarContainer {
-    display: flex;
+  .component-flexbox{
+    display:flex;
+    flex-direction:column;
     align-items: center;
-    font-size: 20px;
-}
-.ratingCount {
-    text-decoration: underline;
-}
-.ratingBar {
-    color: red;
-    background-color:rgb(184, 184, 184);
-    height: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    cursor: pointer;
-}
-progress.ratingBar:hover:before {
-    outline: blue;
-}
-.ratingBar progress:hover {
-    outline: blue;
-}
+  }
 
->>>>>>> 523e4108e4be36113b2dacfb123dd3fc0947fc78
+  .product-list{
+    height:38rem;
+    width:50%;
+    overflow: hidden !important;
+  }
+
+  .heading-list{
+    font-size: 1.5rem;
+    color: #575757;
+  }
+
+  .buttons{
+    position:absolute;
+    top:50%;
+    max-width:850px;
+    width:100%;
+    z-index: 1;
+    display:flex;
+    justify-content:space-between;
+  }
+
+  .items-carousel{
+    width:100%;
+  }
+
+  .button-back, .button-next{
+     border-radius:50%;
+     opacity: 0.4;
+  };
+
+  .button-back:disabled{
+    visibility: hidden !important;
+  }
+
+  .button-back:disabled,
+  button[disabled]{
+    visibility: hidden !important;
+  }
+
+  .carousel__slider {
+    width:850px;
+  }
+
+  /* product card styles */
+  .product-card{
+    width:100%;
+    height:100%;
+    margin: auto;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    background-color: #fcfcfc;
+  }
+
+  .product-image {
+    width: 100%;
+    height:20rem;
+  }
+
+  .product-name, .product-category, .product-price{
+    text-align:left;
+    margin-left:0.5rem;
+  }
+
+  .product-rating{
+    margin-left: 0.3rem;
+  }
+
+  .product-category{
+    font-size:1.35rem;
+  }
+
+  .product-name {
+    font-weight: bold;
+    font-size:1.5rem;
+  }
+
+  .add-card{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .plus-card-caption{
+    font-size:2.5rem;
+  }
+
+  /*modal styling */
+  .mymodal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #ccc;
+    background: #fff;
+    overflow: auto;
+    border-radius: 2rem;
+    outline: none;
+  }
+
+  .myoverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 2;
+  }
+
+  .ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
+  }
+
+  .ReactModal__Overlay--after-open {
+    opacity: 1;
+  }
+
+  .ReactModal__Overlay--before-close {
+    opacity: 0;
+  }
+
+  .scroll-table{
+    height: 40rem;
+    overflow: scroll;
+  }
+
+  .table-header{
+    padding-bottom: 0.3rem;
+  }
+
