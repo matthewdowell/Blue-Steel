@@ -4,7 +4,7 @@ import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-re
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import api from '../../utils/api.js';
 
-const RelatedProductsList = ({ product_id, renderNewProudctId }) => {
+const RelatedProductsList = ({ product_id, renderNewProductId }) => {
   const [relatedItems, setRelatedItems] = useState([]);
   const [relatedItemsData, setRelatedItemsData] = useState([]);
   const [relatedItemsStyles, setRelatedItemsStyle] = useState([]);
@@ -52,7 +52,7 @@ const RelatedProductsList = ({ product_id, renderNewProudctId }) => {
   }
 
   const sendProductId = (id) =>{
-    renderNewProudctId(id);
+    renderNewProductId(id);
   }
 
   return (
@@ -67,7 +67,7 @@ const RelatedProductsList = ({ product_id, renderNewProudctId }) => {
         dragEnabled={false}
       >
       <Slider className="carousel_slider">
-        {relatedItems.map(relatedItem => (
+        {relatedItemsData.map(relatedItem => (
           <Slide
             key={relatedItems.id}
             index={Math.random()}

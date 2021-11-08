@@ -3,7 +3,7 @@ import { StarFill } from 'react-bootstrap-icons';
 import Modal from 'react-modal';
 import ModalDetails from './ModalDetails.jsx';
 import api from '../../utils/api.js';
-import { StaticRating } from '../../starRating.jsx';
+import { StaticRating } from '../starRating.jsx';
 
 const RelatedProductCard = ({ id, currentProductId, relatedItemsStyles, name, category, image, price, sendProductId, features, starRating }) => {
   const [openModal, setOpenModal] = useState(false);
@@ -38,7 +38,7 @@ const RelatedProductCard = ({ id, currentProductId, relatedItemsStyles, name, ca
         }}
       />
       <img className="product-image" src={image} alt={name} loading="lazy" />
-      <div className="bottom-half-card" onClick={() => sendProductId(id)}>
+      <div className="bottom-half-card" onClick={() => {sendProductId(id)}}>
         <p className="product-category">{category.toUpperCase()}</p>
         <p className="product-name">{name}</p>
         <p className="product-price">${price}</p>
