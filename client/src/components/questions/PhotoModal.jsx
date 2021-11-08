@@ -1,10 +1,7 @@
-/* eslint-disable arrow-body-style */
-/* eslint-disable react/prop-types */
-/* eslint-disable import/extensions */
 import React from 'react';
-import ReviewForm from './ReviewForm.jsx';
 
-const ReviewFormModal = ({ setModalDisplayed }) => {
+const PhotoModal = ({ photo, setModalDisplayed }) => {
+  console.log('photo address', photo);
   return (
     <div style={{
       width: '100vw',
@@ -22,9 +19,18 @@ const ReviewFormModal = ({ setModalDisplayed }) => {
       setModalDisplayed(false)}
     }}
     >
-      <ReviewForm setModalDisplayed={setModalDisplayed} />
+      <img 
+        src={photo} 
+        style={{
+          maxHeight: '80%',
+          maxWidth: '66%',
+          border: '5px solid white',
+          borderRadius: '5px'
+        }}
+      >
+      </img>
     </div>
   )
 }
 
-export default ReviewFormModal;
+export default PhotoModal;

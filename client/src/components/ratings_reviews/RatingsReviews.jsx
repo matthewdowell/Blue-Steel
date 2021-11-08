@@ -21,10 +21,10 @@ import ReviewFormModal from './ReviewFormModal.jsx';
 const RatingsReviews = () => {
   const { currentProduct } = useContext(ProductContext);
   const [numReviewsDisplayed, setNumReviewsDisplayed] = useState(2);
-  const [showReviewForm, setShowReviewForm] = useState(false);
   const [currentRatingsReviewsList, setCurrentRatingsReviewsList] = useState([]);
   const [ratingsToDisplay, setRatingsToDisplay] = useState([1, 2, 3, 4, 5]);
   const [currentMetaData, setCurrentMetaData] = useState({});
+  const [modalDisplayed, setModalDisplayed] = useState(false);
 
   useEffect(() => {
     getReviewsOfProduct((data) => {
@@ -89,13 +89,16 @@ const RatingsReviews = () => {
             ? <FitDistribution fit={currentMetaData.characteristics.Fit} />
             : null}
         </div>
-        <button
+        <div>
+          <button
             type="submit"
             className="reviewButton addReviewButton"
-            onClick={() => { setShowReviewForm(true); }}
-        >
-          ADD A REVIEW +
-        </button>
+            style={{ display: 'block' }}
+            onClick={() => { setModalDisplayed(true); }}
+          >
+            ADD A REVIEW +
+          </button>
+        </div>
       </div>
       <div className="reviewList">
         <SortReviewsBy
@@ -104,7 +107,7 @@ const RatingsReviews = () => {
           numReviewsDisplayed={numReviewsDisplayed}
           ratingsToDisplay={ratingsToDisplay}
         />
-        {showReviewForm && <ReviewFormModal setShowReviewForm={setShowReviewForm} />}
+        {modalDisplayed && <ReviewFormModal setModalDisplayed={setModalDisplayed} />}
         {/* BUTTONS */}
         <div className="reviewButtons">
           {
@@ -112,25 +115,27 @@ const RatingsReviews = () => {
               ? (
                 <div>
                   {(
-                    (numReviewsDisplayed < currentRatingsReviewsList.length)
-                      ? (
-                        <button
-                          type="submit"
-                          className="reviewButton"
-                          onClick={() => { setNumReviewsDisplayed(numReviewsDisplayed + 2); }}
-                        >
-                          MORE REVIEWS
-                        </button>
-                      )
-                      : (
-                        <button
-                          type="submit"
-                          className="reviewButton"
-                          onClick={() => { setNumReviewsDisplayed(2); }}
-                        >
-                          COLLAPSE REVIEWS
-                        </button>
-                      )
+                    (currentRatingsReviewsList.length < 3)
+                      ? null
+                      : (numReviewsDisplayed < currentRatingsReviewsList.length)
+                          ? (
+                            <button
+                              type="submit"
+                              className="reviewButton"
+                              onClick={() => { setNumReviewsDisplayed(numReviewsDisplayed + 2); }}
+                            >
+                              MORE REVIEWS
+                            </button>
+                          )
+                          : (
+                            <button
+                              type="submit"
+                              className="reviewButton"
+                              onClick={() => { setNumReviewsDisplayed(2); }}
+                            >
+                              COLLAPSE REVIEWS
+                            </button>
+                          )
                   )}
                 </div>
               )
