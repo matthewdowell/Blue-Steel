@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import ProductOverview from '../product_overview/ProductOverview.jsx';
 import RatingsReviews from '../ratings_reviews/RatingsReviews.jsx';
 import QuestionsAnswers from '../questions/QuestionsAnswers.jsx';
-import RelatedItems from '../related_items/RelatedItems.jsx';
+// import RelatedProductsList from '../related_items/RelatedProductsList.jsx';
 import { getRelatedProducts } from '../../utils/productUtils.js';
 import { getProducts } from '../../utils/productUtils.js';
 import { ProductContext } from '../../context/globalContext.js';
@@ -37,7 +37,7 @@ const App = () => {
       {/* eslint-disable-next-line object-curly-newline */}
       <ProductContext.Provider value={{ currentProduct, setCurrentProduct, products, setProducts }}>
         <div><ProductOverview /></div>
-        {/* <div><RelatedItems /></div> */}
+        {/* <div><RelatedProductsList /></div> */}
         {/* <div><QuestionsAnswers /></div>
         <div><RatingsReviews /></div> */}
         {/* <div><ProductOverview /></div> */}
