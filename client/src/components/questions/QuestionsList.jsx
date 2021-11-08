@@ -11,7 +11,7 @@ const QuestionsList = () => {
   return (
     <div>
       {currentQuestions.length === 0
-      ? <div 
+      ? <div
           style={{
             height: '50px',
             width: '200px',
@@ -19,27 +19,27 @@ const QuestionsList = () => {
             border: '2px solid black',
             cursor: 'pointer',
             textAlign: 'center',
-            marginTop: '25px'                  
+            marginTop: '25px'
           }}
           onClick={() => { setModalDisplayed(true); }}
         >
           <div>SUBMIT A QUESTION</div>
         </div >
-      : <><div 
+      : <><div
             style={{
               height: '400px',
               overflowY: 'auto',
               margin: '20px 0'
             }}
           >{currentQuestions
-          .map((question, index) => 
+          .map((question, index) =>
             <Question key={index} question={question} helpfulness={question.question_helpfulness}/>)
           .slice(0, numberOfQsDisplayed)
           .sort((a, b) => b.props.helpfulness - a.props.helpfulness)}
           </div>
           <div style={{display: 'flex'}}>
             {numberOfQsDisplayed < currentQuestions.length - 1
-            ? <div 
+            ? <div
                 onClick={() => { setNumberOfQsDisplayed(currentQuestions.length); }}
                 style={{
                   height: '50px',
@@ -54,7 +54,7 @@ const QuestionsList = () => {
               </div>
             : null
             }
-            <div 
+            <div
               style={{
                 display: 'flex',
                 height: '50px',
@@ -63,7 +63,7 @@ const QuestionsList = () => {
                 cursor: 'pointer',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                padding: '0 20px'                   
+                padding: '0 20px'
               }}
               onClick={() => { setModalDisplayed(true); }}
             >
