@@ -11,6 +11,7 @@ const AnswerForm = ({ setModalDisplayed, question }) => {
   const [nameInputVal, setNameInputVal] = useState('');
   const [emailInputVal, setEmailInputVal] = useState('');
   const [errorDisplayed, setErrorDisplayed] = useState(false);
+  const [imageInputVal, setImageInputVal] = useState([]);
 
   const handleFormSubmit = () => {
     if (
@@ -19,7 +20,7 @@ const AnswerForm = ({ setModalDisplayed, question }) => {
       && emailInputVal.length > 0
       && emailInputVal.includes('@')
     ) {
-      postAnswer(question.question_id, answerInputVal, nameInputVal, emailInputVal, [], () => {
+      postAnswer(question.question_id, answerInputVal, nameInputVal, emailInputVal, imageInputVal, () => {
         getQuestionsAnswers(currentProduct.id, (data) => {
           console.log(data.results)
           setCurrentQuestions(data.results);
@@ -39,7 +40,7 @@ const AnswerForm = ({ setModalDisplayed, question }) => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        height: '600px',
+        height: '700px',
         width: '600px',
         border: "2px solid black",
         backgroundColor: 'white',
@@ -79,6 +80,12 @@ const AnswerForm = ({ setModalDisplayed, question }) => {
           ></input>
         </div>
         <div>For authentication reasons, you will not be emailed.</div>
+        <div style={{marginTop: '10px'}}><b>Attach An Image URL</b></div>
+        <input 
+            style={{width: '98%', margin: '10px 0'}}
+            value={imageInputVal}
+            onChange={(e) => { setImageInputVal([e.target.value]); }}
+          ></input>
       </div>
       <div 
          style={{
