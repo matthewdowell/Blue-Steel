@@ -7,6 +7,7 @@
 import React, { useContext, useState } from 'react';
 import { ProductContext } from '../../context/globalContext.js';
 import { markReviewHelpful, reportReview } from '../../utils/reviewUtils.js';
+import Stars from '../stars/Stars.jsx';
 
 const RatingsReviewsTile = ({ tile }) => {
   const { currentProduct } = useContext(ProductContext);
@@ -18,24 +19,24 @@ const RatingsReviewsTile = ({ tile }) => {
   const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   function findHelpful() {
-    if(!foundHelpful) {
+    if (!foundHelpful) {
       markReviewHelpful(tile.review_id);
       setFoundHelpful(true);
       setHelpfulness(helpfulness + 1);
     }
   }
 
-  function report () {
-    if(!reported) {
+  function report() {
+    if (!reported) {
       reportReview(tile.review_id);
       setReported(true);
     }
   }
 
   return (
-    <div className="ratingsReviewsTile">
+    <div className="ratingsReviewsTile" key={tile.review_id}>
       <span className="reviewerInfo">
-        <span className="rating">Rating: {tile.rating}</span>
+        <span className="rating"><Stars rating={tile.rating} /></span>
         <span>
           <span>
             {tile.reviewer_name},
@@ -53,7 +54,7 @@ const RatingsReviewsTile = ({ tile }) => {
       <div className="reviewSummary">{tile.summary}</div>
       <div className="reviewBody">{tile.body}</div>
       <div className="reviewRecommended">{tile.recommend ? '✔ I recommended this product' : ''}</div>
-      <div className="reviewResponse">{tile.response}</div>
+      <div className="reviewResponse">Seller response: {tile.response}</div>
       <div>
         Helpful?
         <button

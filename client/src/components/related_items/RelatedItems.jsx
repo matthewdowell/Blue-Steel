@@ -26,10 +26,8 @@
 //           {products.slice(leftCount, rightCount).map((item, idx) => {
 //             if (index < 4) {
 //               return (
-                
 
 //   //   <ProductCompare
-//   //     displayModal={showModal}
 //   //     closeModal={closeModal}
 //   //     currentProduct={currentProduct}
 //   //     clickedProduct={selectedProduct}
