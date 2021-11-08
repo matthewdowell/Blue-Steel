@@ -89,13 +89,16 @@ const RatingsReviews = () => {
             ? <FitDistribution fit={currentMetaData.characteristics.Fit} />
             : null}
         </div>
-        <button
+        <div>
+          <button
             type="submit"
             className="reviewButton addReviewButton"
+            style={{display: 'block'}}
             onClick={() => { setShowReviewForm(true); }}
-        >
-          ADD A REVIEW +
-        </button>
+          >
+            ADD A REVIEW +
+          </button>
+        </div>
       </div>
       <div className="reviewList">
         <SortReviewsBy
@@ -112,25 +115,27 @@ const RatingsReviews = () => {
               ? (
                 <div>
                   {(
-                    (numReviewsDisplayed < currentRatingsReviewsList.length)
-                      ? (
-                        <button
-                          type="submit"
-                          className="reviewButton"
-                          onClick={() => { setNumReviewsDisplayed(numReviewsDisplayed + 2); }}
-                        >
-                          MORE REVIEWS
-                        </button>
-                      )
-                      : (
-                        <button
-                          type="submit"
-                          className="reviewButton"
-                          onClick={() => { setNumReviewsDisplayed(2); }}
-                        >
-                          COLLAPSE REVIEWS
-                        </button>
-                      )
+                    (currentRatingsReviewsList.length < 3)
+                      ? null
+                      : (numReviewsDisplayed < currentRatingsReviewsList.length)
+                          ? (
+                            <button
+                              type="submit"
+                              className="reviewButton"
+                              onClick={() => { setNumReviewsDisplayed(numReviewsDisplayed + 2); }}
+                            >
+                              MORE REVIEWS
+                            </button>
+                          )
+                          : (
+                            <button
+                              type="submit"
+                              className="reviewButton"
+                              onClick={() => { setNumReviewsDisplayed(2); }}
+                            >
+                              COLLAPSE REVIEWS
+                            </button>
+                          )
                   )}
                 </div>
               )

@@ -3,33 +3,6 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.arrow {
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-  }
-  
-  .right {
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-  }
-  
-  .left {
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
-  }
-
-.mainImg {
-    z-index: '-100'; 
-    border: 'none';
-    background: 'lightgray';
-    display: 'flex';
-    justify-content: 'space-around';
-    align-items: 'center';
-    flex-basis: '65%';
-} */
-
 /* RatingsReviews.jsx */
 .ratingsReviewsAll {
     display: flex;
@@ -37,27 +10,27 @@ body {
     width: 80%;
     margin: 0 10%;
     margin-top: 50px;
+    margin-bottom: 100px;
 }
 .aggregateReviewInfo, .reviewScroll {
-    border: 2px;
-    border-color: black;
-    height: 470px;
+    height: 480px;
 }
 .reviewScroll {
-    max-height: 500px;
+    padding: 7px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.139);
     overflow-y: scroll;
 }
 
 .ratingsReviewsHeader {
     display: flex;
-    /* margin-bottom: 10px; */
     justify-content: flex-start;
 }
 .percentRecommended,
 .sortBy,
 .characteristics {
     margin-top: 40px;
-    margin-bottom: 40px;
 }
 .averageRating {
     font-weight: bold;
@@ -87,7 +60,6 @@ body {
     background-color: white;
     width: 200px;
     height: 65px;
-    margin-top: 5px;
 }
 
 /* SortBy.jsx */
@@ -109,7 +81,7 @@ body {
 }
 .reviewSummary {
     font-weight: bold;
-    color: rgb(57, 56, 56);
+    color: rgb(0, 0, 0);
     margin-top: 7px;
     margin-bottom: 7px;
 }
@@ -118,13 +90,15 @@ body {
     margin-bottom: 7px;
 }
 .reviewRecommended {
+    color: rgb(8, 0, 252);
     margin-top: 7px;
     margin-bottom: 7px;
 }
 .markReviewHelpfulButton, .reportReviewButton {
+    font-size: medium;
     background-color: white;
-    border: none;
     text-decoration: underline;
+    border: none;
     cursor: pointer
 }
 
@@ -145,7 +119,8 @@ progress {
     height: 30px;
     width: 260px;
     margin-left: 10px;
-    margin-right: 26px;
+    margin-right: 25px;
+    color: green;
 }
 .ratingBar {
     cursor: pointer;
