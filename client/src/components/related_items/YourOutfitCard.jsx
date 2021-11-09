@@ -1,6 +1,6 @@
 import React from 'react';
 import {XCircle} from 'react-bootstrap-icons';
-import {StaticRating} from '../../starRating.jsx';
+import {StaticRating} from '../starRating.jsx';
 
 const OutfitCard = props => (
   <div className = 'product-card'>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { render } from 'react-dom';
-import { Scale } from 'tone';
+// import { Scale } from 'tone';
 
 const ImageGallery = ({ styles, currentStyle, setMainImgSize, mainImgSize }) => {
 
@@ -38,7 +38,7 @@ const ImageGallery = ({ styles, currentStyle, setMainImgSize, mainImgSize }) => 
                 {styles[0] ?
                     <>
                         {
-                            // change 0 to styles[i] 
+                            // change 0 to styles[i]
                             styles[currentStyle].photos.map((photo, index) => {
                                 return <div key={index} onClick={(e) =>  {e.target.style.borderBottom = '4px solid black'; e.target.focus()}} onBlur={() => {console.log('happening')} } style={{ borderBottom: photoBorder }} >
                                     <img src={photo.thumbnail_url} key={index} id={index} onClick={(e) => { setImageIndex(e.target.id) }} alt='' style={{ border: '2px solid black', width: '70px', height: '70px', objectFit: 'cover', marginBottom: '1em' }} />

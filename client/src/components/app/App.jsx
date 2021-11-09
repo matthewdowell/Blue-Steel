@@ -4,9 +4,9 @@ import React, { useState, useEffect } from 'react';
 import ProductOverview from '../product_overview/ProductOverview.jsx';
 import RatingsReviews from '../ratings_reviews/RatingsReviews.jsx';
 import QuestionsAnswers from '../questions/QuestionsAnswers.jsx';
-// import RelatedProductsList from '../related_items/RelatedProductsList.jsx';
-import { getRelatedProducts } from '../../utils/productUtils.js';
-import { getProducts } from '../../utils/productUtils.js';
+import RelatedProductsList from '../related_items/RelatedProductsList'
+import YourOutfitList from '../related_items/YourOutfitList.jsx';
+import { getProducts, getProductsById } from '../../utils/productUtils.js';
 import { ProductContext } from '../../context/globalContext.js';
 
 const App = () => {
@@ -25,6 +25,8 @@ const App = () => {
 
   const [products, setProducts] = useState([]);
 
+
+
   // Bring in all products
   useEffect(() => {
     getProducts(null, null, (data) => {
@@ -32,19 +34,26 @@ const App = () => {
     });
   }, []);
 
+  function renderNewProductId(id) {
+   getProductsById(null, null, id, (data) => {
+     setCurrentProduct(data);
+   });
+  }
+
   return (
     <div>
       {/* eslint-disable-next-line object-curly-newline */}
       <ProductContext.Provider value={{ currentProduct, setCurrentProduct, products, setProducts }}>
-        {/* <div><RelatedProductsList /></div> */}
-        {/* <div><QuestionsAnswers /></div>
-        <div><RatingsReviews /></div> */}
-        {/* <div><ProductOverview /></div> */}
-        {/* <div><RelatedItems /></div> */}
-        {/* <div><QuestionsAnswers /></div>
-        <div><RatingsReviews /></div> */}
-        {/* <div><ProductOverview /></div> */}
-        {/* <div><RelatedItems /></div> */}
+        <div><ProductOverview /></div>
+        <div className="topofrelated">
+          <RelatedProductsList
+            product_id={currentProduct.id}
+            renderNewProductId={renderNewProductId}
+          />
+        </div>
+        <div>
+          <YourOutfitList product_id={currentProduct.id}/>
+        </div>
         <div><QuestionsAnswers /></div>
         <div><RatingsReviews /></div>
       </ProductContext.Provider>

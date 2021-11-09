@@ -1,5 +1,4 @@
 const path = require('path');
-
 const SRC_DIR = path.join(__dirname, '/client/src');
 const DIST_DIR = path.join(__dirname, '/client/dist');
 
@@ -17,6 +16,7 @@ module.exports = {
       {
         test: /\.(js|jsx)?/,
         exclude: /node_modules/,
+        include: SRC_DIR,
         use: {
           loader: 'babel-loader',
           options: {
@@ -34,6 +34,16 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      }
     ],
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '.json'],
+    fallback: {
+      util: require.resolve("util/")
+    }
+  }
 };
