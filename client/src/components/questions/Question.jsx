@@ -34,7 +34,8 @@ const Question = (props) => {
         <div style={{marginTop: '5px'}}><b>Q:  {props.question.question_body}</b></div>
         <div style={{display: 'flex', marginTop: '5px'}}>
           <div style={{paddingRight: '10px'}}>Helpful?</div>
-          <div 
+          <div
+            data-testid={props.question.question_id} 
             style={{
               textDecoration: 'underline',
               cursor: 'pointer',
