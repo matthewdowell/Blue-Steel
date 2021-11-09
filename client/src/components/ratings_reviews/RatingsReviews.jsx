@@ -21,15 +21,15 @@ import ReviewFormModal from './ReviewFormModal.jsx';
 const RatingsReviews = () => {
   const { currentProduct } = useContext(ProductContext);
   const [numReviewsDisplayed, setNumReviewsDisplayed] = useState(2);
-  const [showReviewForm, setShowReviewForm] = useState(false);
   const [currentRatingsReviewsList, setCurrentRatingsReviewsList] = useState([]);
   const [ratingsToDisplay, setRatingsToDisplay] = useState([1, 2, 3, 4, 5]);
   const [currentMetaData, setCurrentMetaData] = useState({});
+  const [modalDisplayed, setModalDisplayed] = useState(false);
 
   useEffect(() => {
     getReviewsOfProduct((data) => {
       setCurrentRatingsReviewsList(data.results);
-    }, currentProduct.id, 'relevance', null, null);
+    }, currentProduct.id, 'relevance', 10, null);
   }, [currentProduct]);
 
   useEffect(() => {
@@ -60,42 +60,48 @@ const RatingsReviews = () => {
             />
           </div>
         </div>
-        {/* USER RECOMMENDATION */}
+        <div className="ratingBars">
+          {/* USER RECOMMENDATION */}
+          <div>
+            <b>User Feedback</b>
+            <PercentRecommended currentRatingsReviewsList={currentRatingsReviewsList} />
+          </div>
+          {/* RATINGS */}
+          {currentMetaData.ratings ? <RatingsDistribution ratings={currentMetaData.ratings} /> : null}
+          {/* CHARACTERISTICS */}
+          <div className="characteristics">
+            <b>Characteristics</b>
+            {(currentMetaData.characteristics)
+              ? <SizeDistribution size={currentMetaData.characteristics.Size} />
+              : null}
+            {(currentMetaData.characteristics)
+              ? <WidthDistribution width={currentMetaData.characteristics.Width} />
+              : null}
+            {(currentMetaData.characteristics)
+              ? <ComfortDistribution comfort={currentMetaData.characteristics.Comfort} />
+              : null}
+            {(currentMetaData.characteristics)
+              ? <QualityDistribution quality={currentMetaData.characteristics.Quality} />
+              : null}
+            {(currentMetaData.characteristics)
+              ? <LengthDistribution length={currentMetaData.characteristics.Length} />
+              : null}
+            {(currentMetaData.characteristics)
+              ? <FitDistribution fit={currentMetaData.characteristics.Fit} />
+              : null}
+          </div>
+
+        </div>
         <div>
-          <b>User Feedback</b>
-          <PercentRecommended currentRatingsReviewsList={currentRatingsReviewsList} />
-        </div>
-        {/* RATINGS */}
-        {currentMetaData.ratings ? <RatingsDistribution ratings={currentMetaData.ratings} /> : null}
-        {/* CHARACTERISTICS */}
-        <div className="characteristics">
-          <b>Characteristics</b>
-          {(currentMetaData.characteristics)
-            ? <SizeDistribution size={currentMetaData.characteristics.Size} />
-            : null}
-          {(currentMetaData.characteristics)
-            ? <WidthDistribution width={currentMetaData.characteristics.Width} />
-            : null}
-          {(currentMetaData.characteristics)
-            ? <ComfortDistribution comfort={currentMetaData.characteristics.Comfort} />
-            : null}
-          {(currentMetaData.characteristics)
-            ? <QualityDistribution quality={currentMetaData.characteristics.Quality} />
-            : null}
-          {(currentMetaData.characteristics)
-            ? <LengthDistribution length={currentMetaData.characteristics.Length} />
-            : null}
-          {(currentMetaData.characteristics)
-            ? <FitDistribution fit={currentMetaData.characteristics.Fit} />
-            : null}
-        </div>
-        <button
+          <button
             type="submit"
             className="reviewButton addReviewButton"
-            onClick={() => { setShowReviewForm(true); }}
-        >
-          ADD A REVIEW +
-        </button>
+            style={{ display: 'block' }}
+            onClick={() => { setModalDisplayed(true); }}
+          >
+            ADD A REVIEW +
+          </button>
+        </div>
       </div>
       <div className="reviewList">
         <SortReviewsBy
@@ -104,7 +110,7 @@ const RatingsReviews = () => {
           numReviewsDisplayed={numReviewsDisplayed}
           ratingsToDisplay={ratingsToDisplay}
         />
-        {showReviewForm && <ReviewFormModal setShowReviewForm={setShowReviewForm} />}
+        {modalDisplayed && <ReviewFormModal setModalDisplayed={setModalDisplayed} />}
         {/* BUTTONS */}
         <div className="reviewButtons">
           {
@@ -112,25 +118,27 @@ const RatingsReviews = () => {
               ? (
                 <div>
                   {(
-                    (numReviewsDisplayed < currentRatingsReviewsList.length)
-                      ? (
-                        <button
-                          type="submit"
-                          className="reviewButton"
-                          onClick={() => { setNumReviewsDisplayed(numReviewsDisplayed + 2); }}
-                        >
-                          MORE REVIEWS
-                        </button>
-                      )
-                      : (
-                        <button
-                          type="submit"
-                          className="reviewButton"
-                          onClick={() => { setNumReviewsDisplayed(2); }}
-                        >
-                          COLLAPSE REVIEWS
-                        </button>
-                      )
+                    (currentRatingsReviewsList.length < 3)
+                      ? null
+                      : (numReviewsDisplayed < currentRatingsReviewsList.length)
+                          ? (
+                            <button
+                              type="submit"
+                              className="reviewButton"
+                              onClick={() => { setNumReviewsDisplayed(numReviewsDisplayed + 2); }}
+                            >
+                              MORE REVIEWS
+                            </button>
+                          )
+                          : (
+                            <button
+                              type="submit"
+                              className="reviewButton"
+                              onClick={() => { setNumReviewsDisplayed(2); }}
+                            >
+                              COLLAPSE REVIEWS
+                            </button>
+                          )
                   )}
                 </div>
               )

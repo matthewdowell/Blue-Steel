@@ -4,15 +4,13 @@
 import React from 'react';
 import ReviewForm from './ReviewForm.jsx';
 
-const ReviewFormModal = ({ setShowReviewForm }) => {
+const ReviewFormModal = ({ setModalDisplayed }) => {
   return (
     <div style={{
-      'font-size': '30px',
       width: '100vw',
       height: '100vh',
-      backgroundColor: 'rgba(200, 200, 200, 1)',
+      backgroundColor: 'rgba(200, 200, 200, 0.8)',
       position: 'fixed',
-      overflow: 'scroll',
       top: 0,
       left: 0,
       display: 'flex',
@@ -20,10 +18,13 @@ const ReviewFormModal = ({ setShowReviewForm }) => {
       alignItems: 'center',
       zIndex: '2',
     }}
+    onClick={(e) => {if (e.target === e.currentTarget) {
+      setModalDisplayed(false)}
+    }}
     >
-      <ReviewForm setShowReviewForm={setShowReviewForm} />
+      <ReviewForm setModalDisplayed={setModalDisplayed} />
     </div>
-  );
-};
+  )
+}
 
 export default ReviewFormModal;

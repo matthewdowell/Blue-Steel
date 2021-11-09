@@ -12,14 +12,11 @@ const SortReviewsBy = ({
   numReviewsDisplayed,
   ratingsToDisplay
 }) => {
-  // let [sortBy, setSortBy] = useState('relevant');
-  let [
-    sortedRatingsReviewsList,
-    setSortedRatingsReviewsList
-  ] = useState([]);
+  const [sortedRatingsReviewsList, setSortedRatingsReviewsList] = useState(currentRatingsReviewsList);
 
   useEffect(() => {
     setSortedRatingsReviewsList(currentRatingsReviewsList);
+    // setSortedRatingsReviewsList(sortedRatingsReviewsList);
   }, [currentRatingsReviewsList]);
 
   return (
@@ -31,7 +28,7 @@ const SortReviewsBy = ({
           fontSize: '22px'
         }}
       >
-        {currentRatingsReviewsList.length}
+        {sortedRatingsReviewsList.length}
         {' '}
         reviews, sorted by
         {' '}
@@ -44,14 +41,11 @@ const SortReviewsBy = ({
           }}
           onChange={() => {
             const e = document.getElementById('sortBy');
-            // TODO: Rerender list of reviews when sortBy is changed
-            console.log('Sorting:', currentRatingsReviewsList);
-            console.log('Sorting by:', e.value);
-            console.log('Sorted:', ratingsReviewsHelpers.sortRatingsReviewsList(currentRatingsReviewsList, e.value));
-            setSortedRatingsReviewsList(
-              ratingsReviewsHelpers.sortRatingsReviewsList(currentRatingsReviewsList, e.value)
+            const newSorted = ratingsReviewsHelpers.sortRatingsReviewsList(
+              currentRatingsReviewsList,
+              e.value
             );
-            console.log('sortedRatingsReviewsList:', sortedRatingsReviewsList);
+            setSortedRatingsReviewsList([...newSorted]); // Spread so setter recognizes state change
           }}
         >
           <option value="relevant">relevant</option>
