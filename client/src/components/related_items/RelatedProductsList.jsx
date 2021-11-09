@@ -4,6 +4,7 @@ import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-re
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import api from '../../utils/api.js';
 
+
 const RelatedProductsList = ({ product_id, renderNewProductId }) => {
   const [relatedItems, setRelatedItems] = useState([]);
   const [relatedItemsData, setRelatedItemsData] = useState([]);
@@ -52,7 +53,7 @@ const RelatedProductsList = ({ product_id, renderNewProductId }) => {
   }
 
   const sendProductId = (id) =>{
-    renderNewProductId(id);
+    renderNewProdutId(id);
   }
 
   return (
