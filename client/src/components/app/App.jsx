@@ -17,7 +17,7 @@ const App = () => {
     created_at: '2021-08-13T14:40:29.181Z',
     default_price: '140.00',
     description: 'The So Fatigues will wake you up and fit you in. This high energy camo will have you blending in to even the wildest, surroundings.',
-    id: 44388,
+    id: 44390,
     name: 'Camo Onesie',
     slogan: 'Blend in to your crowd',
     updated_at: '2021-08-13T14:40:29.181Z'
@@ -36,8 +36,6 @@ const App = () => {
     <div>
       {/* eslint-disable-next-line object-curly-newline */}
       <ProductContext.Provider value={{ currentProduct, setCurrentProduct, products, setProducts }}>
-<<<<<<< HEAD
-        <div><ProductOverview /></div>
         {/* <div><RelatedProductsList /></div> */}
         {/* <div><QuestionsAnswers /></div>
         <div><RatingsReviews /></div> */}
@@ -45,12 +43,10 @@ const App = () => {
         {/* <div><RelatedItems /></div> */}
         {/* <div><QuestionsAnswers /></div>
         <div><RatingsReviews /></div> */}
-=======
         {/* <div><ProductOverview /></div> */}
         {/* <div><RelatedItems /></div> */}
-        {/* <div><QuestionsAnswers /></div> */}
+        <div><QuestionsAnswers /></div>
         <div><RatingsReviews /></div>
->>>>>>> c3edf0e65e9c16da8db1c34685ef291e4c2fa806
       </ProductContext.Provider>
     </div>
   );
