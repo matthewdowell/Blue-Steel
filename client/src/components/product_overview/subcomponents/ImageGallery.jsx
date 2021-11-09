@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { render } from 'react-dom';
-import { Scale } from 'tone';
+// import { Scale } from 'tone';
 
 const ImageGallery = ({ styles, currentStyle, setMainImgSize, mainImgSize }) => {
 
@@ -39,7 +39,7 @@ const ImageGallery = ({ styles, currentStyle, setMainImgSize, mainImgSize }) => 
                 {styles[0] ?
                     <>
                         {
-                            // change 0 to styles[i] 
+                            // change 0 to styles[i]
                             styles[currentStyle].photos.map((photo, index) => {
                                 return <div key={index} onBlur={() => {console.log('happening')} } style={{ }} >
                                     { mainImgSize ?

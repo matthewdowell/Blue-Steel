@@ -3,7 +3,7 @@ import { StarFill } from 'react-bootstrap-icons';
 import Modal from 'react-modal';
 import ModalDetails from './ModalDetails.jsx';
 import api from '../../utils/api.js';
-import { StaticRating } from '../../starRating.jsx';
+import { StaticRating } from '../starRating.jsx';
 
 const RelatedProductCard = ({ id, currentProductId, relatedItemsStyles, name, category, image, price, sendProductId, features, starRating }) => {
   const [openModal, setOpenModal] = useState(false);

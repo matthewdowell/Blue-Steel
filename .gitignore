@@ -3,3 +3,4 @@ client/dist/bundle.js.map
 node_modules/
 .env
 webpack.config.js
+config.js

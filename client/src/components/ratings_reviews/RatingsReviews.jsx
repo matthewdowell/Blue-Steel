@@ -29,7 +29,7 @@ const RatingsReviews = () => {
   useEffect(() => {
     getReviewsOfProduct((data) => {
       setCurrentRatingsReviewsList(data.results);
-    }, currentProduct.id, 'relevance', null, null);
+    }, currentProduct.id, 'relevance', 10, null);
   }, [currentProduct]);
 
   useEffect(() => {
@@ -60,34 +60,37 @@ const RatingsReviews = () => {
             />
           </div>
         </div>
-        {/* USER RECOMMENDATION */}
-        <div>
-          <b>User Feedback</b>
-          <PercentRecommended currentRatingsReviewsList={currentRatingsReviewsList} />
-        </div>
-        {/* RATINGS */}
-        {currentMetaData.ratings ? <RatingsDistribution ratings={currentMetaData.ratings} /> : null}
-        {/* CHARACTERISTICS */}
-        <div className="characteristics">
-          <b>Characteristics</b>
-          {(currentMetaData.characteristics)
-            ? <SizeDistribution size={currentMetaData.characteristics.Size} />
-            : null}
-          {(currentMetaData.characteristics)
-            ? <WidthDistribution width={currentMetaData.characteristics.Width} />
-            : null}
-          {(currentMetaData.characteristics)
-            ? <ComfortDistribution comfort={currentMetaData.characteristics.Comfort} />
-            : null}
-          {(currentMetaData.characteristics)
-            ? <QualityDistribution quality={currentMetaData.characteristics.Quality} />
-            : null}
-          {(currentMetaData.characteristics)
-            ? <LengthDistribution length={currentMetaData.characteristics.Length} />
-            : null}
-          {(currentMetaData.characteristics)
-            ? <FitDistribution fit={currentMetaData.characteristics.Fit} />
-            : null}
+        <div className="ratingBars">
+          {/* USER RECOMMENDATION */}
+          <div>
+            <b>User Feedback</b>
+            <PercentRecommended currentRatingsReviewsList={currentRatingsReviewsList} />
+          </div>
+          {/* RATINGS */}
+          {currentMetaData.ratings ? <RatingsDistribution ratings={currentMetaData.ratings} /> : null}
+          {/* CHARACTERISTICS */}
+          <div className="characteristics">
+            <b>Characteristics</b>
+            {(currentMetaData.characteristics)
+              ? <SizeDistribution size={currentMetaData.characteristics.Size} />
+              : null}
+            {(currentMetaData.characteristics)
+              ? <WidthDistribution width={currentMetaData.characteristics.Width} />
+              : null}
+            {(currentMetaData.characteristics)
+              ? <ComfortDistribution comfort={currentMetaData.characteristics.Comfort} />
+              : null}
+            {(currentMetaData.characteristics)
+              ? <QualityDistribution quality={currentMetaData.characteristics.Quality} />
+              : null}
+            {(currentMetaData.characteristics)
+              ? <LengthDistribution length={currentMetaData.characteristics.Length} />
+              : null}
+            {(currentMetaData.characteristics)
+              ? <FitDistribution fit={currentMetaData.characteristics.Fit} />
+              : null}
+          </div>
+
         </div>
         <div>
           <button

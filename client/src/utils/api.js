@@ -1,5 +1,5 @@
-require('dotenv').config();
 const axios = require('axios').default;
+import { TOKEN } from '../../../config';
 
 function handleGetRequests(route, params) {
   let options;
@@ -8,7 +8,7 @@ function handleGetRequests(route, params) {
       method: 'GET',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-den/${route}`,
       headers: {
-        Authorization: process.env.REACT_APP_API_KEY
+        Authorization: TOKEN
       },
       params: params
     }
@@ -17,33 +17,44 @@ function handleGetRequests(route, params) {
       method: 'GET',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-den/${route}`,
       headers: {
-        Authorization: process.env.REACT_APP_API_KEY
+        Authorization: TOKEN
       }
     }
   }
   return axios(options);
 };
 
-export function getAllProducts() {
+function getAllProducts() {
   return handleGetRequests('products')
-}
+};
 
-export function getProduct(product_id) {
+function getProduct(product_id) {
   return handleGetRequests(`products/${product_id}`)
-}
+};
 
-export function getProductStyles(product_id) {
+
+
+function getProductStyles(product_id) {
   return handleGetRequests(`products/${product_id}/styles`)
-}
+};
 
-export function getRelatedProductIds(product_id) {
+function getRelatedProductIds(product_id) {
   return handleGetRequests(`products/${product_id}/related`)
-}
+};
 
-export function getReviewCards(params) {
+function getReviewCards(params) {
   return handleGetRequests('reviews', params)
-}
+};
 
-export function getMetadata(params) {
+function getMetadata(params) {
   return handleGetRequests('reviews/meta', params)
+};
+
+export default{
+  getAllProducts,
+  getProduct,
+  getProductStyles,
+  getRelatedProductIds,
+  getReviewCards,
+  getMetadata,
 }
