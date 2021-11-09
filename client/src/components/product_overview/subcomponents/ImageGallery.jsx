@@ -14,6 +14,7 @@ const ImageGallery = ({ styles, currentStyle, setMainImgSize, mainImgSize }) => 
     const [currentStyleImages, setCurrentStyleImages] = useState([])
     const [displayLeftArrow, setDisplayLeftArrow] = useState('visible')
     const [displayRightArrow, setDisplayRightArrow] = useState('visible')
+    const [clicked, setClicked] = useState(false)
     let photoBorder = ''
 
     useEffect(()=> {
@@ -40,8 +41,14 @@ const ImageGallery = ({ styles, currentStyle, setMainImgSize, mainImgSize }) => 
                         {
                             // change 0 to styles[i] 
                             styles[currentStyle].photos.map((photo, index) => {
-                                return <div key={index} onClick={(e) =>  {e.target.style.borderBottom = '4px solid black'; e.target.focus()}} onBlur={() => {console.log('happening')} } style={{ borderBottom: photoBorder }} >
-                                    <img src={photo.thumbnail_url} key={index} id={index} onClick={(e) => { setImageIndex(e.target.id) }} alt='' style={{ border: '2px solid black', width: '70px', height: '70px', objectFit: 'cover', marginBottom: '1em' }} />
+                                return <div key={index} onBlur={() => {console.log('happening')} } style={{ }} >
+                                    { mainImgSize ?
+                                        <div style={{ display: 'flex', background: 'dark-gray', alignItems: 'center', justifyContent: 'center', padding: '1em'}}> 
+                                        <i class={(imageIndex == index) ? "fas fa-hat-wizard" : "far fa-image"} key={index} id={index} onClick={(e) => { setImageIndex(e.target.id) }}></i>
+                                        </div> 
+                                     : <img src={photo.thumbnail_url} key={index} id={index} onClick={(e) => { setImageIndex(e.target.id) }} alt='' style={{ border: '2px solid black', width: '70px', height: '70px', objectFit: 'cover', marginBottom: '1em', borderTop: (imageIndex == index) ? '6px solid purple' : '2px solid black', borderBottom: (imageIndex == index) ? '6px solid purple' : '2px solid black'  }} />
+                                    }
+                                    
                                 </div>
                             })
                         }
@@ -49,8 +56,8 @@ const ImageGallery = ({ styles, currentStyle, setMainImgSize, mainImgSize }) => 
 
                 }
             </div>
-            <div onClick={() => {if (imageIndex === 0) {setImageIndex(styles[currentStyle].photos.length - 1)} else {setImageIndex(imageIndex - 1)}}} className={'arrow left'} style={{ zIndex: '100', position: 'absolute', top: '44%', left: '19.5em', height: '15px', width: '15px', visibility: displayLeftArrow}}></div>
-            <div onClick={() => {if (imageIndex === styles[currentStyle].photos.length - 1){setImageIndex(0)} else {setImageIndex(imageIndex + 1)}}} className={'arrow right'} style={{ zIndex: '100', position: 'absolute', top: '44%', right: mainImgSize ? '20em' : '54em', height: '15px', width: '15px', visibility: displayRightArrow}}></div>
+            <div onClick={() => {if (imageIndex === 0) {setImageIndex(styles[currentStyle].photos.length - 1)} else {setImageIndex(imageIndex - 1)}}} className={'arrow left'} style={{ zIndex: '100', position: 'absolute', top: '44%', left: '12.5em', height: '15px', width: '15px', visibility: displayLeftArrow}}></div>
+            <div onClick={() => {if (imageIndex === styles[currentStyle].photos.length - 1){setImageIndex(0)} else {setImageIndex(imageIndex + 1)}}} className={'arrow right'} style={{ zIndex: '100', position: 'absolute', top: '44%', right: mainImgSize ? '20em' : '47em', height: '15px', width: '15px', visibility: displayRightArrow}}></div>
         </>
     )
 
