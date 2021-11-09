@@ -46,67 +46,64 @@ const YourOutfitList = ({product_id}) => {
 
   return(
     <div className = 'product-list'>
-      <h1 className = 'heading-list'>YOUR OUTFITS</h1>
-      <CarouselProvider
-        className = 'items-carousel'
-        naturalSlideHeight = {200}
-        naturalSlideWidth = {200}
-        totalSlides = {outfitItems.length + 1}
-        visibleSlides = {3}
-        dragEnabled = {false}
-      >
-        <Slider className = 'carousel__slider'>
-           <Slide
-              index = {0}
-              style = {{
-                width: '23rem',
-                height: '32rem',
-                border: '1px solid',
-                marginRight: '3rem',
-                position: 'relative',
-                zIndex: '2'
-              }}
-            >
-              <div data-testid="addition-card" className = 'product-card add-card' onClick = {(event) => addNewOutfitClick(product_id)}>
-                <PlusCircle size = {55}
-                   style = {{
-                     display: 'block',
-                  }}
-                />
-                <p className = 'plus-card-caption'>Add to Outfit</p>
-              </div>
-          </Slide>
-          {outfitItems.map(outfitItem => (
-            <Slide
-              key = {outfitItem.id}
-              index = {Math.random()}
-              style = {{
-                width: '23rem',
-                height: '32rem',
-                border: '1px solid',
-                marginRight: '3rem',
-                position: 'relative'
-              }}
-            >
-            <OutfitCard
-              key = {outfitItem.id}
-              id = {outfitItem.id}
-              image = {outfitItem.image}
-              name = {outfitItem.name}
-              category = {outfitItem.category}
-              price = {outfitItem.default_price}
-              rating = {outfitItem.ratings}
-              removeListItem = {removeListItem}
-            />
-          </Slide>
-          ))}
-        </Slider>
-        <div className = 'buttons'>
-          <ButtonBack className = 'button-back'><i className="fas fa-arrow-left"></i></ButtonBack>
-          <ButtonNext className = 'button-next'><i className="fas fa-arrow-right"></i></ButtonNext>
-      </div>
-      </CarouselProvider>
-    </div>
+    <h1 className = 'heading-list'>YOUR OUTFITS</h1>
+    <CarouselProvider
+      className = 'items-carousel'
+      // naturalSlideHeight = {200}
+      // naturalSlideWidth = {200}
+      totalSlides = {outfitItems.length + 1}
+      visibleSlides = {3}
+      dragEnabled = {false}
+    >
+      <Slider className = 'carousel__slider'>
+         <Slide
+            index = {0}
+            style = {{
+              width: '23rem',
+              height: '32rem',
+              border: '1px solid',
+              marginRight: '3rem',
+              position: 'relative',
+              zIndex: '2'
+            }}
+          >
+            <div data-testid="addition-card" className = 'product-card add-card' onClick = {(event) => addNewOutfitClick(product_id)}>
+              <PlusCircle size = {55}
+                 style = {{
+                   display: 'block',
+                }}
+              />
+              <p className = 'plus-card-caption'>Add to Outfit</p>
+            </div>
+        </Slide>
+        {outfitItems.map(outfitItem => (
+          <Slide
+            key = {outfitItem.id}
+            index = {Math.random()}
+            style = {{
+              width: '23rem',
+              height: '32rem',
+              marginTop: '0',
+              border: '1px solid',
+              marginRight: '3rem',
+              position: 'relative'
+            }}
+          >
+          <OutfitCard
+            key = {outfitItem.id}
+            id = {outfitItem.id}
+            image = {outfitItem.image}
+            name = {outfitItem.name}
+            category = {outfitItem.category}
+            price = {outfitItem.default_price}
+            rating = {outfitItem.ratings}
+            removeListItem = {removeListItem}
+          />
+        </Slide>
+        ))}
+      </Slider>
+    </CarouselProvider>
+  </div>
   )
 };
 

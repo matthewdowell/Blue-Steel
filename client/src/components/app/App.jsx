@@ -9,6 +9,7 @@ import YourOutfitList from '../related_items/YourOutfitList.jsx';
 import { getProducts, getProductsById } from '../../utils/productUtils.js';
 import { ProductContext } from '../../context/globalContext.js';
 
+
 const App = () => {
   // Bring in first product: product_id 44388
   const [currentProduct, setCurrentProduct] = useState({
@@ -41,7 +42,7 @@ const App = () => {
   }
 
   return (
-    <div>
+     <div>
       {/* eslint-disable-next-line object-curly-newline */}
       <ProductContext.Provider value={{ currentProduct, setCurrentProduct, products, setProducts }}>
         <div><ProductOverview /></div>

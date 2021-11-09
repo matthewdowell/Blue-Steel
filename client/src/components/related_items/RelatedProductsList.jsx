@@ -29,7 +29,7 @@ const RelatedProductsList = ({ product_id, renderNewProductId }) => {
     generateRelatedItems(relatedItems);
   }, [relatedItems])
 
-  const generateRelatedItems = async (relatedItems)=> {
+  const generateRelatedItems = async (relatedItems) => {
     let renderedItems = [];
     let promiseChain = Promise.resolve();
     relatedItems.forEach(item => {
@@ -37,9 +37,9 @@ const RelatedProductsList = ({ product_id, renderNewProductId }) => {
         .then(() => api.getProduct(item))
         .catch((err) => console.log(err, 'error getting product info'))
         .then((res) => renderedItems.push(res.data))
-        .then(() => api.getMetadata({product_id: item}))
+        .then(() => api.getMetadata({ product_id: item }))
         .then(res => renderedItems[renderedItems.length - 1]['ratings'] = res.data.ratings)
-        .then(()=> api.getProductStyles(item))
+        .then(() => api.getProductStyles(item))
         .then(res => {
           setRelatedItemsStyle(res.data)
           renderedItems[renderedItems.length - 1]['image'] = res.data.results[0].photos[0].thumbnail_url
@@ -52,53 +52,51 @@ const RelatedProductsList = ({ product_id, renderNewProductId }) => {
     })
   }
 
-  const sendProductId = (id) =>{
+  const sendProductId = (id) => {
     renderNewProductId(id);
   }
 
   return (
-    <div className="product-list">
-        <h1 className="heading-list">RELATED PRODUCTS</h1>
+    <div className = 'product-list'>
+      <h1 className = 'heading-list'>RELATED PRODUCTS</h1>
       <CarouselProvider
-        className="items-carousel"
-        naturalSlideHeight={150}
-        naturalSlideWidth={150}
-        totalSlides={relatedItems.length}
-        visibleSlides={3}
-        dragEnabled={false}
+        className = 'items-carousel'
+        totalSlides = {relatedItems.length}
+        visibleSlides = {3}
+        dragEnabled = {false}
       >
-      <Slider className="carousel_slider">
+
+      <Slider className = 'carousel__slider'>
         {relatedItemsData.map(relatedItem => (
           <Slide
-            key={relatedItems.id}
-            index={Math.random()}
-            style={{
+            key = {relatedItem.id}
+            index = {Math.random()}
+            style = {{
               width: '23rem',
               height: '32rem',
               border: '1px solid',
               marginRight: '3rem',
-              position: 'relative',
+              position: 'relative'
             }}
           >
             <RelatedProductCard
-              key={relatedItem.id}
-              id={relatedItem.id}
-              image={relatedItem.image}
-              name={relatedItem.name}
-              category={relatedItem.category}
-              price={relatedItem.default_price}
-              starRating={relatedItem.ratings}
-              sendProductId={sendProductId}
-              currentProductId={product_id}
-              relatedItemsStyles={relatedItemsStyles}
-              features={relatedItem.features}
+              key = {relatedItem.id}
+              id = {relatedItem.id}
+              image = {relatedItem.image}
+              name = {relatedItem.name}
+              category = {relatedItem.category}
+              price = {relatedItem.default_price}
+              starRating = {relatedItem.ratings}
+              sendProductId = {sendProductId}
+              currentProductId = {product_id}
+              relatedItemsStyles = {relatedItemsStyles}
+              features = {relatedItem.features}
             />
           </Slide>
         ))}
       </Slider>
-      <div className="buttons">
-        <ButtonBack className="button-back"><i className="fas fa-arrow-left"></i></ButtonBack>
-        <ButtonNext className="button-next"><i className="fas fa=arrow-right"></i></ButtonNext>
+      <div className = 'related-buttons'>
+        <ButtonBack className = 'button-back'><i className="fas fa-arrow-left"></i></ButtonBack> <ButtonNext className="button-next"><i className="fas fa-arrow-right"></i></ButtonNext>
       </div>
       </CarouselProvider>
     </div>
