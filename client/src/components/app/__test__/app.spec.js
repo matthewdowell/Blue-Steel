@@ -5,6 +5,6 @@ import '@testing-library/jest-dom';
 
 it('finds cant turn left', async () => {
   render(<App />);
-  const linkElement = screen.getByText(/RatingsReviews/i);
+  const linkElement = screen.getByText(/Ratings & Reviews/i);
   expect(linkElement).toBeInTheDocument();
 });
