@@ -35,7 +35,7 @@ const ProductOverview = () => {
             <Header/>
             <SubHeader/>
             {/* Image Gallery and Style Selector Container */}
-            <div style={{ display: 'flex', width: '100%', background: 'none', maxHeight: '700px'}}>
+            <div style={{ display: 'flex', width: '100%', background: 'none', maxHeight: '700px', overflow: 'hidden'}}>
               <ImageGallery key={currentStyles.style_id} styles={currentStyles} currentStyle={currentStyle} mainImgSize={mainImgSize} setMainImgSize={setMainImgSize} />
               <StyleSelector key={currentProduct.product_id} product={currentProduct} styles={currentStyles} currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} mainImgSize={mainImgSize}/>
             </div>
