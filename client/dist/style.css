@@ -12,14 +12,15 @@ body {
     margin-top: 50px;
     margin-bottom: 100px;
 }
-.aggregateReviewInfo, .reviewScroll {
+/* .aggregateReviewInfo, .reviewScroll {
     height: 480px;
-}
-.reviewScroll {
+} */
+.ratingBars, .reviewScroll {
+    box-shadow: inset 0px 0px 20px 0px rgba(0,0,0,0.1);
     padding: 7px;
     border-style: solid;
     border-width: 1px;
-    border-color: rgba(0, 0, 0, 0.139);
+    border-color: rgba(0, 0, 0, 0.05);
     overflow-y: scroll;
 }
 

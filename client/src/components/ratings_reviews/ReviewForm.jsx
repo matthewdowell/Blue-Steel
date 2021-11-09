@@ -11,6 +11,14 @@ import { addReview } from '../../utils/reviewUtils.js';
 // import { getQuestionsAnswers, postQuestion } from '../../utils/questionsUtils';
 
 const ReviewForm = ({ setModalDisplayed }) => {
+  const characteristicIDs = {
+    Size: 14,
+    Width: 15,
+    Comfort: 16,
+    Quality: 17,
+    Length: 18,
+    Fit: 19
+  };
   const characteristicsA = ['Size', 'Width', 'Comfort'];
   const characteristicsB = ['Quality', 'Length', 'Fit'];
   const ratings = [1, 2, 3, 4, 5];
@@ -21,13 +29,15 @@ const ReviewForm = ({ setModalDisplayed }) => {
   const [userRecommended, setUserRecommended] = useState(false);
   const [nameInputVal, setNameInputVal] = useState('');
   const [emailInputVal, setEmailInputVal] = useState('');
-  const {characteristics, setCharacteristics} = useState({});
-  const [size, setSize] = useState(0);
-  const [width, setWidth] = useState(0);
-  const [comfort, setComfort] = useState(0);
-  const [quality, setQuality] = useState(0);
-  const [length, setLength] = useState(0);
-  const [fit, setFit] = useState(0);
+  const [photos, setPhotos] = useState([]);
+  const [characteristics, setCharacteristics] = useState({
+    14: 0,
+    15: 0,
+    16: 0,
+    17: 0,
+    18: 0,
+    19: 0
+  });
   const [errorDisplayed, setErrorDisplayed] = useState(false);
 
   const handleFormSubmit = () => {
@@ -44,19 +54,13 @@ const ReviewForm = ({ setModalDisplayed }) => {
         overallRating,
         reviewSummary,
         reviewBody,
-        recommend,
-        name,
-        email,
+        userRecommended,
+        nameInputVal,
+        emailInputVal,
         photos,
         characteristics
       );
-      // postQuestion(questionInputVal, nameInputVal, emailInputVal, currentProduct.id, () => {
-      //   getQuestionsAnswers(currentProduct.id, (data) => {
-      //     setCurrentQuestions(data.results);
-      //     setAllQuestions(data.results);
-      //     setModalDisplayed(false);
-      //   }, null, 100);
-      // });
+      setModalDisplayed(false);
     } else {
       setErrorDisplayed(true);
     }
@@ -64,14 +68,14 @@ const ReviewForm = ({ setModalDisplayed }) => {
 
   return (
     <div
-      id='reviewModal'
+      id="reviewModal"
       style={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         height: '600px',
         width: '600px',
-        border: "2px solid black",
+        border: '2px solid black',
         backgroundColor: 'white',
       }}
     >
@@ -112,7 +116,21 @@ const ReviewForm = ({ setModalDisplayed }) => {
                     {ratings.map((rating) => {
                       return (
                         <span>
-                          <input type="radio" id={characteristic} name={characteristic}></input>
+                          <input
+                            type="radio"
+                            id={characteristic}
+                            name={characteristic}
+                            onChange={() => {
+                              const id = characteristicIDs[characteristic];
+                              console.log('CHARACTERISTIC:', characteristic, 'RATING:', rating);
+                              setCharacteristics({
+                                ...characteristics,
+                                [id]: rating
+                              });
+                              console.log('CHARACTERISTICS:', characteristics);
+                            }}
+                          >
+                          </input>
                           <label htmlFor={characteristic}>{rating}</label>
                         </span>
                       );
@@ -132,7 +150,21 @@ const ReviewForm = ({ setModalDisplayed }) => {
                   {ratings.map((rating) => {
                     return (
                       <span>
-                        <input type="radio" id={characteristic} name={characteristic}></input>
+                        <input
+                          type="radio"
+                          id={characteristic}
+                          name={characteristic}
+                          onChange={() => {
+                            const id = characteristicIDs[characteristic];
+                            setCharacteristics({
+                              ...characteristics,
+                              [id]: rating
+                            });
+                            // console.log('CHARACTERISTIC:', characteristic, 'RATING:', rating);
+                            // console.log('CHARACTERISTICS:', characteristics);
+                          }}
+                        >
+                        </input>
                         <label htmlFor={characteristic}>{rating}</label>
                       </span>
                     );
