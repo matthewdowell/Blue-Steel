@@ -53,12 +53,12 @@ const RelatedProductsList = ({ product_id, renderNewProductId }) => {
   }
 
   const sendProductId = (id) =>{
-    renderNewProdutId(id);
+    renderNewProductId(id);
   }
 
   return (
     <div className="product-list">
-      <h1 className="heading-list">RELATED PRODUCTS</h1>
+        <h1 className="heading-list">RELATED PRODUCTS</h1>
       <CarouselProvider
         className="items-carousel"
         naturalSlideHeight={150}

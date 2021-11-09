@@ -45,7 +45,7 @@ const App = () => {
       {/* eslint-disable-next-line object-curly-newline */}
       <ProductContext.Provider value={{ currentProduct, setCurrentProduct, products, setProducts }}>
         <div><ProductOverview /></div>
-        <div>
+        <div className="topofrelated">
           <RelatedProductsList
             product_id={currentProduct.id}
             renderNewProductId={renderNewProductId}
