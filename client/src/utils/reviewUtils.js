@@ -3,7 +3,6 @@
 /* eslint-disable object-shorthand */
 import axios from 'axios';
 
-// Should exclude reviews that have been reported
 export function getReviewsOfProduct(callback, product_id, sort, page, count) {
   axios.get('/reviews', {
     params: {
@@ -55,7 +54,6 @@ export function addReview(
 export function markReviewHelpful(review_id) {
   axios.put('/reviews/review_id/helpful', { review_id: review_id })
     .then((res) => {
-      console.log('Review marked helpful!', res.data);
     })
     .catch((err) => { console.log(err); });
 }
@@ -63,7 +61,6 @@ export function markReviewHelpful(review_id) {
 export function reportReview(review_id) {
   axios.put('/reviews/review_id/report', { review_id: review_id })
     .then((res) => {
-      console.log('Review reported!', res.data);
     })
     .catch((err) => { console.log(err); });
 }
