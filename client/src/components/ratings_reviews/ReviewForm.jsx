@@ -231,9 +231,9 @@ const ReviewForm = ({ setModalDisplayed }) => {
         </div>
         <div>For authentication reasons, you will not be emailed.</div>
       </div>
-      <div className="submitReviewButton" onClick={handleFormSubmit}>
+      <button className="submitReviewButton" onClick={handleFormSubmit}>
         SUBMIT REVIEW
-      </div>
+      </button>
       {errorDisplayed
         && <div style={{ color: 'red', marginTop: '25px' }}>
              *Invalid Submission: All form fields must be filled out with a valid email address*

@@ -29,7 +29,6 @@
 //     generateRelatedItems(relatedItems);
 //   }, [relatedItems])
 
-<<<<<<< HEAD
 //   const generateRelatedItems = async (relatedItems)=> {
 //     let renderedItems = [];
 //     let promiseChain = Promise.resolve();
@@ -44,22 +43,6 @@
 //         .then(res => {
 //           setRelatedItemsStyle(res.data)
 //           renderedItems[renderedItems.length - 1]['image'] = res.data.results[0].photos[0].thumbnail_url
-=======
-  const generateRelatedItems = async (relatedItems) => {
-    let renderedItems = [];
-    let promiseChain = Promise.resolve();
-    relatedItems.forEach(item => {
-      promiseChain = promiseChain
-        .then(() => api.getProduct(item))
-        .catch((err) => console.log(err, 'error getting product info'))
-        .then((res) => renderedItems.push(res.data))
-        .then(() => api.getMetadata({ product_id: item }))
-        .then(res => renderedItems[renderedItems.length - 1]['ratings'] = res.data.ratings)
-        .then(() => api.getProductStyles(item))
-        .then(res => {
-          setRelatedItemsStyle(res.data)
-          renderedItems[renderedItems.length - 1]['image'] = res.data.results[0].photos[0].thumbnail_url
->>>>>>> ebdf054082f339dc4d54612d1f54662076cd7443
 
 //           if (renderedItems.length === relatedItems.length) {
 //             setRelatedItemsData(renderedItems)
@@ -69,7 +52,6 @@
 //     })
 //   }
 
-<<<<<<< HEAD
 //   const sendProductId = (id) =>{
 //     renderNewProductId(id);
 //   }
@@ -122,57 +104,5 @@
 //     </div>
 //   )
 // };
-=======
-  const sendProductId = (id) => {
-    renderNewProductId(id);
-  }
-
-  return (
-    <div className = 'product-list'>
-      <h1 className = 'heading-list'>RELATED PRODUCTS</h1>
-      <CarouselProvider
-        className = 'items-carousel'
-        totalSlides = {relatedItems.length}
-        visibleSlides = {3}
-        dragEnabled = {false}
-      >
-
-      <Slider className = 'carousel__slider'>
-        {relatedItemsData.map(relatedItem => (
-          <Slide
-            key = {relatedItem.id}
-            index = {Math.random()}
-            style = {{
-              width: '23rem',
-              height: '32rem',
-              border: '1px solid',
-              marginRight: '3rem',
-              position: 'relative'
-            }}
-          >
-            <RelatedProductCard
-              key = {relatedItem.id}
-              id = {relatedItem.id}
-              image = {relatedItem.image}
-              name = {relatedItem.name}
-              category = {relatedItem.category}
-              price = {relatedItem.default_price}
-              starRating = {relatedItem.ratings}
-              sendProductId = {sendProductId}
-              currentProductId = {product_id}
-              relatedItemsStyles = {relatedItemsStyles}
-              features = {relatedItem.features}
-            />
-          </Slide>
-        ))}
-      </Slider>
-      <div className = 'related-buttons'>
-        <ButtonBack className = 'button-back'><i className="fas fa-arrow-left"></i></ButtonBack> <ButtonNext className="button-next"><i className="fas fa-arrow-right"></i></ButtonNext>
-      </div>
-      </CarouselProvider>
-    </div>
-  )
-};
->>>>>>> ebdf054082f339dc4d54612d1f54662076cd7443
 
 // export default RelatedProductsList;
