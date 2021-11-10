@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import useLocalStorageState from 'use-local-storage-state';
-import OutfitCard from './YourOutfitCard';
+import OutfitCard from './YourOutfitCard.jsx';
 import {CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import {PlusCircle} from 'react-bootstrap-icons';
 import api from '../../utils/api.js';
