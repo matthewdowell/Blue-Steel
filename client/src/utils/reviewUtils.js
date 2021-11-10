@@ -3,12 +3,11 @@
 /* eslint-disable object-shorthand */
 import axios from 'axios';
 
-export function getReviewsOfProduct(callback, product_id, sort, page, count) {
+export function getReviewsOfProduct(callback, product_id, sort, count) {
   axios.get('/reviews', {
     params: {
       product_id: product_id,
       sort: sort,
-      page: page,
       count: count
     },
   })

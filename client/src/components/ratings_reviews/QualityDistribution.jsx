@@ -30,7 +30,7 @@ const QualityDistribution = ({ quality }) => {
       <span className="characteristic">Quality</span>
       <progress
         className="qualityBar"
-        value={quality ? quality.value / 5 : 0}
+        value={quality ? (quality.value - 1) / 4 : 0}
       >
       </progress>
       {qualityDescription}

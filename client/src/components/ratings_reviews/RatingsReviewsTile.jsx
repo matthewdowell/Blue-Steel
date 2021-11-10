@@ -54,7 +54,10 @@ const RatingsReviewsTile = ({ tile }) => {
       <div className="reviewSummary">{tile.summary}</div>
       <div className="reviewBody">{tile.body}</div>
       <div className="reviewRecommended">{tile.recommend ? '✔ I recommended this product' : ''}</div>
-      <div className="reviewResponse">Seller response: {tile.response}</div>
+      {tile.response
+        ? <div className="reviewResponse">Seller response: {tile.response}</div>
+        : 'No response from seller.'
+      }
       <div>
         Helpful?
         <button

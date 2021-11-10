@@ -30,7 +30,7 @@ const FitDistribution = ({ fit }) => {
       <span className="characteristic">Fit</span>
       <progress
         className="fitBar"
-        value={fit ? fit.value / 5 : 0}
+        value={fit ? (fit.value - 1) / 4 : 0}
       >
       </progress>
       {fitDescription}

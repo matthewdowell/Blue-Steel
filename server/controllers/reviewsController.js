@@ -5,13 +5,14 @@ require('dotenv').config();
 
 const router = express.Router();
 
-// For a specific review
+// For a specific product
 router.get('/', (req, res) => {
   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-den/reviews', {
     headers: { Authorization: process.env.REACT_APP_API_KEY },
     params: {
       product_id: req.query.product_id,
-      sort: req.query.sort
+      sort: req.query.sort,
+      count: req.query.count
     }
   })
     .then((results) => res.send(results.data))

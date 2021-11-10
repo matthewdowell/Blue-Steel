@@ -9,6 +9,7 @@ import ratingsReviewsHelpers from './ratingsReviewsHelpers.js';
 
 const SortReviewsBy = ({
   currentRatingsReviewsList,
+  setCurrentRatingsReviewsList,
   numReviewsDisplayed,
   ratingsToDisplay
 }) => {
@@ -16,8 +17,7 @@ const SortReviewsBy = ({
 
   useEffect(() => {
     setSortedRatingsReviewsList(currentRatingsReviewsList);
-    // setSortedRatingsReviewsList(sortedRatingsReviewsList);
-  }, [currentRatingsReviewsList]);
+  }, [currentRatingsReviewsList, sortedRatingsReviewsList, ratingsToDisplay]);
 
   return (
     <div className="sortBy">

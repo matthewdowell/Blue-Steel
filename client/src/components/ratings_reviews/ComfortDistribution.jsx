@@ -30,7 +30,7 @@ const comfortDistribution = ({ comfort }) => {
       <span className="characteristic">Comfort</span>
       <progress
         className="comfortBar"
-        value={comfort ? comfort.value / 5 : 0}
+        value={comfort ? (comfort.value - 1) / 4 : 0}
       >
       </progress>
       {comfortDescription}

@@ -30,7 +30,7 @@ const WidthDistribution = ({ width }) => {
       <span className="characteristic">Width</span>
       <progress
         className="widthBar"
-        value={width ? width.value / 5 : 0}
+        value={width ? (width.value - 1) / 4 : 0}
       >
       </progress>
       {widthDescription}

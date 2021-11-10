@@ -27,6 +27,7 @@ const ReviewForm = ({ setModalDisplayed }) => {
   const [reviewSummary, setReviewSummary] = useState('');
   const [reviewBody, setReviewBody] = useState('');
   const [userRecommended, setUserRecommended] = useState(false);
+  const [photoURLs, setPhotoURLs] = useState([]);
   const [nameInputVal, setNameInputVal] = useState('');
   const [emailInputVal, setEmailInputVal] = useState('');
   const [photos, setPhotos] = useState([]);
@@ -55,6 +56,7 @@ const ReviewForm = ({ setModalDisplayed }) => {
         reviewSummary,
         reviewBody,
         userRecommended,
+        photoURLs,
         nameInputVal,
         emailInputVal,
         photos,
@@ -102,17 +104,51 @@ const ReviewForm = ({ setModalDisplayed }) => {
             <label htmlFor="recommend">No</label>
           </span>
         </div>
-        <p><b>Characteristics</b></p> {/* REQUIRED */}
-        <div className="characteristicsContainer">
-          {/* TODO: Make the name dynamic so we can capture which one was clicked */}
-          <div>
-            {characteristicsA.map((characteristic) => {
-              return (
-                <div className="reviewCategory">
-                  <span className="characteristic" style={{ width: '200px' }}>
-                    {characteristic}
-                  </span>
-                  <span className="ratings" style={{ justifySelf: 'end' }}>
+        <p>
+          <b>Characteristics</b> {/* REQUIRED */}
+          <div className="characteristicsContainer">
+            {/* Left column characteristics */}
+            <div>
+              {characteristicsA.map((characteristic) => {
+                return (
+                  <div className="reviewCategory">
+                    <span className="characteristic" style={{ width: '200px' }}>
+                      {characteristic}
+                    </span>
+                    <span className="ratings" style={{ justifySelf: 'end' }}>
+                      {ratings.map((rating) => {
+                        return (
+                          <span>
+                            <input
+                              type="radio"
+                              id={characteristic}
+                              name={characteristic}
+                              onChange={() => {
+                                const id = characteristicIDs[characteristic];
+                                setCharacteristics({
+                                  ...characteristics,
+                                  [id]: rating
+                                });
+                              }}
+                            >
+                            </input>
+                            <label htmlFor={characteristic}>{rating}</label>
+                          </span>
+                        );
+                      })}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+            {/* Right column characteristics */}
+            <div>
+              {characteristicsB.map((characteristic) => {
+                return (
+                  <div className="reviewCategory">
+                    <span className="characteristic">
+                      {characteristic}
+                    </span>
                     {ratings.map((rating) => {
                       return (
                         <span>
@@ -122,12 +158,10 @@ const ReviewForm = ({ setModalDisplayed }) => {
                             name={characteristic}
                             onChange={() => {
                               const id = characteristicIDs[characteristic];
-                              console.log('CHARACTERISTIC:', characteristic, 'RATING:', rating);
                               setCharacteristics({
                                 ...characteristics,
                                 [id]: rating
                               });
-                              console.log('CHARACTERISTICS:', characteristics);
                             }}
                           >
                           </input>
@@ -135,45 +169,12 @@ const ReviewForm = ({ setModalDisplayed }) => {
                         </span>
                       );
                     })}
-                  </span>
-                </div>
-              );
-            })}
+                  </div>
+                );
+              })}
+            </div>
           </div>
-          <div>
-            {characteristicsB.map((characteristic) => {
-              return (
-                <div className="reviewCategory">
-                  <span className="characteristic">
-                    {characteristic}
-                  </span>
-                  {ratings.map((rating) => {
-                    return (
-                      <span>
-                        <input
-                          type="radio"
-                          id={characteristic}
-                          name={characteristic}
-                          onChange={() => {
-                            const id = characteristicIDs[characteristic];
-                            setCharacteristics({
-                              ...characteristics,
-                              [id]: rating
-                            });
-                            // console.log('CHARACTERISTIC:', characteristic, 'RATING:', rating);
-                            // console.log('CHARACTERISTICS:', characteristics);
-                          }}
-                        >
-                        </input>
-                        <label htmlFor={characteristic}>{rating}</label>
-                      </span>
-                    );
-                  })}
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        </p>
         <div>
           <div><b>Review Summary </b></div>
           <textarea
@@ -196,17 +197,16 @@ const ReviewForm = ({ setModalDisplayed }) => {
           >
           </textarea>
         </div>
-        {/* Upload Photos */}
-        <button
-          type="submit"
-          className="addPhotoButton"
-          style={{
-            fontWeight: 'bold',
-            backgroundColor: 'white'
-          }}
-        >
-          Upload Photo
-        </button>
+        <div>
+          <div><b>Upload Photo URL </b></div>
+          <input
+            style={{ width: '98%', margin: '5px 0' }}
+            placeholder={'URL...'}
+            value={photoURLs}
+            onChange={(e) => { setPhotoURLs([e.target.value]); }}
+          >
+          </input>
+        </div>
         <div>
           <div><b>Nickname </b></div>
           <input
@@ -231,18 +231,8 @@ const ReviewForm = ({ setModalDisplayed }) => {
         </div>
         <div>For authentication reasons, you will not be emailed.</div>
       </div>
-      <div
-         style={{
-           border: '2px solid black',
-           height: '50px',
-           width: '200px',
-           lineHeight: '50px',
-           textAlign: 'center',
-           marginTop: '10px',
-           cursor: 'pointer',
-         }}
-         onClick={handleFormSubmit}
-      >SUBMIT REVIEW
+      <div className="submitReviewButton" onClick={handleFormSubmit}>
+        SUBMIT REVIEW
       </div>
       {errorDisplayed
         && <div style={{ color: 'red', marginTop: '25px' }}>

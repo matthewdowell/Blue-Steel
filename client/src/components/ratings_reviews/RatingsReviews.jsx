@@ -1,7 +1,9 @@
+/* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable no-plusplus */
 /* eslint-disable import/extensions */
+import axios from 'axios';
 import React, { useContext, useState, useEffect } from 'react';
 import { ProductContext } from '../../context/globalContext.js';
 import { getReviewMetadata, getReviewsOfProduct } from '../../utils/reviewUtils.js';
@@ -29,8 +31,8 @@ const RatingsReviews = () => {
   useEffect(() => {
     getReviewsOfProduct((data) => {
       setCurrentRatingsReviewsList(data.results);
-    }, currentProduct.id, 'relevance', 10, null);
-  }, [currentProduct]);
+    }, currentProduct.id, 'relevant', 1000);
+  }, [currentProduct, ratingsToDisplay]);
 
   useEffect(() => {
     getReviewMetadata((data) => {
@@ -60,14 +62,20 @@ const RatingsReviews = () => {
             />
           </div>
         </div>
-        <div className="ratingBars">
+        <div className="ratingBars" width="600px">
           {/* USER RECOMMENDATION */}
           <div>
             <b>User Feedback</b>
             <PercentRecommended currentRatingsReviewsList={currentRatingsReviewsList} />
           </div>
           {/* RATINGS */}
-          {currentMetaData.ratings ? <RatingsDistribution ratings={currentMetaData.ratings} /> : null}
+          {currentMetaData.ratings
+            ? <RatingsDistribution
+                ratings={currentMetaData.ratings}
+                ratingsToDisplay={ratingsToDisplay}
+                setRatingsToDisplay={setRatingsToDisplay}
+              />
+            : null}
           {/* CHARACTERISTICS */}
           <div className="characteristics">
             <b>Characteristics</b>
@@ -127,7 +135,7 @@ const RatingsReviews = () => {
                               className="reviewButton"
                               onClick={() => { setNumReviewsDisplayed(numReviewsDisplayed + 2); }}
                             >
-                              MORE REVIEWS
+                              MORE REVIEWS ({currentRatingsReviewsList.length - numReviewsDisplayed})
                             </button>
                           )
                           : (

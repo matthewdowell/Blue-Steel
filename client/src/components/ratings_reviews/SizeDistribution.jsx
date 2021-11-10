@@ -30,7 +30,7 @@ const SizeDistribution = ({ size }) => {
       <span className="characteristic">Size</span>
       <progress
         className="sizeBar"
-        value={size ? size.value / 5 : 0}
+        value={size ? (size.value - 1) / 4 : 0}
       >
       </progress>
       {sizeDescription}
