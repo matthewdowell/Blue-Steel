@@ -1,12 +1,5 @@
-// Sync object
-/** @type {import('@jest/types').Config.InitialOptions} */
-const config = {
-  verbose: true,
+module.exports = {
+  moduleNameMapper: {
+    '\\.(css|less)$': '<rootDir>/client/test/styleMock.js',
+  }
 };
-
-module.exports = config;
-
-// Or async function
-module.exports = async () => ({
-  verbose: true,
-});
