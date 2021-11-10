@@ -60,7 +60,7 @@ function StaticRating(props) {
     <div value={value}>
       <Rating
         name="read-only"
-        value={value} readOnly
+        value={value} 
         precision={0.25}
         size={props.size || 'medium'}
       />
