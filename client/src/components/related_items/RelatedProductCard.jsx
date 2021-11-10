@@ -28,7 +28,7 @@ const RelatedProductCard = ({ id, currentProductId, relatedItemsStyles, name, ca
   }, [currentProductId])
 
   return (
-    <div className="product-card">
+    <div className="product-card" onClick={() => sendProductId(id)}>
       <StarFill size={21} className="star" onClick={toggleModal}
         style={{
           position: 'absolute',
@@ -38,7 +38,7 @@ const RelatedProductCard = ({ id, currentProductId, relatedItemsStyles, name, ca
         }}
       />
       <img className="product-image" src={image} alt={name} loading="lazy" />
-      <div className="bottom-half-card" onClick={() => sendProductId(id)}>
+      <div className="bottom-half-card" >
         <p className="product-category">{category.toUpperCase()}</p>
         <p className="product-name">{name}</p>
         <p className="product-price">${price}</p>
