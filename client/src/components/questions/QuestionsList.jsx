@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { qaContext } from '../../context/qaContext.js';
 import Question from './Question.jsx';
 import QuestionModal from './QuestionModal.jsx';
@@ -19,7 +19,8 @@ const QuestionsList = () => {
             border: '2px solid black',
             cursor: 'pointer',
             textAlign: 'center',
-            marginTop: '25px'
+            marginTop: '25px',
+            borderRadius: '15px',
           }}
           onClick={() => { setModalDisplayed(true); }}
         >
@@ -29,9 +30,10 @@ const QuestionsList = () => {
             style={{
               height: '600px',
               overflowY: 'auto',
+              overflowX: 'auto',
               margin: '20px 0',
-              border: '2px solid black',
-              padding: '15px'
+              // border: '2px solid black',
+              padding: '0px 15px',
             }}
           >{currentQuestions
           .map((question, index) =>
@@ -50,7 +52,8 @@ const QuestionsList = () => {
                   border: '2px solid black',
                   textAlign: 'center',
                   cursor: 'pointer',
-                  marginRight: '20px'
+                  marginRight: '20px',
+                  borderRadius: '15px',
                 }}>
                 MORE ANSWERED QUESTIONS
               </div>
@@ -65,7 +68,8 @@ const QuestionsList = () => {
                 cursor: 'pointer',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                padding: '0 20px'
+                padding: '0 20px',
+                borderRadius: '15px',
               }}
               onClick={() => { setModalDisplayed(true); }}
             >
