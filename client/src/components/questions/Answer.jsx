@@ -30,7 +30,7 @@ const Answer = ({ answer }) => {
         <b>A: </b>
         {answer.body}
       </p>
-      <div style={{ display: 'flex', color: 'black' }}>
+      <div style={{ display: 'flex', color: '#696969' }}>
         <div style={{ padding: '0 10px' }}>
           {answer.answerer_name === 'Seller'
             ? (
@@ -53,6 +53,7 @@ const Answer = ({ answer }) => {
           onKeyPress={handleYesClick}
           role="button"
           tabIndex={0}
+          data-testid={1234}
         >
           Yes
         </div>

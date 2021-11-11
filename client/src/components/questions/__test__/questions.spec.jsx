@@ -1,14 +1,12 @@
 /* eslint-disable no-undef */
-import React, { useContext } from 'react';
+import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import QuestionsList from '../QuestionsList';
 import App from '../../app/App';
-import QuestionsAnswers from '../QuestionsAnswers';
 import Question from '../Question';
-import { ProductContext } from '../../../context/globalContext';
+import Answer from '../Answer';
 
-const mockProduct = {
+const currentProduct = {
   campus: 'hr-den',
   category: 'Jackets',
   created_at: '2021-08-13T14:40:29.181Z',
@@ -39,14 +37,7 @@ const mockQuestion = {
   },
 };
 
-// jest.mock('react', () => {
-//   // const react = jest.requireActual('react');
-
-//   return {
-//     // ...react,
-//     useContext: jest.fn()
-//   };
-// });
+const mockAnswer = mockQuestion.answers['5087405'];
 
 describe('Question List Component', () => {
   it('displays submit question button on load before API call', () => {
@@ -54,18 +45,9 @@ describe('Question List Component', () => {
     const buttonElement = screen.getByText(/Submit A Question/i);
     expect(buttonElement).toBeInTheDocument();
   });
-
-  // it('displays show more answers button when given context', async () => {
-  //   useContext.mockImplementation(() => ({ currentProduct: mockProduct }))
-  //  render(
-  //      <QuestionsAnswers />
-  //  )
-  //  const moreAnswersEl = await screen.findByText(/SHOW MORE ANSWERS/i);
-  //  waitFor(expect(moreAnswersEl).toBeInTheDocument());
-  // })
 });
 
-describe('question component tests', () => {
+describe('Question Component Tests', () => {
   beforeEach(() => {
     render(<Question question={mockQuestion} helpfulness={mockQuestion.question_helpfulness} />);
   });
@@ -75,8 +57,8 @@ describe('question component tests', () => {
     expect(questionEl).toBeInTheDocument();
   });
 
-  it('does not display \'show more answers\' for only one question', () => {
-    const moreAnswersEl = screen.queryByText(/show more answers/i);
+  it('does not display \'more answered questions\' for only one question', () => {
+    const moreAnswersEl = screen.queryByText(/more answered questions/i);
     expect(moreAnswersEl).toBeNull();
   });
 
@@ -94,6 +76,53 @@ describe('question component tests', () => {
     const yesButton = screen.getByTestId(542899);
     fireEvent.click(yesButton);
     const newVoteCount = await screen.findByText(('(350)'));
+    expect(newVoteCount).toBeInTheDocument();
+  });
+
+  it('\'add answer\' button exists', () => {
+    const answerButton = screen.getByText(/add answer/i);
+    expect(answerButton).toBeInTheDocument();
+  });
+
+  // it('add answer button pops up an answer form', async () => {
+  //   const answerButton = screen.getByText(/add answer/i);
+  //   fireEvent.click(answerButton);
+  //   const formEl = await screen.findByText(/submit your answer/i);
+  //   expect(formEl).toBeInTheDocument();
+  // });
+});
+
+describe('answer component tests', () => {
+  beforeEach(() => {
+    render(
+      <Answer answer={mockAnswer} key={mockAnswer.id} helpfulness={mockAnswer.helpfulness} />
+    );
+  });
+
+  it('displays answer', () => {
+    const answerEl = screen.getByText(/they are!/i);
+    expect(answerEl).toBeInTheDocument();
+  });
+
+  it('does not display \'show more answers\' for only one answer', () => {
+    const moreAnswersEl = screen.queryByText(/show more answers/i);
+    expect(moreAnswersEl).toBeNull();
+  });
+
+  it('displays a yes button', () => {
+    const yesButton = screen.getByTestId(1234);
+    expect(yesButton).toBeInTheDocument();
+  });
+
+  it('displays vote count', () => {
+    const voteCount = screen.getByText('(2)');
+    expect(voteCount).toBeInTheDocument();
+  });
+
+  it('yes click increases vote count by 1', async () => {
+    const yesButton = screen.getByTestId(1234);
+    fireEvent.click(yesButton);
+    const newVoteCount = await screen.findByText(('(3)'));
     expect(newVoteCount).toBeInTheDocument();
   });
 });
