@@ -32,7 +32,7 @@ body {
 }
 .aggregateReviewInfo,
 .reviewScroll {
-    height: 490px;
+    height: 500px;
 }
 .ratingBars,
 .reviewScroll {
@@ -159,9 +159,9 @@ progress {
     margin-right: 25px;
     color: green;
 }
-.ratingBar {
+.ratingBar,
+.ratingBarWithColor {
     cursor: pointer;
-
 }
 
 /* ReviewForm.jsx */

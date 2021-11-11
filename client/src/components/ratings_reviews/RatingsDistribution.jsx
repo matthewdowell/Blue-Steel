@@ -9,10 +9,8 @@
 import React, { useState } from 'react';
 import ratingsReviewsHelpers from './ratingsReviewsHelpers';
 import Stars from '../stars/Stars.jsx';
-import { blue } from '@material-ui/core/colors';
-import { BlockRounded } from '@material-ui/icons';
 
-const RatingsDistribution = (props) => {
+const RatingsDistribution = ({ ratings, ratingsToDisplay, setRatingsToDisplay }) => {
   const unclickedBars = {
     1: false,
     2: false,
@@ -20,54 +18,39 @@ const RatingsDistribution = (props) => {
     4: false,
     5: false
   };
-  const { ratings, ratingsToDisplay, setRatingsToDisplay } = props;
+  // const { ratings, ratingsToDisplay, setRatingsToDisplay } = props;
   const ratingsArr = [5, 4, 3, 2, 1];
   const [anyRatingBarClicked, setAnyRatingBarClicked] = useState(false);
   const [ratingBarsClicked, setRatingBarsClicked] = useState(unclickedBars);
+  const [ratingBarsHovered, setRatingBarsHovered] = useState(unclickedBars);
 
-  async function handleRatingBarClick(rating) {
-    if (!anyRatingBarClicked) { // First time clicking a bar
-      console.log('FIRST TIME CLICKING A BAR');
+  function handleRatingBarClick(rating) {
+    if (!anyRatingBarClicked) { // First time clicking any bar
       setAnyRatingBarClicked(true);
-      setRatingBarsClicked({
-        ...ratingBarsClicked,
-        [rating]: true
-      });
+      setRatingBarsClicked({ ...ratingBarsClicked, [rating]: true });
       setRatingsToDisplay([rating]);
-      console.log('SHOULD ONLY HAVE ONE RATING', ratingsToDisplay);
-    } else { // Not the first time clicking a bar
-      console.log('NOT FIRST TIME CLICKING A BAR');
+    } else {
       if (ratingBarsClicked[rating]) { // If rating was already clicked
-        setRatingBarsClicked({ // Unclick it
-          ...ratingBarsClicked,
-          [rating]: false
-        });
-        // Remove rating from ratingsToDisplay
+        setRatingBarsClicked({ ...ratingBarsClicked, [rating]: false }); // Toggle rating's click status
+        // Remove from ratingsToDisplay
         const ratingIndex = ratingsToDisplay.indexOf(rating);
         let newRatingsToDisplay = ratingsToDisplay;
         newRatingsToDisplay.splice(ratingIndex, 1);
-        await setRatingsToDisplay(newRatingsToDisplay);
+        setRatingsToDisplay([...newRatingsToDisplay]);
       } else { // If rating was already unclicked
-        setRatingBarsClicked({ // Click it
-          ...ratingBarsClicked,
-          [rating]: true
-        });
-        // Add rating to ratingsToDisplay
+        setRatingBarsClicked({ ...ratingBarsClicked, [rating]: true }); // Toggle rating's click status
+        // Add to ratingsToDisplay
         let newRatingsToDisplay = ratingsToDisplay;
         newRatingsToDisplay.push(rating);
         newRatingsToDisplay = newRatingsToDisplay.sort();
-        await setRatingsToDisplay(newRatingsToDisplay);
+        setRatingsToDisplay([...newRatingsToDisplay]);
       }
-
-      console.log('ratingBarsClicked: ', ratingBarsClicked);
     }
     // If no bars are clicked
     if (ratingsToDisplay.length === 0) {
       setAnyRatingBarClicked(false);
       setRatingsToDisplay(ratingsArr);
     }
-    console.log('FINAL ratingsToDisplay', ratingsToDisplay);
-    console.log('--------------------------------------------');
   }
 
   return (

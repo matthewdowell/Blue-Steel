@@ -57,7 +57,9 @@ const SortReviewsBy = ({
       <div className="reviewScroll">
         {/* Render list of reviews */}
         {sortedRatingsReviewsList
-          .filter((review) => { return ratingsToDisplay.includes(review.rating); })
+          .filter((review) => {
+            return ratingsToDisplay.includes(review.rating);
+          })
           .map((tile) => <RatingsReviewsTile tile={tile} key={tile.review_id} />)
           .slice(0, numReviewsDisplayed)}
       </div>

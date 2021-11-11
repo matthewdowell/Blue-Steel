@@ -41,122 +41,120 @@ const RatingsReviews = () => {
   }, [currentProduct]);
 
   return (
-    <RatingsReviewsContext.Provider value={{ ratingsToDisplay, setRatingsToDisplay }}>
-      <div className="ratingsReviewsAll">
-        <div className="aggregateReviewInfo">
-          <span className="ratingsReviewsHeader"><b style={{ fontSize: '22px' }}>Ratings {'&'} Reviews</b></span>
-          {/* AGGREGATE RATING */}
-          <div className="aggregateRating">
-            <div><b>Aggregate Rating</b></div>
-            <span className="averageRating" style={{ fontSize: '50px' }}>
-              {
-                currentMetaData.ratings
-                  ? ratingsReviewsHelpers.getAverageRating(currentMetaData.ratings).toFixed(1)
-                  : null
-              }
-            </span>
-            <div>
-              <Stars
-                rating={currentMetaData.ratings
-                  ? Math.round(ratingsReviewsHelpers.getAverageRating(currentMetaData.ratings))
-                  : null}
-              />
-            </div>
-          </div>
-          <div className="ratingBars" width="600px">
-            {/* USER RECOMMENDATION */}
-            <div>
-              <b>User Feedback</b>
-              <PercentRecommended currentRatingsReviewsList={currentRatingsReviewsList} />
-            </div>
-            {/* RATINGS */}
-            {currentMetaData.ratings
-              ? <RatingsDistribution
-                  ratings={currentMetaData.ratings}
-                  ratingsToDisplay={ratingsToDisplay}
-                  setRatingsToDisplay={setRatingsToDisplay}
-                />
-              : null}
-            {/* CHARACTERISTICS */}
-            <div className="characteristics">
-              <b>Characteristics</b>
-              {(currentMetaData.characteristics)
-                ? <SizeDistribution size={currentMetaData.characteristics.Size} />
-                : null}
-              {(currentMetaData.characteristics)
-                ? <WidthDistribution width={currentMetaData.characteristics.Width} />
-                : null}
-              {(currentMetaData.characteristics)
-                ? <ComfortDistribution comfort={currentMetaData.characteristics.Comfort} />
-                : null}
-              {(currentMetaData.characteristics)
-                ? <QualityDistribution quality={currentMetaData.characteristics.Quality} />
-                : null}
-              {(currentMetaData.characteristics)
-                ? <LengthDistribution length={currentMetaData.characteristics.Length} />
-                : null}
-              {(currentMetaData.characteristics)
-                ? <FitDistribution fit={currentMetaData.characteristics.Fit} />
-                : null}
-            </div>
-
-          </div>
-          <div>
-            <button
-              type="submit"
-              className="reviewButton addReviewButton"
-              style={{ display: 'block' }}
-              onClick={() => { setModalDisplayed(true); }}
-            >
-              ADD A REVIEW +
-            </button>
-          </div>
-        </div>
-        <div className="reviewList">
-          <SortReviewsBy
-            currentRatingsReviewsList={currentRatingsReviewsList}
-            setCurrentRatingsReviewsList={setCurrentRatingsReviewsList}
-            numReviewsDisplayed={numReviewsDisplayed}
-            ratingsToDisplay={ratingsToDisplay}
-          />
-          {modalDisplayed && <ReviewFormModal setModalDisplayed={setModalDisplayed} />}
-          {/* BUTTONS */}
-          <div className="reviewButtons">
+    <div className="ratingsReviewsAll">
+      <div className="aggregateReviewInfo">
+        <span className="ratingsReviewsHeader"><b style={{ fontSize: '22px' }}>Ratings {'&'} Reviews</b></span>
+        {/* AGGREGATE RATING */}
+        <div className="aggregateRating">
+          <div><b>Aggregate Rating</b></div>
+          <span className="averageRating" style={{ fontSize: '50px' }}>
             {
-              (currentRatingsReviewsList.length > 0)
-                ? (
-                  <div>
-                    {(
-                      (currentRatingsReviewsList.length < 3)
-                        ? null
-                        : (numReviewsDisplayed < currentRatingsReviewsList.length)
-                            ? (
-                              <button
-                                type="submit"
-                                className="reviewButton"
-                                onClick={() => { setNumReviewsDisplayed(numReviewsDisplayed + 2); }}
-                              >
-                                MORE REVIEWS ({currentRatingsReviewsList.length - numReviewsDisplayed})
-                              </button>
-                            )
-                            : (
-                              <button
-                                type="submit"
-                                className="reviewButton"
-                                onClick={() => { setNumReviewsDisplayed(2); }}
-                              >
-                                COLLAPSE REVIEWS
-                              </button>
-                            )
-                    )}
-                  </div>
-                )
+              currentMetaData.ratings
+                ? ratingsReviewsHelpers.getAverageRating(currentMetaData.ratings).toFixed(1)
                 : null
             }
+          </span>
+          <div>
+            <Stars
+              rating={currentMetaData.ratings
+                ? Math.round(ratingsReviewsHelpers.getAverageRating(currentMetaData.ratings))
+                : null}
+            />
           </div>
         </div>
+        <div className="ratingBars" width="600px">
+          {/* USER RECOMMENDATION */}
+          <div>
+            <b>User Feedback</b>
+            <PercentRecommended currentRatingsReviewsList={currentRatingsReviewsList} />
+          </div>
+          {/* RATINGS */}
+          {currentMetaData.ratings
+            ? <RatingsDistribution
+                ratings={currentMetaData.ratings}
+                ratingsToDisplay={ratingsToDisplay}
+                setRatingsToDisplay={setRatingsToDisplay}
+              />
+            : null}
+          {/* CHARACTERISTICS */}
+          <div className="characteristics">
+            <b>Characteristics</b>
+            {(currentMetaData.characteristics)
+              ? <SizeDistribution size={currentMetaData.characteristics.Size} />
+              : null}
+            {(currentMetaData.characteristics)
+              ? <WidthDistribution width={currentMetaData.characteristics.Width} />
+              : null}
+            {(currentMetaData.characteristics)
+              ? <ComfortDistribution comfort={currentMetaData.characteristics.Comfort} />
+              : null}
+            {(currentMetaData.characteristics)
+              ? <QualityDistribution quality={currentMetaData.characteristics.Quality} />
+              : null}
+            {(currentMetaData.characteristics)
+              ? <LengthDistribution length={currentMetaData.characteristics.Length} />
+              : null}
+            {(currentMetaData.characteristics)
+              ? <FitDistribution fit={currentMetaData.characteristics.Fit} />
+              : null}
+          </div>
+
+        </div>
+        <div>
+          <button
+            type="submit"
+            className="reviewButton addReviewButton"
+            style={{ display: 'block' }}
+            onClick={() => { setModalDisplayed(true); }}
+          >
+            ADD A REVIEW +
+          </button>
+        </div>
       </div>
-    </RatingsReviewsContext.Provider>
+      <div className="reviewList">
+        <SortReviewsBy
+          currentRatingsReviewsList={currentRatingsReviewsList}
+          setCurrentRatingsReviewsList={setCurrentRatingsReviewsList}
+          numReviewsDisplayed={numReviewsDisplayed}
+          ratingsToDisplay={ratingsToDisplay}
+        />
+        {modalDisplayed && <ReviewFormModal setModalDisplayed={setModalDisplayed} />}
+        {/* BUTTONS */}
+        <div className="reviewButtons">
+          {
+            (currentRatingsReviewsList.length > 0)
+              ? (
+                <div>
+                  {(
+                    (currentRatingsReviewsList.length < 3)
+                      ? null
+                      : (numReviewsDisplayed < currentRatingsReviewsList.length)
+                          ? (
+                            <button
+                              type="submit"
+                              className="reviewButton"
+                              onClick={() => { setNumReviewsDisplayed(numReviewsDisplayed + 2); }}
+                            >
+                              MORE REVIEWS ({currentRatingsReviewsList.length - numReviewsDisplayed})
+                            </button>
+                          )
+                          : (
+                            <button
+                              type="submit"
+                              className="reviewButton"
+                              onClick={() => { setNumReviewsDisplayed(2); }}
+                            >
+                              COLLAPSE REVIEWS
+                            </button>
+                          )
+                  )}
+                </div>
+              )
+              : null
+          }
+        </div>
+      </div>
+    </div>
   );
 };
 
