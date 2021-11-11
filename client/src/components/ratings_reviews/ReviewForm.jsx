@@ -42,6 +42,7 @@ const ReviewForm = ({ setModalDisplayed }) => {
   const [errorDisplayed, setErrorDisplayed] = useState(false);
 
   const handleFormSubmit = () => {
+    debugger;
     if (
       overallRating > 0
       && reviewSummary.length > 0
@@ -62,6 +63,7 @@ const ReviewForm = ({ setModalDisplayed }) => {
         photos,
         characteristics
       );
+      console.log('Review submitted!');
       setModalDisplayed(false);
     } else {
       setErrorDisplayed(true);

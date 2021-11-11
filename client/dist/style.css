@@ -30,10 +30,12 @@ body {
     margin-top: 50px;
     margin-bottom: 100px;
 }
-.aggregateReviewInfo, .reviewScroll {
-    height: 461px;
+.aggregateReviewInfo,
+.reviewScroll {
+    height: 490px;
 }
-.ratingBars, .reviewScroll {
+.ratingBars,
+.reviewScroll {
     box-shadow: inset 0px 0px 20px 0px rgba(0,0,0,0.1);
     padding: 7px;
     border-style: solid;
@@ -41,8 +43,6 @@ body {
     border-color: rgba(0, 0, 0, 0.05);
     overflow-y: scroll;
 }
-
-
 .ratingsReviewsHeader {
     display: flex;
     justify-content: flex-start;
@@ -73,6 +73,7 @@ body {
     height: 65px;
     margin-top: 15px;
 }
+.resetFiltersButton,
 .submitReviewButton {
   font-size: medium;
   font-weight: bold;
@@ -85,7 +86,9 @@ body {
   height: 30px;
   margin-bottom: 15px;
 }
-
+.resetFiltersButton {
+  width: 200px;
+}
 /* SortBy.jsx */
 
 /* RatingsReviewsTile.jsx */
@@ -118,7 +121,14 @@ body {
     margin-top: 7px;
     margin-bottom: 7px;
 }
-.markReviewHelpfulButton, .reportReviewButton {
+
+.resetFiltersButton {
+
+}
+
+/* .resetFiltersButton, */
+.markReviewHelpfulButton,
+.reportReviewButton {
     font-size: medium;
     background-color: white;
     text-decoration: underline;

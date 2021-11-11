@@ -51,6 +51,7 @@ const SortReviewsBy = ({
           <option value="relevant">relevant</option>
           <option value="new">new</option>
           <option value="helpful">helpful</option>
+          <option value="rating">rating</option>
         </select>
       </span>
       <div className="reviewScroll">
