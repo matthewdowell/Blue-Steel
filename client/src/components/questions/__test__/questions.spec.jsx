@@ -1,5 +1,6 @@
+/* eslint-disable no-undef */
 import React, { useContext } from 'react';
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import QuestionsList from '../QuestionsList';
 import App from '../../app/App';
@@ -16,27 +17,27 @@ const mockProduct = {
   id: 44388,
   name: 'Camo Onesie',
   slogan: 'Blend in to your crowd',
-  updated_at: '2021-08-13T14:40:29.181Z'
-}
+  updated_at: '2021-08-13T14:40:29.181Z',
+};
 
 const mockQuestion = {
   question_id: 542899,
-  question_body: "Blue steel lookin good?",
-  question_date: "2021-11-03T00:00:00.000Z",
-  asker_name: "derek",
+  question_body: 'Blue steel lookin good?',
+  question_date: '2021-11-03T00:00:00.000Z',
+  asker_name: 'derek',
   question_helpfulness: 349,
   reported: false,
   answers: {
-    '5087405': {
+    5087405: {
       id: 5087405,
-      body: "they are!",
-      date: "2021-11-05T00:00:00.000Z",
-      answerer_name: "mugatu",
+      body: 'they are!',
+      date: '2021-11-05T00:00:00.000Z',
+      answerer_name: 'mugatu',
       helpfulness: 2,
-      photos: []
-    }
-  }
-}
+      photos: [],
+    },
+  },
+};
 
 // jest.mock('react', () => {
 //   // const react = jest.requireActual('react');
@@ -48,7 +49,6 @@ const mockQuestion = {
 // });
 
 xdescribe('Question List Component', () => {
-  
   // it('displays submit question button on load', () => {
   //   render(<App />);
   //   const buttonElement = screen.getByText(/Submit A Question/i);
@@ -64,33 +64,32 @@ xdescribe('Question List Component', () => {
   //  waitFor(expect(moreAnswersEl).toBeInTheDocument());
   // })
 
-})
+});
 
 describe('question component tests', () => {
-
   beforeEach(() => {
-    render(<Question question={mockQuestion} helpfulness={mockQuestion.question_helpfulness}/>);
-  })
+    render(<Question question={mockQuestion} helpfulness={mockQuestion.question_helpfulness} />);
+  });
 
   it('displays a question', () => {
     const questionEl = screen.getByText(/Blue steel lookin good\?/i);
     expect(questionEl).toBeInTheDocument();
-  })
+  });
 
   it('does not display \'show more answers\' for only one question', () => {
     const moreAnswersEl = screen.queryByText(/show more answers/i);
     expect(moreAnswersEl).toBeNull();
-  })
+  });
 
   it('displays a yes button', () => {
     const yesButton = screen.getByTestId(542899);
     expect(yesButton).toBeInTheDocument();
-  })
+  });
 
   it('displays vote count', () => {
     const voteCount = screen.getByText('(349)');
     expect(voteCount).toBeInTheDocument();
-  })
+  });
 
   it('yes click increases vote count by 1', async () => {
     const yesButton = screen.getByTestId(542899);
@@ -98,5 +97,5 @@ describe('question component tests', () => {
     fireEvent.click(yesButton);
     const newVoteCount = await screen.findByText(('(350)'));
     expect(newVoteCount).toBeInTheDocument();
-  })
-})
+  });
+});
