@@ -27,9 +27,11 @@ const QuestionsList = () => {
         </div >
       : <><div
             style={{
-              height: '400px',
+              height: '600px',
               overflowY: 'auto',
-              margin: '20px 0'
+              margin: '20px 0',
+              border: '2px solid black',
+              padding: '15px'
             }}
           >{currentQuestions
           .map((question, index) =>
