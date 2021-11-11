@@ -48,12 +48,12 @@ const mockQuestion = {
 //   };
 // });
 
-xdescribe('Question List Component', () => {
-  // it('displays submit question button on load', () => {
-  //   render(<App />);
-  //   const buttonElement = screen.getByText(/Submit A Question/i);
-  //   expect(buttonElement).toBeInTheDocument();
-  // });
+describe('Question List Component', () => {
+  it('displays submit question button on load before API call', () => {
+    render(<App />);
+    const buttonElement = screen.getByText(/Submit A Question/i);
+    expect(buttonElement).toBeInTheDocument();
+  });
 
   // it('displays show more answers button when given context', async () => {
   //   useContext.mockImplementation(() => ({ currentProduct: mockProduct }))
@@ -63,7 +63,6 @@ xdescribe('Question List Component', () => {
   //  const moreAnswersEl = await screen.findByText(/SHOW MORE ANSWERS/i);
   //  waitFor(expect(moreAnswersEl).toBeInTheDocument());
   // })
-
 });
 
 describe('question component tests', () => {
@@ -93,7 +92,6 @@ describe('question component tests', () => {
 
   it('yes click increases vote count by 1', async () => {
     const yesButton = screen.getByTestId(542899);
-    const voteCountEl = screen.getByText('(349)');
     fireEvent.click(yesButton);
     const newVoteCount = await screen.findByText(('(350)'));
     expect(newVoteCount).toBeInTheDocument();

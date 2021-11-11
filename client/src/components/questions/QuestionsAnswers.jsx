@@ -40,9 +40,9 @@ const QuestionsAnswers = () => {
 
   return (
     <div style={{ margin: '0 10%' }}>
-      <h5>
+      <h2>
         QUESTIONS & ANSWERS
-      </h5>
+      </h2>
       <qaContext.Provider value={{ currentQuestions, setCurrentQuestions, setAllQuestions }}>
         <Search inputValue={inputValue} handleInputChange={handleInputChange} />
         <QuestionsList />
