@@ -22,7 +22,7 @@ const QualityDistribution = ({ quality }) => {
   } else if (qualityRating === 5) {
     qualityDescription = 'Perfect';
   } else {
-    qualityDescription = 'No reviews';
+    qualityDescription = 'Not available';
   }
 
   return (

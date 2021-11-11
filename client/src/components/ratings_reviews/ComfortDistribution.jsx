@@ -22,7 +22,7 @@ const comfortDistribution = ({ comfort }) => {
   } else if (comfortRating === 5) {
     comfortDescription = 'Perfect';
   } else {
-    comfortDescription = 'No reviews';
+    comfortDescription = 'Not available';
   }
 
   return (

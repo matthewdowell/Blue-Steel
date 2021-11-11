@@ -1,9 +1,11 @@
+/* eslint-disable no-else-return */
 /* eslint-disable arrow-body-style */
 /* eslint-disable comma-dangle */
 /* eslint-disable radix */
 /* eslint-disable no-plusplus */
 // TODO
 const sortRatingsReviewsList = (reviews, sortType) => {
+  // let operator = (direction === 'ascending)') ? (+) : (-) ;
   if (sortType === 'relevant') {
     return reviews.sort((a, b) => {
       return a - b;
@@ -18,19 +20,27 @@ const sortRatingsReviewsList = (reviews, sortType) => {
     });
   } else if (sortType === 'rating') {
     return reviews.sort((a, b) => {
-      let n = b.rating - a.rating;
+      const n = b.rating - a.rating;
       if (n !== 0) {
         return n;
       }
       return (b.helpfulness) - (a.helpfulness);
     });
+  } else if (sortType === 'recommended') {
+    return reviews.sort((a, b) => {
+      return b.recommend - a.recommend;
+    });
+  } else if (sortType === 'length') {
+    return reviews.sort((a, b) => {
+      return b.body.length - a.body.length;
+    });
   }
 };
 
-const handleSortByChange = () => {
-  // const sortBy = document.getElementById('sortBy').value;
-  sortRatingsReviewsList(sortBy);
-};
+// const handleSortByChange = () => {
+//   // const sortBy = document.getElementById('sortBy').value;
+//   sortRatingsReviewsList(sortBy);
+// };
 
 const getPercentRecommended = (reviews) => {
   let numRecommended = 0;
@@ -89,7 +99,7 @@ const countReviewsWithRating = (ratings, num) => { // ratings is an object
 
 module.exports = {
   sortRatingsReviewsList,
-  handleSortByChange,
+  // handleSortByChange,
   getPercentRecommended,
   getTotalScore,
   getNumRatings,

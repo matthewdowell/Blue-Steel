@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
     }
   })
     .then((results) => res.send(results.data))
-    .catch((err) => console.log(err));
+    .catch((err) => { console.log(err); });
 });
 
 // For review metadata
@@ -24,20 +24,19 @@ router.get('/meta', (req, res) => {
   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-den/reviews/meta', {
     headers: { Authorization: process.env.REACT_APP_API_KEY },
     params: {
-      product_id: req.query.product_id,
-      sort: req.query.sort
+      product_id: req.query.product_id
     }
   })
     .then((results) => res.send(results.data))
-    .catch((err) => console.log(err));
+    .catch((err) => { console.log(err); });
 });
 
 router.post('/', (req, res) => {
-  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-den/reviews', req.body, {
-    headers: { Authorization: process.env.REACT_APP_API_KEY },
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-den/reviews', req.body.params, {
+    headers: { Authorization: process.env.REACT_APP_API_KEY }
   })
-    .then(() => res.sendStatus(201))
-    .catch((err) => console.log(err));
+    .then((results) => { res.send(results.data); })
+    .catch((err) => { console.log(err); });
 });
 
 router.put('/review_id/helpful', (req, res) => {
@@ -45,7 +44,7 @@ router.put('/review_id/helpful', (req, res) => {
     headers: { Authorization: process.env.REACT_APP_API_KEY },
   })
     .then(() => res.sendStatus(204))
-    .catch((err) => console.log(err));
+    .catch((err) => { console.log(err); });
 });
 
 router.put('/review_id/report', (req, res) => {
@@ -53,7 +52,7 @@ router.put('/review_id/report', (req, res) => {
     headers: { Authorization: process.env.REACT_APP_API_KEY },
   })
     .then(() => res.sendStatus(204))
-    .catch((err) => console.log(err));
+    .catch((err) => { console.log(err); });
 });
 
 module.exports = router;

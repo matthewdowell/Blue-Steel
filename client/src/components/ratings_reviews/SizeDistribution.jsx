@@ -22,7 +22,7 @@ const SizeDistribution = ({ size }) => {
   } else if (sizeRating === 5) {
     sizeDescription = 'A size too wide';
   } else {
-    sizeDescription = 'No reviews';
+    sizeDescription = 'Not available';
   }
 
   return (

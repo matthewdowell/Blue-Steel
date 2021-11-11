@@ -32,7 +32,7 @@ body {
 }
 .aggregateReviewInfo,
 .reviewScroll {
-    height: 500px;
+    height: 510px;
 }
 .ratingBars,
 .reviewScroll {
@@ -82,15 +82,10 @@ body {
   align-items: center;
   border: 2px solid black;
   background-color: white;
-  width: 150px;
+  width: 200px;
   height: 30px;
   margin-bottom: 15px;
 }
-.resetFiltersButton {
-  width: 200px;
-}
-/* SortBy.jsx */
-
 /* RatingsReviewsTile.jsx */
 .ratingsReviewsTile {
     font-weight: normal;
@@ -116,17 +111,7 @@ body {
     margin-top: 7px;
     margin-bottom: 7px;
 }
-.reviewRecommended {
-    color: rgb(8, 0, 252);
-    margin-top: 7px;
-    margin-bottom: 7px;
-}
-
-.resetFiltersButton {
-
-}
-
-/* .resetFiltersButton, */
+.showEntireReviewButton,
 .markReviewHelpfulButton,
 .reportReviewButton {
     font-size: medium;
@@ -135,7 +120,6 @@ body {
     border: none;
     cursor: pointer
 }
-
 /* RatingsDistribution.jsx */
 .aggregateRating,
 .percentRecommended,
@@ -173,8 +157,21 @@ progress {
 }
 .characteristicsContainer {
     display: flex;
-    margin-top: 1px;
+    margin-top: 7px;
+    /* justify-content: space-evenly; */
+    gap: 60px;
+}
+/* .reviewCategory, */
+.reviewFormOverallRating,
+.reviewFormRecommendation {
+    display: flex;
     justify-content: space-between;
+}
+.reviewCategory {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
 }
 
 /* [Characteristic]Distribution.jsx */

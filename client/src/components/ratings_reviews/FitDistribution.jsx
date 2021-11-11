@@ -22,7 +22,7 @@ const FitDistribution = ({ fit }) => {
   } else if (fitRating === 5) {
     fitDescription = 'Runs loose';
   } else {
-    fitDescription = 'No reviews';
+    fitDescription = 'Not available';
   }
 
   return (

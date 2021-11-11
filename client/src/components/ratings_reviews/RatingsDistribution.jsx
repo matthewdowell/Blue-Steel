@@ -22,7 +22,6 @@ const RatingsDistribution = ({ ratings, ratingsToDisplay, setRatingsToDisplay })
   const ratingsArr = [5, 4, 3, 2, 1];
   const [anyRatingBarClicked, setAnyRatingBarClicked] = useState(false);
   const [ratingBarsClicked, setRatingBarsClicked] = useState(unclickedBars);
-  const [ratingBarsHovered, setRatingBarsHovered] = useState(unclickedBars);
 
   function handleRatingBarClick(rating) {
     if (!anyRatingBarClicked) { // First time clicking any bar
@@ -55,7 +54,7 @@ const RatingsDistribution = ({ ratings, ratingsToDisplay, setRatingsToDisplay })
 
   return (
     <div className="ratingDistribution">
-      <b>Ratings</b>
+      <b>Rating Breakdown</b>
       {ratingsArr.map((rating) => (
         <div className="ratingBarContainer" key={rating}>
           <span className="ratingCount">
@@ -95,7 +94,7 @@ const RatingsDistribution = ({ ratings, ratingsToDisplay, setRatingsToDisplay })
             setAnyRatingBarClicked(false);
             setRatingBarsClicked(unclickedBars);
             setRatingsToDisplay(ratingsArr);
-          }}>Reset Review Filters
+          }}>Remove Review Filters
         </button>
         <span style={{
           color: 'blue',

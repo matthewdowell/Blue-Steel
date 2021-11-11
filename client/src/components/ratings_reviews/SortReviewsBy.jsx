@@ -45,13 +45,15 @@ const SortReviewsBy = ({
               currentRatingsReviewsList,
               e.value
             );
-            setSortedRatingsReviewsList([...newSorted]); // Spread so setter recognizes state change
+            setSortedRatingsReviewsList([...newSorted]); // Spread so state change is recognized
           }}
         >
           <option value="relevant">relevant</option>
           <option value="new">new</option>
           <option value="helpful">helpful</option>
           <option value="rating">rating</option>
+          <option value="recommended">recommended</option>
+          <option value="length">review length</option>
         </select>
       </span>
       <div className="reviewScroll">

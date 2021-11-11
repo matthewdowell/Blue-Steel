@@ -22,7 +22,7 @@ const LengthDistribution = ({ length }) => {
   } else if (lengthRating === 5) {
     lengthDescription = 'Runs long';
   } else {
-    lengthDescription = 'No reviews';
+    lengthDescription = 'Not available';
   }
 
   return (

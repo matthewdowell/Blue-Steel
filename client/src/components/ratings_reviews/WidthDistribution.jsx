@@ -22,7 +22,7 @@ const WidthDistribution = ({ width }) => {
   } else if (widthRating === 5) {
     widthDescription = 'Too wide';
   } else {
-    widthDescription = 'No reviews';
+    widthDescription = 'Not available';
   }
 
   return (
