@@ -1,9 +1,11 @@
+/* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable no-plusplus */
 /* eslint-disable import/extensions */
 import React, { useContext, useState, useEffect } from 'react';
 import { ProductContext } from '../../context/globalContext.js';
+// import { RatingsReviewsContext } from '../../context/ratingsReviewsContext.js';
 import { getReviewMetadata, getReviewsOfProduct } from '../../utils/reviewUtils.js';
 import ratingsReviewsHelpers from './ratingsReviewsHelpers.js';
 import Stars from '../stars/Stars.jsx';
@@ -29,8 +31,8 @@ const RatingsReviews = () => {
   useEffect(() => {
     getReviewsOfProduct((data) => {
       setCurrentRatingsReviewsList(data.results);
-    }, currentProduct.id, 'relevance', 10, null);
-  }, [currentProduct]);
+    }, currentProduct.id, 'relevant', 1000);
+  }, [currentProduct, ratingsToDisplay]);
 
   useEffect(() => {
     getReviewMetadata((data) => {
@@ -60,14 +62,20 @@ const RatingsReviews = () => {
             />
           </div>
         </div>
-        <div className="ratingBars">
+        <div className="ratingBars" width="600px">
           {/* USER RECOMMENDATION */}
           <div>
             <b>User Feedback</b>
             <PercentRecommended currentRatingsReviewsList={currentRatingsReviewsList} />
           </div>
           {/* RATINGS */}
-          {currentMetaData.ratings ? <RatingsDistribution ratings={currentMetaData.ratings} /> : null}
+          {currentMetaData.ratings
+            ? <RatingsDistribution
+                ratings={currentMetaData.ratings}
+                ratingsToDisplay={ratingsToDisplay}
+                setRatingsToDisplay={setRatingsToDisplay}
+              />
+            : null}
           {/* CHARACTERISTICS */}
           <div className="characteristics">
             <b>Characteristics</b>
@@ -110,7 +118,8 @@ const RatingsReviews = () => {
           numReviewsDisplayed={numReviewsDisplayed}
           ratingsToDisplay={ratingsToDisplay}
         />
-        {modalDisplayed && <ReviewFormModal setModalDisplayed={setModalDisplayed} />}
+        {modalDisplayed
+          && <ReviewFormModal setModalDisplayed={setModalDisplayed} characteristicsObj={currentMetaData.characteristics} />}
         {/* BUTTONS */}
         <div className="reviewButtons">
           {
@@ -127,7 +136,7 @@ const RatingsReviews = () => {
                               className="reviewButton"
                               onClick={() => { setNumReviewsDisplayed(numReviewsDisplayed + 2); }}
                             >
-                              MORE REVIEWS
+                              MORE REVIEWS ({currentRatingsReviewsList.length - numReviewsDisplayed})
                             </button>
                           )
                           : (

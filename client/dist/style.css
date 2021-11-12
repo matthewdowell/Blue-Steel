@@ -3,6 +3,32 @@ body {
   min-width: 100%
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+  .right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+
+  .left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+  }
+
+  .down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+
 /* RatingsReviews.jsx */
 .ratingsReviewsAll {
   display: flex;
@@ -12,18 +38,22 @@ body {
   margin-top: 50px;
   margin-bottom: 100px;
 }
-/* .aggregateReviewInfo, .reviewScroll {
-  height: 480px;
-} */
-.ratingBars, .reviewScroll {
-  box-shadow: inset 0px 0px 20px 0px rgba(0,0,0,0.1);
-  padding: 7px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: rgba(0, 0, 0, 0.05);
-  overflow-y: scroll;
+.aggregateReviewInfo,
+.reviewScroll {
+    height: 500px;
 }
-
+.aggregateReviewInfo {
+    width: 600px;
+}
+.ratingBars,
+.reviewScroll {
+    box-shadow: inset 0px 0px 20px 0px rgba(0,0,0,0.1);
+    padding: 7px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(0, 0, 0, 0.05);
+    overflow-y: scroll;
+}
 .ratingsReviewsHeader {
   display: flex;
   justify-content: flex-start;
@@ -39,32 +69,35 @@ body {
 .reviewList {
   margin-top: 40px;
 }
-.sortDropdown {
-  font-weight: bold;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  text-decoration: underline;
-  border: none;
+.sortByDropdown,
+.sortDirectionDropdown {
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-decoration: underline;
+    border: none;
 }
-.reviewButtons {
-  display: flex;
-  flex-direction: row;
-  width: 190px;
-  margin-right: 20px;
+.reviewButton {
+    font-size: medium;
+    font-weight: bold;
+    background-color: white;
+    width: 200px;
+    height: 65px;
+    margin-top: 15px;
 }
-.reviewButton,
-/* .addPhotoButton, */
-.submitReviewButton,
-.closeReviewButton {
+.resetFiltersButton,
+.submitReviewButton {
   font-size: medium;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
   background-color: white;
   width: 200px;
-  height: 65px;
+  height: 30px;
+  margin-bottom: 15px;
 }
-
-/* SortBy.jsx */
-
 /* RatingsReviewsTile.jsx */
 .ratingsReviewsTile {
   font-weight: normal;
@@ -90,19 +123,15 @@ body {
   margin-top: 7px;
   margin-bottom: 7px;
 }
-.reviewRecommended {
-  color: rgb(8, 0, 252);
-  margin-top: 7px;
-  margin-bottom: 7px;
+.showEntireReviewButton,
+.markReviewHelpfulButton,
+.reportReviewButton {
+    font-size: medium;
+    background-color: white;
+    text-decoration: underline;
+    border: none;
+    cursor: pointer
 }
-.markReviewHelpfulButton, .reportReviewButton {
-  font-size: medium;
-  background-color: white;
-  text-decoration: underline;
-  border: none;
-  cursor: pointer
-}
-
 /* RatingsDistribution.jsx */
 .aggregateRating,
 .percentRecommended,
@@ -116,6 +145,9 @@ body {
   display: flex;
   align-items: center;
 }
+.stars {
+    align-self: center;
+}
 progress {
   height: 30px;
   width: 260px;
@@ -123,8 +155,9 @@ progress {
   margin-right: 25px;
   color: green;
 }
-.ratingBar {
-  cursor: pointer;
+.ratingBar,
+.ratingBarWithColor {
+    cursor: pointer;
 }
 
 /* ReviewForm.jsx */
@@ -135,9 +168,21 @@ progress {
   width: 100%;
 }
 .characteristicsContainer {
-  display: flex;
-  margin-top: 1px;
-  justify-content: space-between;
+    display: flex;
+    margin-top: 7px;
+    gap: 60px;
+}
+/* .reviewCategory, */
+.reviewFormOverallRating,
+.reviewFormRecommendation {
+    display: flex;
+    justify-content: space-between;
+}
+.reviewCategory {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
 }
 
 /* [Characteristic]Distribution.jsx */
@@ -151,11 +196,13 @@ progress {
   display: flex;
   align-items: center;
 }
-
 .likedIcon, .ratingCount, .characteristic {
   width: 100px;
 }
-
+.ratingCountClicked {
+    font-weight: bold;
+    color: rgb(8, 0, 252);
+}
 /* Stars */
 .w-6 {
   width: 20px;

@@ -1,16 +1,15 @@
+/* eslint-disable import/extensions */
 /* eslint-disable comma-dangle */
 /* eslint-disable react/void-dom-elements-no-children */
 /* eslint-disable react/jsx-no-comment-textnodes */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable arrow-body-style */
 import React, { useContext, useState } from 'react';
-import ReactDom from 'react-dom';
 import { ProductContext } from '../../context/globalContext';
-import { qaContext } from '../../context/qaContext';
 import { addReview } from '../../utils/reviewUtils.js';
 // import { getQuestionsAnswers, postQuestion } from '../../utils/questionsUtils';
 
-const ReviewForm = ({ setModalDisplayed }) => {
+const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
   const characteristicIDs = {
     Size: 14,
     Width: 15,
@@ -29,7 +28,7 @@ const ReviewForm = ({ setModalDisplayed }) => {
   const [userRecommended, setUserRecommended] = useState(false);
   const [nameInputVal, setNameInputVal] = useState('');
   const [emailInputVal, setEmailInputVal] = useState('');
-  const [photos, setPhotos] = useState([]);
+  const [photoURLs, setPhotoURLs] = useState([]);
   const [characteristics, setCharacteristics] = useState({
     14: 0,
     15: 0,
@@ -40,16 +39,51 @@ const ReviewForm = ({ setModalDisplayed }) => {
   });
   const [errorDisplayed, setErrorDisplayed] = useState(false);
 
+  const getCharacteristicButtonArray = (characteristic) => {
+    if (characteristicsObj[characteristic]) {
+      return (
+        <div className="reviewCategory" key={characteristic}>
+          <b className="characteristic" key={characteristic} style={{ width: '200px' }}>
+            {characteristic}
+          </b>
+          <span className="ratings" style={{ justifySelf: 'end' }}>
+            {ratings.map((rating) => {
+              return (
+                <span>
+                  <input
+                    type="radio"
+                    id={characteristic}
+                    name={characteristic}
+                    onChange={() => {
+                      const id = characteristicIDs[characteristic];
+                      setCharacteristics({
+                        ...characteristics,
+                        [id]: rating
+                      });
+                    }}
+                  >
+                  </input>
+                  <label htmlFor={characteristic}>{rating}</label>
+                </span>
+              );
+            })}
+          </span>
+        </div>
+      );
+    }
+    return <div></div>;
+  };
+
   const handleFormSubmit = () => {
     if (
       overallRating > 0
       && reviewSummary.length > 0
-      && reviewBody.length > 0
+      && reviewBody.length > 50
+      && reviewBody.length < 1000
       && emailInputVal.length > 0
       && emailInputVal.includes('@')
     ) {
       addReview(
-        () => {},
         currentProduct.id,
         overallRating,
         reviewSummary,
@@ -57,7 +91,7 @@ const ReviewForm = ({ setModalDisplayed }) => {
         userRecommended,
         nameInputVal,
         emailInputVal,
-        photos,
+        photoURLs,
         characteristics
       );
       setModalDisplayed(false);
@@ -72,28 +106,37 @@ const ReviewForm = ({ setModalDisplayed }) => {
       style={{
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'space-evenly',
         alignItems: 'center',
-        height: '600px',
-        width: '600px',
+        height: '700px',
+        width: '780px',
         border: '2px solid black',
         backgroundColor: 'white',
       }}
     >
-      <h3 style={{ marginBottom: '0px' }}>Write Your Review</h3>
-      <div style={{ marginTop: '5px' }}>About the {currentProduct.name}</div>
-      <div style={{ margin: '10px' }}>
-        <div> {/* REQUIRED */}
-          <b>Overall Rating</b>
-          {ratings.map((rating) => {
-            return (
-              <span>
-                <input type="radio" id="rating" name="rating" onChange={() => { setOverallRating(rating); }}></input>
-                <label htmlFor="rating">{rating}</label>
-              </span>
-            );
-          })}
+      <h2 style={{ marginBottom: '0px' }}>
+        Write Your Review
+        <div style={{ marginTop: '5px', fontSize: '18px', marginBBottom: '7px' }}>
+          About the
+          {' '}
+          {currentProduct.name}
         </div>
-        <div> {/* REQUIRED */}
+      </h2>
+      <div style={{ margin: '10px' }}>
+        <div className="reviewFormOverallRating"> {/* REQUIRED */}
+          <b>Overall Rating</b>
+          <div>
+            {ratings.map((rating) => {
+              return (
+                <span>
+                  <input type="radio" id="rating" name="rating" onChange={() => { setOverallRating(rating); }}></input>
+                  <label htmlFor="rating">{rating}</label>
+                </span>
+              );
+            })}
+          </div>
+        </div>
+        <div className="reviewFormRecommendation"> {/* REQUIRED */}
           <b>Do you recommend this product?</b>
           <span>
             <input type="radio" id="recommend" name="recommend" onChange={() => { setUserRecommended(true); }}></input>
@@ -102,75 +145,18 @@ const ReviewForm = ({ setModalDisplayed }) => {
             <label htmlFor="recommend">No</label>
           </span>
         </div>
-        <p><b>Characteristics</b></p> {/* REQUIRED */}
+        <b style={{ marginTop: '10px' }}>Characteristics</b> {/* REQUIRED */}
         <div className="characteristicsContainer">
-          {/* TODO: Make the name dynamic so we can capture which one was clicked */}
+          {/* Left column characteristics */}
           <div>
             {characteristicsA.map((characteristic) => {
-              return (
-                <div className="reviewCategory">
-                  <span className="characteristic" style={{ width: '200px' }}>
-                    {characteristic}
-                  </span>
-                  <span className="ratings" style={{ justifySelf: 'end' }}>
-                    {ratings.map((rating) => {
-                      return (
-                        <span>
-                          <input
-                            type="radio"
-                            id={characteristic}
-                            name={characteristic}
-                            onChange={() => {
-                              const id = characteristicIDs[characteristic];
-                              console.log('CHARACTERISTIC:', characteristic, 'RATING:', rating);
-                              setCharacteristics({
-                                ...characteristics,
-                                [id]: rating
-                              });
-                              console.log('CHARACTERISTICS:', characteristics);
-                            }}
-                          >
-                          </input>
-                          <label htmlFor={characteristic}>{rating}</label>
-                        </span>
-                      );
-                    })}
-                  </span>
-                </div>
-              );
+              return getCharacteristicButtonArray(characteristic);
             })}
           </div>
+          {/* Right column characteristics */}
           <div>
             {characteristicsB.map((characteristic) => {
-              return (
-                <div className="reviewCategory">
-                  <span className="characteristic">
-                    {characteristic}
-                  </span>
-                  {ratings.map((rating) => {
-                    return (
-                      <span>
-                        <input
-                          type="radio"
-                          id={characteristic}
-                          name={characteristic}
-                          onChange={() => {
-                            const id = characteristicIDs[characteristic];
-                            setCharacteristics({
-                              ...characteristics,
-                              [id]: rating
-                            });
-                            // console.log('CHARACTERISTIC:', characteristic, 'RATING:', rating);
-                            // console.log('CHARACTERISTICS:', characteristics);
-                          }}
-                        >
-                        </input>
-                        <label htmlFor={characteristic}>{rating}</label>
-                      </span>
-                    );
-                  })}
-                </div>
-              );
+              return getCharacteristicButtonArray(characteristic);
             })}
           </div>
         </div>
@@ -180,33 +166,49 @@ const ReviewForm = ({ setModalDisplayed }) => {
             maxLength={60}
             rows={1}
             style={{ resize: 'none', width: '98%', margin: '5px 0' }}
+            placeholder={'Best purchase ever!'}
             value={reviewSummary}
             onChange={(e) => { setReviewSummary(e.target.value); }}
           >
           </textarea>
         </div>
-        <div>
+        <div style={{ marginBottom: '5px' }}>
           <div><b>Review Body </b></div>
           <textarea
+            minLength={50}
             maxLength={1000}
             rows={3}
             style={{ resize: 'none', width: '98%', margin: '5px 0' }}
+            placeholder={'Why did you like the product or not?'}
             value={reviewBody}
-            onChange={(e) => { setReviewBody(e.target.value); }}
+            onChange={(e) => {
+              setReviewBody(e.target.value);
+            }}
           >
           </textarea>
+          {reviewBody.length < 50
+            ? <div style={{ color: 'rgb(8, 0, 252)' }}>
+                Minimum required characters left:
+                {' '}
+                {50 - reviewBody.length}
+              </div>
+            : <div style={{ color: 'rgb(8, 0, 252)' }}>
+                Minimum review length reached.
+              </div>}
         </div>
-        {/* Upload Photos */}
-        <button
-          type="submit"
-          className="addPhotoButton"
-          style={{
-            fontWeight: 'bold',
-            backgroundColor: 'white'
-          }}
-        >
-          Upload Photo
-        </button>
+        <div>
+          <div><b>Upload Photo URL </b></div>
+          <input
+            style={{ width: '98%', margin: '5px 0' }}
+            placeholder={'URL...'}
+            value={photoURLs}
+            onChange={(e) => {
+              const URL = e.target.value;
+              setPhotoURLs([URL]);
+            }}
+          >
+          </input>
+        </div>
         <div>
           <div><b>Nickname </b></div>
           <input
@@ -231,19 +233,9 @@ const ReviewForm = ({ setModalDisplayed }) => {
         </div>
         <div>For authentication reasons, you will not be emailed.</div>
       </div>
-      <div
-         style={{
-           border: '2px solid black',
-           height: '50px',
-           width: '200px',
-           lineHeight: '50px',
-           textAlign: 'center',
-           marginTop: '10px',
-           cursor: 'pointer',
-         }}
-         onClick={handleFormSubmit}
-      >SUBMIT REVIEW
-      </div>
+      <button className="submitReviewButton" onClick={handleFormSubmit}>
+        SUBMIT REVIEW
+      </button>
       {errorDisplayed
         && <div style={{ color: 'red', marginTop: '25px' }}>
              *Invalid Submission: All form fields must be filled out with a valid email address*
