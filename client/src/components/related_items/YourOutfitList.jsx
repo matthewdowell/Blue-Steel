@@ -75,7 +75,7 @@ const YourOutfitList = ({ product_id }) => {
               borderRadius: '15',
             }}
           >
-            <div data-testid="addition-card" className="product-card add-card" onClick={(_event) => addNewOutfitClick(product_id)} onKeyUp={this.handleKeyUp}>
+            <div data-testid="addition-card" className="product-card add-card" onClick={(_event) => addNewOutfitClick(product_id)} onKeyUp={(_event) => addNewOutfitClick(product_id)}>
               <PlusCircle
                 size={55}
                 style={{

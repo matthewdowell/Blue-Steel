@@ -23,6 +23,8 @@ const QuestionsList = () => {
               textAlign: 'center',
               marginTop: '25px',
               borderRadius: '15px',
+              background: '#DEB992',
+              color: '#051622',
             }}
             onClick={() => { setModalDisplayed(true); }}
             onKeyPress={() => { setModalDisplayed(true); }}
@@ -37,11 +39,11 @@ const QuestionsList = () => {
             <div
               style={{
                 height: '600px',
-                overflowY: 'auto',
+                overflowY: 'scroll',
                 overflowX: 'auto',
                 margin: '20px 0',
                 // border: '2px solid black',
-                padding: '0px 15px',
+                padding: '7px 15px',
               }}
             >
               {currentQuestions
@@ -72,6 +74,8 @@ const QuestionsList = () => {
                       cursor: 'pointer',
                       marginRight: '20px',
                       borderRadius: '15px',
+                      background: '#DEB992',
+                      color: '#051622',
                     }}
                   >
                     MORE ANSWERED QUESTIONS
@@ -89,6 +93,8 @@ const QuestionsList = () => {
                   justifyContent: 'space-between',
                   padding: '0 20px',
                   borderRadius: '15px',
+                  background: '#DEB992',
+                  color: '#051622',
                 }}
                 onClick={() => { setModalDisplayed(true); }}
                 onKeyPress={() => { setModalDisplayed(true); }}

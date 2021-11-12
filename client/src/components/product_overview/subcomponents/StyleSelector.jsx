@@ -90,7 +90,7 @@ const StyleSelector = ({
                 key={index}
                 src={style.photos[0].thumbnail_url}
                 id={index}
-                alt={style.photos[0].name}
+                alt=""
                 onClick={(e) => { setCurrentStyle(e.target.id); setChecked(index); }}
                 onKeyDown={(e) => { setCurrentStyle(e.target.id); setChecked(index); }}
                 style={{
@@ -109,7 +109,7 @@ const StyleSelector = ({
           id="size"
           onChange={(e) => { setCurrentSize(e.target.value); }}
           style={{
-            fontSize: '1.5em', paddingLeft: '50px', paddingRight: '70px', paddingTop: '20px', paddingBottom: '20px', marginLeft: '.2em', marginRight: '.25em',
+            background: '#DEB992', fontSize: '1.5em', paddingLeft: '50px', paddingRight: '70px', paddingTop: '20px', paddingBottom: '20px', marginLeft: '.2em', marginRight: '.25em',
           }}
         >
           <option value="SELECT SIZE" selected="selected" disabled>SELECT SIZE</option>
@@ -123,7 +123,7 @@ const StyleSelector = ({
           name="quantity"
           id="quantity"
           style={{
-            fontSize: '1.5em', paddingLeft: '50px', paddingRight: '70px', paddingTop: '20px', paddingBottom: '20px', marginLeft: '.2em', marginRight: '.2em',
+            background: '#DEB992', fontSize: '1.5em', paddingLeft: '50px', paddingRight: '70px', paddingTop: '20px', paddingBottom: '20px', marginLeft: '.2em', marginRight: '.2em',
           }}
         >
           <option value="-" selected="selected" disabled>{currentQuantity ? '1' : '-'}</option>
@@ -146,7 +146,7 @@ const StyleSelector = ({
             }
           }}
           style={{
-            backgroundColor: 'darkgrey', fontSize: '1.5em', paddingLeft: '50px', paddingRight: '70px', paddingTop: '20px', paddingBottom: '20px', marginLeft: '.2em', marginRight: '.2em', marginTop: '1em',
+            backgroundColor: '#1BA098', fontSize: '1.5em', paddingLeft: '50px', paddingRight: '70px', paddingTop: '20px', paddingBottom: '20px', marginLeft: '.2em', marginRight: '.2em', marginTop: '1em',
           }}
         >
           ADD TO CART
@@ -156,7 +156,7 @@ const StyleSelector = ({
           name="quantity"
           id="quantity"
           style={{
-            fontSize: '1.5em', paddingLeft: '50px', paddingRight: '70px', paddingTop: '10px', paddingBottom: '10px', marginLeft: '.2em', marginRight: '.2em', marginTop: '1em',
+            background: '#DEB992', fontSize: '1.5em', paddingLeft: '50px', paddingRight: '70px', paddingTop: '10px', paddingBottom: '10px', marginLeft: '.2em', marginRight: '.2em', marginTop: '1em',
           }}
         >
           <option value="">&#9734;</option>

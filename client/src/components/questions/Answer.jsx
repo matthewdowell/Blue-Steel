@@ -30,8 +30,8 @@ const Answer = ({ answer }) => {
         <b>A: </b>
         {answer.body}
       </p>
-      <div style={{ display: 'flex', color: '#696969' }}>
-        <div style={{ padding: '0 10px' }}>
+      <div style={{ display: 'flex', color: '#DEB992' }}>
+        <div style={{ padding: '0px 10px' }}>
           {answer.answerer_name === 'Seller'
             ? (
               <>

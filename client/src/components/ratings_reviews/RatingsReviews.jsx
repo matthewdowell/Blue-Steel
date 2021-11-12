@@ -5,7 +5,7 @@
 /* eslint-disable import/extensions */
 import React, { useContext, useState, useEffect } from 'react';
 import { ProductContext } from '../../context/globalContext.js';
-// import { RatingsReviewsContext } from '../../context/ratingsReviewsContext.js';
+import { RatingsReviewsContext } from '../../context/ratingsReviewsContext.js';
 import { getReviewMetadata, getReviewsOfProduct } from '../../utils/reviewUtils.js';
 import ratingsReviewsHelpers from './ratingsReviewsHelpers.js';
 import Stars from '../stars/Stars.jsx';
@@ -43,7 +43,7 @@ const RatingsReviews = () => {
   return (
     <div className="ratingsReviewsAll">
       <div className="aggregateReviewInfo">
-        <span className="ratingsReviewsHeader"><b style={{ fontSize: '22px' }}>Ratings {'&'} Reviews</b></span>
+        <span className="ratingsReviewsHeader"><b style={{ fontSize: '22px' }}>Ratings & Reviews</b></span>
         {/* AGGREGATE RATING */}
         <div className="aggregateRating">
           <div><b>Aggregate Rating</b></div>
@@ -74,7 +74,7 @@ const RatingsReviews = () => {
                 ratings={currentMetaData.ratings}
                 ratingsToDisplay={ratingsToDisplay}
                 setRatingsToDisplay={setRatingsToDisplay}
-              />
+            />
             : null}
           {/* CHARACTERISTICS */}
           <div className="characteristics">
@@ -130,24 +130,24 @@ const RatingsReviews = () => {
                     (currentRatingsReviewsList.length < 3)
                       ? null
                       : (numReviewsDisplayed < currentRatingsReviewsList.length)
-                          ? (
-                            <button
-                              type="submit"
-                              className="reviewButton"
-                              onClick={() => { setNumReviewsDisplayed(numReviewsDisplayed + 2); }}
-                            >
-                              MORE REVIEWS ({currentRatingsReviewsList.length - numReviewsDisplayed})
-                            </button>
-                          )
-                          : (
-                            <button
-                              type="submit"
-                              className="reviewButton"
-                              onClick={() => { setNumReviewsDisplayed(2); }}
-                            >
-                              COLLAPSE REVIEWS
-                            </button>
-                          )
+                        ? (
+                          <button
+                            type="submit"
+                            className="reviewButton"
+                            onClick={() => { setNumReviewsDisplayed(numReviewsDisplayed + 2); }}
+                          >
+                            MORE REVIEWS ({currentRatingsReviewsList.length - numReviewsDisplayed})
+                          </button>
+                        )
+                        : (
+                          <button
+                            type="submit"
+                            className="reviewButton"
+                            onClick={() => { setNumReviewsDisplayed(2); }}
+                          >
+                            COLLAPSE REVIEWS
+                          </button>
+                        )
                   )}
                 </div>
               )
