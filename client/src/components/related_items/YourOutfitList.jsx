@@ -61,10 +61,12 @@ const YourOutfitList = ({product_id}) => {
             style = {{
               width: '23rem',
               height: '32rem',
-              border: '1px solid',
+              border: 'none',
               marginRight: '3rem',
               position: 'relative',
-              zIndex: '2'
+              zIndex: '2',
+              borderRadius: '15px',
+              boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
             }}
           >
             <div data-testid="addition-card" className = 'product-card add-card' onClick = {(event) => addNewOutfitClick(product_id)}>
@@ -84,9 +86,12 @@ const YourOutfitList = ({product_id}) => {
               width: '23rem',
               height: '32rem',
               marginTop: '0',
-              border: '1px solid',
+              marginBottom: '1rem',
+              border: 'none',
               marginRight: '3rem',
-              position: 'relative'
+              position: 'relative',
+              borderRadius: '15px',
+              boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
             }}
           >
           <OutfitCard

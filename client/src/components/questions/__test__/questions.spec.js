@@ -28,7 +28,7 @@ const mockQuestion = {
 
 
 describe('Question List Component', () => {
-  
+
   it('displays submit question button on load', () => {
     render(<App />);
     const buttonElement = screen.getByText(/Submit A Question/i);
@@ -44,7 +44,7 @@ describe('Question List Component', () => {
   it('true is truthy', () => {
     expect(true).toBe(true);
   });
- 
+
   it('false is falsy', () => {
     expect(false).toBe(false);
   });

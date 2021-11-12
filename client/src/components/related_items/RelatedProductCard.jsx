@@ -28,7 +28,7 @@ const RelatedProductCard = ({ id, currentProductId, relatedItemsStyles, name, ca
   }, [currentProductId])
 
   return (
-    <div className="product-card" onClick={() => sendProductId(id)}>
+    <div className="product-card" onClick={() => sendProductId(id)} >
       <StarFill size={21} className="star" onClick={toggleModal}
         style={{
           position: 'absolute',
@@ -37,8 +37,8 @@ const RelatedProductCard = ({ id, currentProductId, relatedItemsStyles, name, ca
           color: 'e8e8e8',
         }}
       />
-      <img className="product-image" src={image} alt={name} loading="lazy" />
-      <div className="bottom-half-card" onClick={() => { sendProductId(id); }}>
+      <img className="product-image" src={image} alt={name} loading="lazy" style={{ borderRadius: '15px' }}/>
+      <div className="bottom-half-card" style={{display: 'inline-block'}} onClick={() => { sendProductId(id)}}>
         <p className="product-category">{category.toUpperCase()}</p>
         <p className="product-name">{name}</p>
         <p className="product-price">${price}</p>

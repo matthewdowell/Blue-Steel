@@ -74,9 +74,11 @@ const RelatedProductsList = ({ product_id, renderNewProductId }) => {
             style = {{
               width: '23rem',
               height: '32rem',
-              border: '1px solid',
               marginRight: '3rem',
-              position: 'relative'
+              marginBottom: '1rem',
+              position: 'relative',
+              borderRadius: '15px',
+              boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
             }}
           >
             <RelatedProductCard
@@ -96,7 +98,7 @@ const RelatedProductsList = ({ product_id, renderNewProductId }) => {
         ))}
       </Slider>
       <div className = 'related-buttons'>
-        <ButtonBack className = 'button-back'><i className="fas fa-arrow-left"></i></ButtonBack> <ButtonNext className="button-next"><i className="fas fa-arrow-right"></i></ButtonNext>
+        <ButtonBack className = 'button-back'><i className="fas fa-arrow-left" style={{display: 'inline-block', textAlign: 'center'}}></i></ButtonBack> <ButtonNext className="button-next"><i className="fas fa-arrow-right" style={{display: 'inline-block', textAlign: 'center'}}></i></ButtonNext>
       </div>
       </CarouselProvider>
     </div>
