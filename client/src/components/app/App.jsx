@@ -4,11 +4,10 @@ import React, { useState, useEffect } from 'react';
 import ProductOverview from '../product_overview/ProductOverview.jsx';
 import RatingsReviews from '../ratings_reviews/RatingsReviews.jsx';
 import QuestionsAnswers from '../questions/QuestionsAnswers.jsx';
-import RelatedProductsList from '../related_items/RelatedProductsList.jsx'
+import RelatedProductsList from '../related_items/RelatedProductsList.jsx';
 import YourOutfitList from '../related_items/YourOutfitList.jsx';
 import { getProducts, getProductsById } from '../../utils/productUtils.js';
 import { ProductContext } from '../../context/globalContext.js';
-
 
 const App = () => {
   // Bring in first product: product_id 44388
@@ -26,8 +25,6 @@ const App = () => {
 
   const [products, setProducts] = useState([]);
 
-
-
   // Bring in all products
   useEffect(() => {
     getProducts(null, null, (data) => {
@@ -36,27 +33,28 @@ const App = () => {
   }, []);
 
   function renderNewProductId(id) {
-   getProductsById(null, null, id, (data) => {
-     setCurrentProduct(data);
-   });
+    getProductsById(null, null, id, (data) => {
+      setCurrentProduct(data);
+    });
   }
 
   return (
-     <div>
+    <div>
       {/* eslint-disable-next-line object-curly-newline */}
       <ProductContext.Provider value={{ currentProduct, setCurrentProduct, products, setProducts }}>
-        {/* <div><ProductOverview /></div>
-        <div className="topofrelated">
+        <div><ProductOverview /></div>
+        {/* <div className="topofrelated">
           <RelatedProductsList
             product_id={currentProduct.id}
+            // eslint-disable-next-line react/jsx-no-bind
             renderNewProductId={renderNewProductId}
           />
         </div>
         <div>
-          <YourOutfitList product_id={currentProduct.id}/>
-        </div> */}
+          <YourOutfitList product_id={currentProduct.id} />
+        </div>
         <div><QuestionsAnswers /></div>
-        {/* <div><RatingsReviews /></div> */}
+        <div id="moveToReviews"><RatingsReviews /></div> */}
       </ProductContext.Provider>
     </div>
   );
