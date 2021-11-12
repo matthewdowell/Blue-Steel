@@ -41,7 +41,7 @@ const QuestionForm = ({ setModalDisplayed }) => {
         width: '600px',
         border: '2px solid black',
         borderRadius: '15px',
-        backgroundColor: 'white',
+        backgroundColor: '#051622',
       }}
     >
       <h3 style={{ marginBottom: '0px' }}>Ask Your Question</h3>
@@ -83,7 +83,7 @@ const QuestionForm = ({ setModalDisplayed }) => {
       </div>
       <div
         style={{
-          border: '2px solid black',
+          border: '2px solid tan',
           height: '50px',
           width: '200px',
           lineHeight: '50px',
@@ -91,6 +91,8 @@ const QuestionForm = ({ setModalDisplayed }) => {
           marginTop: '10px',
           cursor: 'pointer',
           borderRadius: '15px',
+          color: '#051622',
+          backgroundColor: '#DEB992',
         }}
         onClick={handleFormSubmit}
         onKeyPress={handleFormSubmit}

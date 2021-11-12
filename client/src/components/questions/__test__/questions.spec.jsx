@@ -1,10 +1,11 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import App from '../../app/App';
 import Question from '../Question';
 import Answer from '../Answer';
+import { act } from 'react-dom/test-utils';
 
 const currentProduct = {
   campus: 'hr-den',
@@ -40,11 +41,21 @@ const mockQuestion = {
 const mockAnswer = mockQuestion.answers['5087405'];
 
 describe('Question List Component', () => {
-  it('displays submit question button on load before API call', () => {
-    render(<App />);
+  it('displays submit question button on load before API call', async () => {
+    await act(async () => {
+      await render(<App />);
+    });
     const buttonElement = screen.getByText(/Submit A Question/i);
     expect(buttonElement).toBeInTheDocument();
   });
+
+  // it('displays add question button after api call', async () => {
+  //   await act(async () => {
+  //     await render(<App />);
+  //   });
+  //   const buttonElement = await screen.findByText(/more answered questions/i, null, { timeout: 5000 });
+  //   expect(buttonElement).toBeInTheDocument();
+  // });
 });
 
 describe('Question Component Tests', () => {
@@ -74,7 +85,7 @@ describe('Question Component Tests', () => {
 
   it('yes click increases vote count by 1', async () => {
     const yesButton = screen.getByTestId(542899);
-    fireEvent.click(yesButton);
+    await fireEvent.click(yesButton);
     const newVoteCount = await screen.findByText(('(350)'));
     expect(newVoteCount).toBeInTheDocument();
   });
@@ -121,7 +132,7 @@ describe('answer component tests', () => {
 
   it('yes click increases vote count by 1', async () => {
     const yesButton = screen.getByTestId(1234);
-    fireEvent.click(yesButton);
+    await fireEvent.click(yesButton);
     const newVoteCount = await screen.findByText(('(3)'));
     expect(newVoteCount).toBeInTheDocument();
   });

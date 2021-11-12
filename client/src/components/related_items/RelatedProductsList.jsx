@@ -87,6 +87,7 @@ const RelatedProductsList = ({ product_id, renderNewProductId }) => {
                 position: 'relative',
                 boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
                 borderRadius: '15px',
+                background: 'linear-gradient(45deg, rgba(40,62,110,1) 0%, rgba(16,56,110,1) 14%, rgba(17,75,130,1) 49%, rgba(16,56,110,1) 91%, rgba(40,62,110,1) 100%)'
               }}
             >
               <RelatedProductCard

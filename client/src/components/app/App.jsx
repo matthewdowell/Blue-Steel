@@ -49,7 +49,7 @@ const App = () => {
             // eslint-disable-next-line react/jsx-no-bind
             renderNewProductId={renderNewProductId}
           />
-          <YourOutfitList product_id={currentProduct.id} />
+          {/* <YourOutfitList product_id={currentProduct.id} /> */}
         </div>
         <div><QuestionsAnswers /></div>
         <div id="moveToReviews"><RatingsReviews /></div>
