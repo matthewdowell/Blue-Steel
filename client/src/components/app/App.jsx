@@ -43,7 +43,7 @@ const App = () => {
       {/* eslint-disable-next-line object-curly-newline */}
       <ProductContext.Provider value={{ currentProduct, setCurrentProduct, products, setProducts }}>
         <div><ProductOverview /></div>
-        <div className="related-section">
+        <div className="topofrelated">
           <RelatedProductsList
             product_id={currentProduct.id}
             // eslint-disable-next-line react/jsx-no-bind

@@ -2,8 +2,8 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable arrow-body-style */
 /* eslint-disable import/extensions */
-import React, { useState } from 'react';
-import { useEffect } from 'react/cjs/react.development';
+import React, { useState, useEffect } from 'react';
+// import { useEffect } from 'react/cjs/react.development';
 import RatingsReviewsTile from './RatingsReviewsTile.jsx';
 import ratingsReviewsHelpers from './ratingsReviewsHelpers.js';
 

@@ -42,7 +42,11 @@ const RatingsReviews = () => {
   return (
     <div className="ratingsReviewsAll">
       <div className="aggregateReviewInfo">
+<<<<<<< HEAD
         <h2 className="ratingsReviewsHeader" style={{ fontSize: '28px' }}><b>Ratings {'&'} Reviews</b></h2>
+=======
+        <span className="ratingsReviewsHeader"><b style={{ fontSize: '22px' }}>Ratings & Reviews</b></span>
+>>>>>>> f8e87f6208ee16f027a28009e7c0e0b435435977
         {/* AGGREGATE RATING */}
         <div className="aggregateRating">
           <div><b>Aggregate Rating</b></div>
@@ -73,7 +77,7 @@ const RatingsReviews = () => {
                 ratings={currentMetaData.ratings}
                 ratingsToDisplay={ratingsToDisplay}
                 setRatingsToDisplay={setRatingsToDisplay}
-              />
+            />
             : null}
           {/* CHARACTERISTICS */}
           <div className="characteristics">
@@ -129,24 +133,24 @@ const RatingsReviews = () => {
                     (currentRatingsReviewsList.length < 3)
                       ? null
                       : (numReviewsDisplayed < currentRatingsReviewsList.length)
-                          ? (
-                            <button
-                              type="submit"
-                              className="reviewButton"
-                              onClick={() => { setNumReviewsDisplayed(numReviewsDisplayed + 2); }}
-                            >
-                              MORE REVIEWS ({currentRatingsReviewsList.length - numReviewsDisplayed})
-                            </button>
-                          )
-                          : (
-                            <button
-                              type="submit"
-                              className="reviewButton"
-                              onClick={() => { setNumReviewsDisplayed(2); }}
-                            >
-                              COLLAPSE REVIEWS
-                            </button>
-                          )
+                        ? (
+                          <button
+                            type="submit"
+                            className="reviewButton"
+                            onClick={() => { setNumReviewsDisplayed(numReviewsDisplayed + 2); }}
+                          >
+                            MORE REVIEWS ({currentRatingsReviewsList.length - numReviewsDisplayed})
+                          </button>
+                        )
+                        : (
+                          <button
+                            type="submit"
+                            className="reviewButton"
+                            onClick={() => { setNumReviewsDisplayed(2); }}
+                          >
+                            COLLAPSE REVIEWS
+                          </button>
+                        )
                   )}
                 </div>
               )
