@@ -5,7 +5,6 @@
 /* eslint-disable jsx-a11y/aria-role */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
-// import { Scale } from 'tone';
 
 const ImageGallery = ({
   styles, currentStyle, setMainImgSize, mainImgSize,
@@ -84,7 +83,7 @@ const ImageGallery = ({
                             id={index}
                             onClick={(e) => { setImageIndex(e.target.id); }}
                             onKeyDown={(e) => { setImageIndex(e.target.id); }}
-                            alt={photo.name}
+                            alt={`${photo.url}`}
                             style={{
                               border: '2px solid black',
                               width: '70px',

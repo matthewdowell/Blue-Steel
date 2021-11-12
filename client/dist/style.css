@@ -1,6 +1,8 @@
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  min-width: 100%
+    font-family: Arial, Helvetica, sans-serif;
+    min-width: 100%;
+    background: #051622;
+    color: #DEB992;
 }
 
 html {
