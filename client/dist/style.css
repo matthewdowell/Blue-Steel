@@ -1,7 +1,6 @@
-/* npm aud */
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    min-width: 100%
+  font-family: Arial, Helvetica, sans-serif;
+  min-width: 100%
 }
 
 html {
@@ -32,12 +31,12 @@ html {
 
 /* RatingsReviews.jsx */
 .ratingsReviewsAll {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    margin: 0 10%;
-    margin-top: 50px;
-    margin-bottom: 100px;
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 10%;
+  margin-top: 50px;
+  margin-bottom: 100px;
 }
 .aggregateReviewInfo,
 .reviewScroll {
@@ -56,19 +55,19 @@ html {
     overflow-y: scroll;
 }
 .ratingsReviewsHeader {
-    display: flex;
-    justify-content: flex-start;
+  display: flex;
+  justify-content: flex-start;
 }
 .percentRecommended,
 .sortBy,
 .characteristics {
-    margin-top: 40px;
+  margin-top: 40px;
 }
 .averageRating {
-    font-weight: bold;
+  font-weight: bold;
 }
 .reviewList {
-    margin-top: 80px;
+  margin-top: 40px;
 }
 .sortByDropdown,
 .sortDirectionDropdown {
@@ -104,28 +103,28 @@ html {
 }
 /* RatingsReviewsTile.jsx */
 .ratingsReviewsTile {
-    font-weight: normal;
-    width: 670px;
-    margin-bottom: 40px;
+  font-weight: normal;
+  width: 670px;
+  margin-bottom: 40px;
 }
 .rating{
-    display: flex;
-    justify-self: flex-start;
+  display: flex;
+  justify-self: flex-start;
 }
 .reviewerInfo {
-    display: flex;
-    justify-content: space-between;
-    color:rgb(65, 65, 65)
+  display: flex;
+  justify-content: space-between;
+  color:rgb(65, 65, 65)
 }
 .reviewSummary {
-    font-weight: bold;
-    color: rgb(0, 0, 0);
-    margin-top: 7px;
-    margin-bottom: 7px;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  margin-top: 7px;
+  margin-bottom: 7px;
 }
 .reviewBody {
-    margin-top: 7px;
-    margin-bottom: 7px;
+  margin-top: 7px;
+  margin-bottom: 7px;
 }
 .showEntireReviewButton,
 .markReviewHelpfulButton,
@@ -141,23 +140,23 @@ html {
 .percentRecommended,
 .ratingDistribution,
 .characteristics {
-    margin-top: 10px;
-    margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .percentRecommendedBarContainer,
 .ratingBarContainer {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 .stars {
     align-self: center;
 }
 progress {
-    height: 30px;
-    width: 260px;
-    margin-left: 10px;
-    margin-right: 25px;
-    color: green;
+  height: 30px;
+  width: 260px;
+  margin-left: 10px;
+  margin-right: 25px;
+  color: green;
 }
 .ratingBar,
 .ratingBarWithColor {
@@ -166,10 +165,10 @@ progress {
 
 /* ReviewForm.jsx */
 .reviewFormContainer {
-    display: flex;
-    justify-content: center;
-    overflow: scroll;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: scroll;
+  width: 100%;
 }
 .characteristicsContainer {
     display: flex;
@@ -197,11 +196,11 @@ progress {
 .lengthBarContainer,
 .fitBarContainer,
 .percentRecommended {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 .likedIcon, .ratingCount, .characteristic {
-    width: 100px;
+  width: 100px;
 }
 .ratingCountClicked {
     font-weight: bold;
@@ -209,113 +208,122 @@ progress {
 }
 /* Stars */
 .w-6 {
-    width: 20px;
+  width: 20px;
 }
 .h-6 {
-    height: 20px;
+  height: 20px;
 }
 
 .product-list {
-  display: block;
-  width: 80%;
-  height: 750px;
-  margin-left: 10%;
+display: block;
+width: 90%;
+height: 750px;
+/* margin-left: %; */
 }
 
 .heading-list {
-  font-size: 1.3rem;
-  color: #575757;
+font-size: 1.3rem;
+color: #575757;
 }
 .button-back, .button-next{
-    border-radius:50%;
-    font-size: 5rem;
-    display: inline-flex
- };
+  border-radius:50%;
+  font-size: 5rem;
+  display: inline-flex
+};
 
- .product-card{
-    width:150px;
-    height: 300px;
-    /* margin: auto; */
-    display:flex;
-    flex-direction:column;
-    justify-content:inherit;
-    background-color: #fcfcfc;
-  }
+.product-card{
+  width:150px;
+  height: 300px;
+  /* margin: auto; */
+  display:flex;
+  flex-direction:column;
+  justify-content:inherit;
+  background-color: #fcfcfc;
+}
 
- .product-image {
-    width: 100%;
-    height:20rem;
-  }
+.product-image {
+  width: 100%;
+  height: 18rem;
+}
 
-  .product-name, .product-category, .product-price{
-    text-align:left;
-    margin-left:0.5rem;
-  }
+.product-name, .product-category, .product-price{
+  text-align:left;
+  margin-left:0.5rem;
+}
 
-  .product-rating{
-    margin-left: 0.3rem;
-  }
+.product-rating{
+  margin-left: 0.3rem;
+}
 
-  .product-category{
-    font-size:1.35rem;
-  }
+.product-category{
+  font-size:1.35rem;
+}
 
-  .product-name {
-    font-weight: bold;
-    font-size:1.5rem;
-  }
+.product-name {
+  font-weight: bold;
+  font-size:1.5rem;
+}
 
-  .add-card{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-  }
+.add-card{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .plus-card-caption{
-    font-size:2.5rem;
-  }
+.plus-card-caption{
+  font-size:2.5rem;
+}
 
-  .mymodal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid #ccc;
-    background: #fff;
-    overflow: auto;
-    border-radius: 2rem;
-    outline: none;
-  }
+.mymodal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ccc;
+  background: #fff;
+  overflow: auto;
+  border-radius: 2rem;
+  outline: none;
+}
 
-  .myoverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.75);
-    z-index: 2;
-  }
+.myoverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 2;
+}
 
-  .ReactModal__Overlay {
-    opacity: 0;
-    transition: opacity 500ms ease-in-out;
-  }
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
 
-  .ReactModal__Overlay--after-open {
-    opacity: 1;
-  }
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
 
-  .ReactModal__Overlay--before-close {
-    opacity: 0;
-  }
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
 
-  .scroll-table{
-    height: 40rem;
-    overflow: scroll;
-  }
+.scroll-table{
+  height: 40rem;
+  overflow: scroll;
+}
 
-  .table-header{
-    padding-bottom: 0.3rem;
-  }
+.table-header{
+  padding-bottom: 0.3rem;
+}
 
+.related-section {
+  transform: scale(0.8);
+  margin-bottom: 0.5;
+}
+
+.outfit-section {
+  margin-top: 0;
+  transform: scale(0.8);
+}
