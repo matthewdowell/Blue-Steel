@@ -5,6 +5,7 @@
 import React from 'react';
 
 const QualityDistribution = ({ quality }) => {
+  const value = quality ? (quality.value - 1) / 4 : 0;
   let qualityRating = 0;
   if (quality) {
     qualityRating = Math.round(quality.value);
@@ -22,7 +23,7 @@ const QualityDistribution = ({ quality }) => {
   } else if (qualityRating === 5) {
     qualityDescription = 'Perfect';
   } else {
-    qualityDescription = 'No reviews';
+    qualityDescription = 'Not available';
   }
 
   return (
@@ -30,9 +31,13 @@ const QualityDistribution = ({ quality }) => {
       <span className="characteristic">Quality</span>
       <progress
         className="qualityBar"
-        value={quality ? quality.value / 5 : 0}
+        value={quality ? (quality.value - 1) / 4 : 0}
       >
       </progress>
+      {qualityDescription === 'Not available'
+        ? '(0.0)'
+        : `(${((value * (5 - 1) + 1).toFixed(1))})`}
+      {' '}
       {qualityDescription}
     </div>
   );

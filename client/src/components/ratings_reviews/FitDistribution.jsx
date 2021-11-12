@@ -5,6 +5,7 @@
 import React from 'react';
 
 const FitDistribution = ({ fit }) => {
+  const value = fit ? (fit.value - 1) / 4 : 0;
   let fitRating = 0;
   if (fit) {
     fitRating = Math.round(fit.value);
@@ -22,7 +23,7 @@ const FitDistribution = ({ fit }) => {
   } else if (fitRating === 5) {
     fitDescription = 'Runs loose';
   } else {
-    fitDescription = 'No reviews';
+    fitDescription = 'Not available';
   }
 
   return (
@@ -30,9 +31,13 @@ const FitDistribution = ({ fit }) => {
       <span className="characteristic">Fit</span>
       <progress
         className="fitBar"
-        value={fit ? fit.value / 5 : 0}
+        value={fit ? (fit.value - 1) / 4 : 0}
       >
       </progress>
+      {fitDescription === 'Not available'
+        ? '(0.0)'
+        : `(${((value * (5 - 1) + 1).toFixed(1))})`}
+      {' '}
       {fitDescription}
     </div>
   );

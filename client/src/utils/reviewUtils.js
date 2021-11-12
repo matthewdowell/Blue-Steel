@@ -3,12 +3,11 @@
 /* eslint-disable object-shorthand */
 import axios from 'axios';
 
-export function getReviewsOfProduct(callback, product_id, sort, page, count) {
+export function getReviewsOfProduct(callback, product_id, sort, count) {
   axios.get('/reviews', {
     params: {
       product_id: product_id,
       sort: sort,
-      page: page,
       count: count
     },
   })
@@ -31,36 +30,44 @@ export function getReviewMetadata(callback, product_id) {
 }
 
 export function addReview(
-  callback, product_id, rating, summary, body, recommend, name, email, photos, characteristics
+  product_id,
+  rating,
+  summary,
+  body,
+  recommend,
+  name,
+  email,
+  photos = [],
+  characteristics
 ) {
   axios.post('/reviews', {
-    product_id: product_id,
-    rating: rating,
-    summary: summary,
-    body: body,
-    recommend: recommend,
-    name: name,
-    email: email,
-    photos: photos,
-    characteristics: characteristics
+    params: {
+      product_id: product_id,
+      rating: rating,
+      summary: summary,
+      body: body,
+      recommend: recommend,
+      name: name,
+      email: email,
+      photos: photos,
+      characteristics: characteristics
+    }
   })
-    .then((res) => {
-      console.log('Review has been posted!');
-      callback(res.data);
+    .then(() => {
     })
     .catch((err) => { console.log(err); });
 }
 
 export function markReviewHelpful(review_id) {
   axios.put('/reviews/review_id/helpful', { review_id: review_id })
-    .then((res) => {
+    .then(() => {
     })
     .catch((err) => { console.log(err); });
 }
 
 export function reportReview(review_id) {
   axios.put('/reviews/review_id/report', { review_id: review_id })
-    .then((res) => {
+    .then(() => {
     })
     .catch((err) => { console.log(err); });
 }

@@ -1,27 +1,77 @@
+/* eslint-disable no-else-return */
 /* eslint-disable arrow-body-style */
 /* eslint-disable comma-dangle */
 /* eslint-disable radix */
 /* eslint-disable no-plusplus */
 // TODO
-const sortRatingsReviewsList = (reviews, sortType) => {
-  if (sortType === 'relevant') { // review.date AND review.helpfulness
+const sortRatingsReviewsList = (reviews, sortType, sortDirection) => {
+  if (sortType === 'relevant') {
+    if (sortDirection === 'descending') {
+      return reviews.sort((a, b) => {
+        const ageA = new Date() - new Date(a.date);
+        const ageB = new Date() - new Date(b.date);
+        return b.recommend / ageB - a.recommend / ageA;
+      });
+    }
     return reviews.sort((a, b) => {
-      return a - b;
+      const ageA = new Date() - new Date(a.date);
+      const ageB = new Date() - new Date(b.date);
+      return a.recommend / ageA - b.recommend / ageB;
     });
   } else if (sortType === 'new') {
+    if (sortDirection === 'descending') {
+      return reviews.sort((a, b) => {
+        return new Date(b.date) - new Date(a.date);
+      });
+    }
     return reviews.sort((a, b) => {
-      return new Date(b.date) - new Date(a.date);
+      return new Date(a.date) - new Date(b.date);
     });
-  } else if (sortType === 'helpful') { // review.helpfulness
+  } else if (sortType === 'helpful') {
+    if (sortDirection === 'descending') {
+      return reviews.sort((a, b) => {
+        return b.helpfulness - a.helpfulness;
+      });
+    }
     return reviews.sort((a, b) => {
-      return b.helpfulness - a.helpfulness;
+      return a.helpfulness - b.helpfulness;
+    });
+  } else if (sortType === 'rating') {
+    if (sortDirection === 'descending') {
+      return reviews.sort((a, b) => {
+        const n = b.rating - a.rating;
+        if (n !== 0) {
+          return n;
+        }
+        return b.helpfulness - a.helpfulness;
+      });
+    }
+    return reviews.sort((a, b) => {
+      const n = a.rating - b.rating;
+      if (n !== 0) {
+        return n;
+      }
+      return a.helpfulness - b.helpfulness;
+    });
+  } else if (sortType === 'recommended') {
+    if (sortDirection === 'descending') {
+      return reviews.sort((a, b) => {
+        return b.recommend - a.recommend;
+      });
+    }
+    return reviews.sort((a, b) => {
+      return a.recommend - b.recommend;
+    });
+  } else if (sortType === 'length') {
+    if (sortDirection === 'descending') {
+      return reviews.sort((a, b) => {
+        return b.body.length - a.body.length;
+      });
+    }
+    return reviews.sort((a, b) => {
+      return a.body.length - b.body.length;
     });
   }
-};
-
-const handleSortByChange = () => {
-  // const sortBy = document.getElementById('sortBy').value;
-  sortRatingsReviewsList(sortBy);
 };
 
 const getPercentRecommended = (reviews) => {
@@ -81,7 +131,7 @@ const countReviewsWithRating = (ratings, num) => { // ratings is an object
 
 module.exports = {
   sortRatingsReviewsList,
-  handleSortByChange,
+  // handleSortByChange,
   getPercentRecommended,
   getTotalScore,
   getNumRatings,

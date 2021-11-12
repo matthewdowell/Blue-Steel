@@ -9,15 +9,17 @@ import ratingsReviewsHelpers from './ratingsReviewsHelpers.js';
 
 const SortReviewsBy = ({
   currentRatingsReviewsList,
+  setCurrentRatingsReviewsList,
   numReviewsDisplayed,
   ratingsToDisplay
 }) => {
   const [sortedRatingsReviewsList, setSortedRatingsReviewsList] = useState(currentRatingsReviewsList);
+  const [sortBy, setSortBy] = useState('relevant');
+  const [sortDirection, setSortDirection] = useState('descending');
 
   useEffect(() => {
     setSortedRatingsReviewsList(currentRatingsReviewsList);
-    // setSortedRatingsReviewsList(sortedRatingsReviewsList);
-  }, [currentRatingsReviewsList]);
+  }, [currentRatingsReviewsList, sortedRatingsReviewsList, ratingsToDisplay]);
 
   return (
     <div className="sortBy">
@@ -33,7 +35,7 @@ const SortReviewsBy = ({
         reviews, sorted by
         {' '}
         <select
-          className="sortDropdown"
+          className="sortByDropdown"
           id="sortBy"
           style={{
             fontWeight: 'bold',
@@ -41,23 +43,51 @@ const SortReviewsBy = ({
           }}
           onChange={() => {
             const e = document.getElementById('sortBy');
+            setSortBy(e.value);
             const newSorted = ratingsReviewsHelpers.sortRatingsReviewsList(
               currentRatingsReviewsList,
-              e.value
+              e.value,
+              sortDirection
             );
-            setSortedRatingsReviewsList([...newSorted]); // Spread so setter recognizes state change
+            setSortedRatingsReviewsList([...newSorted]); // Spread so state change is recognized
           }}
         >
           <option value="relevant">relevant</option>
           <option value="new">new</option>
           <option value="helpful">helpful</option>
+          <option value="rating">rating</option>
+          <option value="recommended">recommended</option>
+          <option value="length">length</option>
+        </select>
+        <select
+          className="sortDirectionDropdown"
+          id="sortDirection"
+          style={{
+            fontWeight: 'bold',
+            fontSize: '22px'
+          }}
+          onChange={() => {
+            const e = document.getElementById('sortDirection');
+            setSortDirection(e.value);
+            const newSorted = ratingsReviewsHelpers.sortRatingsReviewsList(
+              currentRatingsReviewsList,
+              sortBy,
+              e.value
+            );
+            setSortedRatingsReviewsList([...newSorted]); // Spread so state change is recognized
+          }}
+        >
+          <option value="descending">high to low</option>
+          <option value="ascending">low to high</option>
         </select>
       </span>
       <div className="reviewScroll">
         {/* Render list of reviews */}
         {sortedRatingsReviewsList
-          .filter((review) => { return ratingsToDisplay.includes(review.rating); })
-          .map((tile) => <RatingsReviewsTile tile={tile} />)
+          .filter((review) => {
+            return ratingsToDisplay.includes(review.rating);
+          })
+          .map((tile) => <RatingsReviewsTile tile={tile} key={tile.review_id} />)
           .slice(0, numReviewsDisplayed)}
       </div>
     </div>
