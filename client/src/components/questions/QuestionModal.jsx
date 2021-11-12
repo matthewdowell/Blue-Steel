@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable import/extensions */
 import React from 'react';
 import QuestionForm from './QuestionForm.jsx';
 
-const QuestionModal = ({ setModalDisplayed }) => {
-  return (
-    <div style={{
+const QuestionModal = ({ setModalDisplayed }) => (
+  <div
+    style={{
       width: '100vw',
       height: '100vh',
       backgroundColor: 'rgba(200, 200, 200, 0.8)',
@@ -15,13 +17,21 @@ const QuestionModal = ({ setModalDisplayed }) => {
       alignItems: 'center',
       zIndex: '2',
     }}
-    onClick={(e) => {if (e.target === e.currentTarget) {
-      setModalDisplayed(false)}
+    onClick={(e) => {
+      if (e.target === e.currentTarget) {
+        setModalDisplayed(false);
+      }
     }}
-    >
-      <QuestionForm setModalDisplayed={setModalDisplayed} />
-    </div>
-  )
-}
+    onKeyPress={(e) => {
+      if (e.target === e.currentTarget) {
+        setModalDisplayed(false);
+      }
+    }}
+    role="button"
+    tabIndex={0}
+  >
+    <QuestionForm setModalDisplayed={setModalDisplayed} />
+  </div>
+);
 
 export default QuestionModal;
