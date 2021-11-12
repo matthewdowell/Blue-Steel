@@ -24,7 +24,7 @@ html {
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
   }
-  
+
   .down {
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
@@ -68,7 +68,7 @@ html {
     font-weight: bold;
 }
 .reviewList {
-    margin-top: 40px;
+    margin-top: 80px;
 }
 .sortByDropdown,
 .sortDirectionDropdown {
@@ -82,8 +82,9 @@ html {
     font-size: medium;
     font-weight: bold;
     background-color: white;
+    border-radius: 15px;
     width: 200px;
-    height: 65px;
+    height: 60px;
     margin-top: 15px;
 }
 .resetFiltersButton,
@@ -93,11 +94,13 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px;
   border: 2px solid black;
+  border-radius: 15px;
   background-color: white;
   width: 200px;
   height: 30px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 /* RatingsReviewsTile.jsx */
 .ratingsReviewsTile {

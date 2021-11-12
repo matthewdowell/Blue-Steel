@@ -42,11 +42,7 @@ const App = () => {
     <div>
       {/* eslint-disable-next-line object-curly-newline */}
       <ProductContext.Provider value={{ currentProduct, setCurrentProduct, products, setProducts }}>
-<<<<<<< HEAD
-        {/* <div><ProductOverview /></div> */}
-=======
         <div><ProductOverview /></div>
->>>>>>> c9be2231f11f02dceb5c220c37450147ce2102ac
         {/* <div className="topofrelated">
           <RelatedProductsList
             product_id={currentProduct.id}
@@ -56,15 +52,9 @@ const App = () => {
         </div>
         <div>
           <YourOutfitList product_id={currentProduct.id} />
-<<<<<<< HEAD
         </div> */}
-        {/* <div><QuestionsAnswers /></div> */}
-        <div><RatingsReviews /></div>
-=======
-        </div>
         <div><QuestionsAnswers /></div>
-        <div id="moveToReviews"><RatingsReviews /></div> */}
->>>>>>> c9be2231f11f02dceb5c220c37450147ce2102ac
+        <div id="moveToReviews"><RatingsReviews /></div>
       </ProductContext.Provider>
     </div>
   );

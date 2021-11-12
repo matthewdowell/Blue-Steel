@@ -55,7 +55,7 @@ export function addReview(
   })
     .then(() => {
     })
-    .catch((err) => { console.log(err); });
+    .catch((err) => { console.log('UTIL POST ERROR:', err); });
 }
 
 export function markReviewHelpful(review_id) {

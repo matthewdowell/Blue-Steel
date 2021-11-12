@@ -131,7 +131,6 @@ const countReviewsWithRating = (ratings, num) => { // ratings is an object
 
 module.exports = {
   sortRatingsReviewsList,
-  // handleSortByChange,
   getPercentRecommended,
   getTotalScore,
   getNumRatings,
