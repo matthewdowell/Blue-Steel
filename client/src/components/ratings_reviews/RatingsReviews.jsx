@@ -42,11 +42,7 @@ const RatingsReviews = () => {
   return (
     <div className="ratingsReviewsAll">
       <div className="aggregateReviewInfo">
-<<<<<<< HEAD
         <h2 className="ratingsReviewsHeader" style={{ fontSize: '28px' }}><b>Ratings {'&'} Reviews</b></h2>
-=======
-        <span className="ratingsReviewsHeader"><b style={{ fontSize: '22px' }}>Ratings & Reviews</b></span>
->>>>>>> f8e87f6208ee16f027a28009e7c0e0b435435977
         {/* AGGREGATE RATING */}
         <div className="aggregateRating">
           <div><b>Aggregate Rating</b></div>

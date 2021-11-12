@@ -98,7 +98,7 @@ const RatingsDistribution = ({ ratings, ratingsToDisplay, setRatingsToDisplay })
           }}>Remove Review Filters
         </button>
         <span style={{
-          color: 'blue',
+          color: '#DEB992',
           fontWeight: 'bold'
         }}
         >

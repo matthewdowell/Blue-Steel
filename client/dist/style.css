@@ -50,9 +50,12 @@ html {
 .reviewScroll {
   height: 530px;
 }
+.ratingBarContainer,
+.reviewScroll {
+  background: linear-gradient(45deg, rgba(40,62,110,1) 0%, rgba(16,56,110,1) 14%, rgba(17,75,130,1) 49%, rgba(16,56,110,1) 91%, rgba(40,62,110,1) 100%);
+}
 .aggregateReviewInfo {
   width: 600px;
-
 }
 .aggregateRating {
   display: flex;
@@ -96,7 +99,7 @@ html {
 .reviewButton {
   font-size: medium;
   font-weight: bold;
-  background-color: white;
+  background-color: #DEB992;
   border-radius: 15px;
   width: 200px;
   height: 60px;
@@ -112,7 +115,7 @@ html {
   padding: 10px;
   border: 2px solid black;
   border-radius: 15px;
-  background-color: white;
+  background-color: #DEB992;
   width: 200px;
   height: 40px;
   margin-bottom: 10px;
@@ -130,11 +133,14 @@ html {
 .reviewerInfo {
   display: flex;
   justify-content: space-between;
-  color:rgb(65, 65, 65)
+  color: #DEB992;
+}
+.tileButtons {
+  color: #DEB992;
 }
 .reviewSummary {
   font-weight: bold;
-  color: rgb(0, 0, 0);
+  color: white;
   margin-top: 7px;
   margin-bottom: 7px;
 }
@@ -146,7 +152,8 @@ html {
 .markReviewHelpfulButton,
 .reportReviewButton {
   font-size: medium;
-  background-color: white;
+  background: none;
+  color: #DEB992;
   text-decoration: underline;
   border: none;
   cursor: pointer
@@ -250,7 +257,7 @@ input[type="radio"]:hover,
 }
 .ratingCountClicked {
   font-weight: bold;
-  color: rgb(8, 0, 252);
+  color: #DEB992;
 }
 /* Stars */
 .starRating {
