@@ -30,12 +30,11 @@ const Question = ({ question, helpfulness }) => {
 
   return (
     <div style={{
-      border: '2px solid black',
+      border: '2px solid rgba(222,185,146,0.61)',
       borderRadius: '15px',
       padding: '15px',
       marginBottom: '20px',
-      // boxShadow: '5px 10px 8px #888888',
-      overflowX: 'visible',
+      background: 'linear-gradient(45deg, rgba(40,62,110,1) 0%, rgba(16,56,110,1) 14%, rgba(17,75,130,1) 49%, rgba(16,56,110,1) 91%, rgba(40,62,110,1) 100%)',
     }}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -120,13 +119,16 @@ const Question = ({ question, helpfulness }) => {
             <div
               style={{
                 cursor: 'pointer',
-                padding: '5px',
-                border: '2px solid black',
+                padding: '8px',
+                border: 'none',
                 width: '200px',
                 marginLeft: '24px',
                 textAlign: 'center',
-                marginBottom: '10px',
-                borderRadius: '15px',
+                marginTop: '7px',
+                marginBottom: '5px',
+                borderRadius: '8px',
+                background: '#DEB992',
+                color: '#051622',
               }}
               onClick={handleMoreAnswersClick}
               onKeyPress={handleMoreAnswersClick}

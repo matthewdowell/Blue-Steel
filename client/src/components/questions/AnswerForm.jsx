@@ -44,7 +44,7 @@ const AnswerForm = ({ setModalDisplayed, question }) => {
         height: '700px',
         width: '600px',
         border: '2px solid black',
-        backgroundColor: 'white',
+        background: '#051622',
         borderRadius: '15px',
       }}
     >
@@ -96,7 +96,7 @@ const AnswerForm = ({ setModalDisplayed, question }) => {
       </div>
       <div
         style={{
-          border: '2px solid black',
+          border: '2px solid tan',
           height: '50px',
           width: '200px',
           lineHeight: '50px',
@@ -104,6 +104,8 @@ const AnswerForm = ({ setModalDisplayed, question }) => {
           marginTop: '10px',
           cursor: 'pointer',
           borderRadius: '15px',
+          background: '#DEB992',
+          color: '#051622',
         }}
         onClick={handleFormSubmit}
         onKeyPress={handleFormSubmit}
