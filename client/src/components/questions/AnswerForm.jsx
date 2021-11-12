@@ -43,7 +43,6 @@ const AnswerForm = ({ setModalDisplayed, question }) => {
         alignItems: 'center',
         height: '700px',
         width: '600px',
-        border: '2px solid black',
         background: '#051622',
         borderRadius: '15px',
       }}

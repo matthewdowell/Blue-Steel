@@ -18,7 +18,6 @@ const AnswerPhotos = ({ photos }) => {
             src={photo}
             style={{
               maxHeight: '100px',
-              border: '2px solid black',
               borderRadius: '5px',
               marginTop: '10px',
               marginLeft: '10px',
