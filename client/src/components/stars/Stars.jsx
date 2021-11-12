@@ -16,7 +16,7 @@ const Stars = ({ rating }) => {
   }
   return (
     <div>
-      {ratings.map((filled) => <Star filled={filled} />)}
+      {ratings.map((filled) => <Star id={Math.random()} filled={filled} />)}
     </div>
   );
 };

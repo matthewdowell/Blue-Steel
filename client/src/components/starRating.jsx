@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
-import Box from '@material-ui/core/Box';
 
 const labels = {
   0.5: 'Useless',
@@ -51,7 +50,7 @@ function StaticRating(props) {
 
   let values = Object.entries(reviewData).map(e =>
     Number(e[0]) * Number(e[1]))
-    .reduce((a, b) => Number(a) + Number(b), 0) 
+    .reduce((a, b) => Number(a) + Number(b), 0)
     Object.values(reviewData).reduce((a, b) => Number(a) + Number(b), 0);
 
   const [value, setValue] = React.useState(values);
@@ -60,7 +59,7 @@ function StaticRating(props) {
     <div value={value}>
       <Rating
         name="read-only"
-        value={value} 
+        value={value}
         precision={0.25}
         size={props.size || 'medium'}
       />
