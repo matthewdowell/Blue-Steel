@@ -1,3 +1,6 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
@@ -29,7 +32,7 @@ function HoverRating() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root} id='hover-rating' value={value}>
+    <div className={classes.root} id="hover-rating" value={value}>
       <Rating
         name="hover-feedback"
         value={value}
@@ -46,12 +49,11 @@ function HoverRating() {
 }
 
 function StaticRating(props) {
-  let reviewData = props.data;
+  const reviewData = props.data;
 
-  let values = Object.entries(reviewData).map(e =>
-    Number(e[0]) * Number(e[1]))
-    .reduce((a, b) => Number(a) + Number(b), 0)
-    Object.values(reviewData).reduce((a, b) => Number(a) + Number(b), 0);
+  const values = Object.entries(reviewData).map((e) => Number(e[0]) * Number(e[1]))
+    .reduce((a, b) => Number(a) + Number(b), 0);
+  Object.values(reviewData).reduce((a, b) => Number(a) + Number(b), 0);
 
   const [value, setValue] = React.useState(values);
 
@@ -67,7 +69,7 @@ function StaticRating(props) {
   );
 }
 
-export{
+export {
   HoverRating,
-  StaticRating
-}
+  StaticRating,
+};

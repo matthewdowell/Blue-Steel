@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-plusplus */
 /* eslint-disable import/extensions */
 /* eslint-disable arrow-body-style */
@@ -6,7 +7,7 @@ import React from 'react';
 import Star from './Star.jsx';
 
 const Stars = ({ rating }) => {
-  let ratings = [];
+  const ratings = [];
   for (let i = 1; i <= 5; i++) {
     if (i <= rating) {
       ratings.push(true);
