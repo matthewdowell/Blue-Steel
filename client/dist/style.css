@@ -4,6 +4,10 @@ body {
     min-width: 100%
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .arrow {
     border: solid black;
     border-width: 0 3px 3px 0;
@@ -19,6 +23,11 @@ body {
   .left {
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
+  }
+  
+  .down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
   }
 
 /* RatingsReviews.jsx */

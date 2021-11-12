@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import React, { useContext, useState } from 'react';
-import ReactDom from 'react-dom';
 import { ProductContext } from '../../context/globalContext';
 import { qaContext } from '../../context/qaContext';
 import { getQuestionsAnswers, postAnswer } from '../../utils/questionsUtils';
@@ -20,91 +20,110 @@ const AnswerForm = ({ setModalDisplayed, question }) => {
       && emailInputVal.length > 0
       && emailInputVal.includes('@')
     ) {
-      postAnswer(question.question_id, answerInputVal, nameInputVal, emailInputVal, imageInputVal, () => {
-        getQuestionsAnswers(currentProduct.id, (data) => {
-          console.log(data.results)
-          setCurrentQuestions(data.results);
-          setAllQuestions(data.results);
-        }, null, 100);
-        setModalDisplayed(false);
-      })
+      postAnswer(
+        question.question_id, answerInputVal, nameInputVal, emailInputVal, imageInputVal, () => {
+          getQuestionsAnswers(currentProduct.id, (data) => {
+            console.log(data.results);
+            setCurrentQuestions(data.results);
+            setAllQuestions(data.results);
+          }, null, 100);
+          setModalDisplayed(false);
+        },
+      );
     } else {
       setErrorDisplayed(true);
     }
-  }
+  };
 
   return (
-    <div 
-      id='questionModal' 
+    <div
       style={{
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         height: '700px',
         width: '600px',
-        border: "2px solid black",
+        border: '2px solid black',
         backgroundColor: 'white',
+        borderRadius: '15px',
       }}
-      >
-      <h3 style={{marginBottom: '0px'}}>Submit Your Answer</h3>
-      <div style={{marginTop: '5px'}}><b>{currentProduct.name}: </b>{question.question_body}</div>
-      <div style={{margin: '20px'}}>
+    >
+      <h3 style={{ marginBottom: '0px' }}>Submit Your Answer</h3>
+      <div style={{ marginTop: '5px' }}>
+        <b>
+          {`${currentProduct.name}: `}
+        </b>
+        {question.question_body}
+      </div>
+      <div style={{ margin: '20px' }}>
         <div>
           <div><b>Your Answer* </b></div>
-          <textarea 
-            maxLength={1000} 
+          <textarea
+            maxLength={1000}
             rows={10}
-            style={{resize: 'none', width: '98%', margin: '10px 0'}}
+            style={{ resize: 'none', width: '98%', margin: '10px 0' }}
             value={answerInputVal}
             onChange={(e) => { setAnswerInputVal(e.target.value); }}
-          ></textarea>
+          />
         </div>
         <div>
           <div><b>Your Nickname* </b></div>
-          <input 
-            style={{width: '98%', margin: '10px 0'}}
-            placeholder={'Example: jackson11!'}
+          <input
+            style={{ width: '98%', margin: '10px 0' }}
+            placeholder="Example: jackson11!"
             value={nameInputVal}
             onChange={(e) => { setNameInputVal(e.target.value); }}
-          ></input>
+          />
         </div>
         <div>For privacy reasons, do not use your full name or email address.</div>
         <div>
-          <div style={{marginTop: '10px'}}><b>Your Email* </b></div>
-          <input 
-            style={{width: '98%', margin: '10px 0'}} 
-            placeholder={'Example: username@email.com'}
+          <div style={{ marginTop: '10px' }}><b>Your Email* </b></div>
+          <input
+            style={{ width: '98%', margin: '10px 0' }}
+            placeholder="Example: username@email.com"
             maxLength={60}
             value={emailInputVal}
             onChange={(e) => { setEmailInputVal(e.target.value); }}
-          ></input>
+          />
         </div>
         <div>For authentication reasons, you will not be emailed.</div>
-        <div style={{marginTop: '10px'}}><b>Attach An Image URL</b></div>
-        <input 
-            style={{width: '98%', margin: '10px 0'}}
-            value={imageInputVal}
-            onChange={(e) => { setImageInputVal([e.target.value]); }}
-          ></input>
+        <div style={{ marginTop: '10px' }}><b>Attach An Image URL</b></div>
+        <input
+          style={{ width: '98%', margin: '10px 0' }}
+          value={imageInputVal}
+          onChange={(e) => { setImageInputVal([e.target.value]); }}
+        />
       </div>
-      <div 
-         style={{
-           border: '2px solid black',
-           height: '50px',
-           width: '200px',
-           lineHeight: '50px',
-           textAlign: 'center',
-           marginTop: '10px',
-           cursor: `pointer`,
-         }}
-         onClick={handleFormSubmit}
-      >SUBMIT ANSWER</div>
+      <div
+        style={{
+          border: '2px solid black',
+          height: '50px',
+          width: '200px',
+          lineHeight: '50px',
+          textAlign: 'center',
+          marginTop: '10px',
+          cursor: 'pointer',
+          borderRadius: '15px',
+        }}
+        onClick={handleFormSubmit}
+        onKeyPress={handleFormSubmit}
+        role="button"
+        tabIndex={0}
+      >
+        SUBMIT ANSWER
+      </div>
       {errorDisplayed
-        && <div style={{color: 'red', marginTop: '25px'}}>
-             *Invalid Submission: All form fields must be filled out with a valid email address*
-           </div>}
+        && (
+        <div style={{
+          color: 'red', marginTop: '25px', textAlign: 'center', maxWidth: '70%',
+        }}
+        >
+          {`*Invalid Submission: All required form fields 
+          must be filled out with a valid email address*`}
+        </div>
+        )}
     </div>
-  )
-}
+  );
+};
 
 export default AnswerForm;

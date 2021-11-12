@@ -4,11 +4,10 @@ import React, { useState, useEffect } from 'react';
 import ProductOverview from '../product_overview/ProductOverview.jsx';
 import RatingsReviews from '../ratings_reviews/RatingsReviews.jsx';
 import QuestionsAnswers from '../questions/QuestionsAnswers.jsx';
-import RelatedProductsList from '../related_items/RelatedProductsList.jsx'
+import RelatedProductsList from '../related_items/RelatedProductsList.jsx';
 import YourOutfitList from '../related_items/YourOutfitList.jsx';
 import { getProducts, getProductsById } from '../../utils/productUtils.js';
 import { ProductContext } from '../../context/globalContext.js';
-
 
 const App = () => {
   // Bring in first product: product_id 44388
@@ -34,27 +33,38 @@ const App = () => {
   }, []);
 
   function renderNewProductId(id) {
-   getProductsById(null, null, id, (data) => {
-     setCurrentProduct(data);
-   });
+    getProductsById(null, null, id, (data) => {
+      setCurrentProduct(data);
+    });
   }
 
   return (
     <div>
       {/* eslint-disable-next-line object-curly-newline */}
       <ProductContext.Provider value={{ currentProduct, setCurrentProduct, products, setProducts }}>
+<<<<<<< HEAD
         {/* <div><ProductOverview /></div> */}
+=======
+        <div><ProductOverview /></div>
+>>>>>>> c9be2231f11f02dceb5c220c37450147ce2102ac
         {/* <div className="topofrelated">
           <RelatedProductsList
             product_id={currentProduct.id}
+            // eslint-disable-next-line react/jsx-no-bind
             renderNewProductId={renderNewProductId}
           />
         </div>
         <div>
           <YourOutfitList product_id={currentProduct.id} />
+<<<<<<< HEAD
         </div> */}
         {/* <div><QuestionsAnswers /></div> */}
         <div><RatingsReviews /></div>
+=======
+        </div>
+        <div><QuestionsAnswers /></div>
+        <div id="moveToReviews"><RatingsReviews /></div> */}
+>>>>>>> c9be2231f11f02dceb5c220c37450147ce2102ac
       </ProductContext.Provider>
     </div>
   );

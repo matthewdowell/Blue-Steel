@@ -21,11 +21,15 @@ test('loads the component and indicates as such, then displays proper header', a
 
   await act(async () => {
     component = render(<App />);
-    //expect(component.getByText('Loading')).toBeInTheDocument();
+    // expect(component.getByText('Loading')).toBeInTheDocument();
   });
 
+<<<<<<< HEAD
   //const [header] = component.getAllByTestId('header');
   //expect(header.textContent).toBe("MEOWWALK");
 >>>>>>> ebdf054082f339dc4d54612d1f54662076cd7443
+=======
+  // const [header] = component.getAllByTestId('header');
+  // expect(header.textContent).toBe("MEOWWALK");
+>>>>>>> c9be2231f11f02dceb5c220c37450147ce2102ac
 });
-

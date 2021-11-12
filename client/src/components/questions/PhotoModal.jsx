@@ -1,9 +1,9 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 
-const PhotoModal = ({ photo, setModalDisplayed }) => {
-  console.log('photo address', photo);
-  return (
-    <div style={{
+const PhotoModal = ({ photo, setModalDisplayed }) => (
+  <div
+    style={{
       width: '100vw',
       height: '100vh',
       backgroundColor: 'rgba(200, 200, 200, 0.8)',
@@ -15,22 +15,30 @@ const PhotoModal = ({ photo, setModalDisplayed }) => {
       alignItems: 'center',
       zIndex: '2',
     }}
-    onClick={(e) => {if (e.target === e.currentTarget) {
-      setModalDisplayed(false)}
+    onClick={(e) => {
+      if (e.target === e.currentTarget) {
+        setModalDisplayed(false);
+      }
     }}
-    >
-      <img 
-        src={photo} 
-        style={{
-          maxHeight: '80%',
-          maxWidth: '66%',
-          border: '5px solid white',
-          borderRadius: '5px'
-        }}
-      >
-      </img>
-    </div>
-  )
-}
+    onKeyPress={(e) => {
+      if (e.target === e.currentTarget) {
+        setModalDisplayed(false);
+      }
+    }}
+    role="button"
+    tabIndex={0}
+  >
+    <img
+      alt=""
+      src={photo}
+      style={{
+        maxHeight: '80%',
+        maxWidth: '66%',
+        border: '5px solid white',
+        borderRadius: '5px',
+      }}
+    />
+  </div>
+);
 
 export default PhotoModal;
