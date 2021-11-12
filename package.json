@@ -4,7 +4,7 @@
   "description": "// README",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose --config ./jest.config.js",
+    "test": "jest --verbose --config ./jest.config.js product-overview.test.js",
     "start": "nodemon server/index.js",
     "react-dev": "webpack --config ./webpack.config.js  -w"
   },
