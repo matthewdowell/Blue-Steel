@@ -5,6 +5,7 @@
 import React from 'react';
 
 const LengthDistribution = ({ length }) => {
+  const value = length ? (length.value - 1) / 4 : 0;
   let lengthRating = 0;
   if (length) {
     lengthRating = Math.round(length.value);
@@ -33,6 +34,10 @@ const LengthDistribution = ({ length }) => {
         value={length ? (length.value - 1) / 4 : 0}
       >
       </progress>
+      {lengthDescription === 'Not available'
+        ? '(0.0)'
+        : `(${((value * (5 - 1) + 1).toFixed(1))})`}
+      {' '}
       {lengthDescription}
     </div>
   );

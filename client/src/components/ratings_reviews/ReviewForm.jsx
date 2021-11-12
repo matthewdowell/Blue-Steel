@@ -9,7 +9,7 @@ import { ProductContext } from '../../context/globalContext';
 import { addReview } from '../../utils/reviewUtils.js';
 // import { getQuestionsAnswers, postQuestion } from '../../utils/questionsUtils';
 
-const ReviewForm = ({ setModalDisplayed }) => {
+const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
   const characteristicIDs = {
     Size: 14,
     Width: 15,
@@ -40,35 +40,38 @@ const ReviewForm = ({ setModalDisplayed }) => {
   const [errorDisplayed, setErrorDisplayed] = useState(false);
 
   const getCharacteristicButtonArray = (characteristic) => {
-    return (
-      <div className="reviewCategory" key={characteristic}>
-        <b className="characteristic" key={characteristic} style={{ width: '200px' }}>
-          {characteristic}
-        </b>
-        <span className="ratings" style={{ justifySelf: 'end' }}>
-          {ratings.map((rating) => {
-            return (
-              <span>
-                <input
-                  type="radio"
-                  id={characteristic}
-                  name={characteristic}
-                  onChange={() => {
-                    const id = characteristicIDs[characteristic];
-                    setCharacteristics({
-                      ...characteristics,
-                      [id]: rating
-                    });
-                  }}
-                >
-                </input>
-                <label htmlFor={characteristic}>{rating}</label>
-              </span>
-            );
-          })}
-        </span>
-      </div>
-    );
+    if (characteristicsObj[characteristic]) {
+      return (
+        <div className="reviewCategory" key={characteristic}>
+          <b className="characteristic" key={characteristic} style={{ width: '200px' }}>
+            {characteristic}
+          </b>
+          <span className="ratings" style={{ justifySelf: 'end' }}>
+            {ratings.map((rating) => {
+              return (
+                <span>
+                  <input
+                    type="radio"
+                    id={characteristic}
+                    name={characteristic}
+                    onChange={() => {
+                      const id = characteristicIDs[characteristic];
+                      setCharacteristics({
+                        ...characteristics,
+                        [id]: rating
+                      });
+                    }}
+                  >
+                  </input>
+                  <label htmlFor={characteristic}>{rating}</label>
+                </span>
+              );
+            })}
+          </span>
+        </div>
+      );
+    }
+    return <div></div>;
   };
 
   const handleFormSubmit = () => {

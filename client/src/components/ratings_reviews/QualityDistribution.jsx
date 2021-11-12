@@ -5,6 +5,7 @@
 import React from 'react';
 
 const QualityDistribution = ({ quality }) => {
+  const value = quality ? (quality.value - 1) / 4 : 0;
   let qualityRating = 0;
   if (quality) {
     qualityRating = Math.round(quality.value);
@@ -33,6 +34,10 @@ const QualityDistribution = ({ quality }) => {
         value={quality ? (quality.value - 1) / 4 : 0}
       >
       </progress>
+      {qualityDescription === 'Not available'
+        ? '(0.0)'
+        : `(${((value * (5 - 1) + 1).toFixed(1))})`}
+      {' '}
       {qualityDescription}
     </div>
   );

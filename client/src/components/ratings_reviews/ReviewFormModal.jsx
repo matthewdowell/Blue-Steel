@@ -4,7 +4,7 @@
 import React from 'react';
 import ReviewForm from './ReviewForm.jsx';
 
-const ReviewFormModal = ({ setModalDisplayed }) => {
+const ReviewFormModal = ({ setModalDisplayed, characteristicsObj }) => {
   return (
     <div style={{
       width: '100vw',
@@ -22,9 +22,9 @@ const ReviewFormModal = ({ setModalDisplayed }) => {
       setModalDisplayed(false)}
     }}
     >
-      <ReviewForm setModalDisplayed={setModalDisplayed} />
+      <ReviewForm setModalDisplayed={setModalDisplayed} characteristicsObj={characteristicsObj} />
     </div>
-  )
-}
+  );
+};
 
 export default ReviewFormModal;

@@ -5,6 +5,7 @@
 import React from 'react';
 
 const WidthDistribution = ({ width }) => {
+  const value = width ? (width.value - 1) / 4 : 0;
   let widthRating = 0;
   if (width) {
     widthRating = Math.round(width.value);
@@ -33,6 +34,10 @@ const WidthDistribution = ({ width }) => {
         value={width ? (width.value - 1) / 4 : 0}
       >
       </progress>
+      {widthDescription === 'Not available'
+        ? '(0.0)'
+        : `(${((value * (5 - 1) + 1).toFixed(1))})`}
+      {' '}
       {widthDescription}
     </div>
   );

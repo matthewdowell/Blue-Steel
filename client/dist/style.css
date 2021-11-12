@@ -32,7 +32,10 @@ body {
 }
 .aggregateReviewInfo,
 .reviewScroll {
-    height: 510px;
+    height: 500px;
+}
+.aggregateReviewInfo {
+    width: 600px;
 }
 .ratingBars,
 .reviewScroll {
@@ -58,7 +61,8 @@ body {
 .reviewList {
     margin-top: 40px;
 }
-.sortDropdown {
+.sortByDropdown,
+.sortDirectionDropdown {
     font-weight: bold;
     margin-top: 10px;
     margin-bottom: 20px;
@@ -158,7 +162,6 @@ progress {
 .characteristicsContainer {
     display: flex;
     margin-top: 7px;
-    /* justify-content: space-evenly; */
     gap: 60px;
 }
 /* .reviewCategory, */
