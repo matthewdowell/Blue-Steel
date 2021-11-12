@@ -43,7 +43,7 @@ const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
     if (characteristicsObj[characteristic]) {
       return (
         <div className="reviewCategory" key={characteristic}>
-          <b className="characteristic" key={characteristic} style={{ width: '200px' }}>
+          <b className="characteristic" key={characteristic} style={{ width: '150px' }}>
             {characteristic}
           </b>
           <span className="ratings" style={{ justifySelf: 'end' }}>
@@ -63,7 +63,7 @@ const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
                     }}
                   >
                   </input>
-                  <label htmlFor={characteristic}>{rating}</label>
+                  <label htmlFor={characteristic} id="radioButton">{rating}</label>
                 </span>
               );
             })}
@@ -111,12 +111,23 @@ const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
         height: '700px',
         width: '780px',
         border: '2px solid black',
+        borderRadius: '15px',
+        padding: '11px',
         backgroundColor: 'white',
       }}
     >
-      <h2 style={{ marginBottom: '0px' }}>
-        Write Your Review
-        <div style={{ marginTop: '5px', fontSize: '18px', marginBBottom: '7px' }}>
+      <h2 style={{
+        marginBottom: '0px',
+        fontSize: '30px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+      }}
+      >
+        <div>
+          Write Your Review
+        </div>
+        <div style={{ marginTop: '5px', fontSize: '24px', marginBBottom: '7px' }}>
           About the
           {' '}
           {currentProduct.name}
@@ -129,8 +140,8 @@ const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
             {ratings.map((rating) => {
               return (
                 <span>
-                  <input type="radio" id="rating" name="rating" onChange={() => { setOverallRating(rating); }}></input>
-                  <label htmlFor="rating">{rating}</label>
+                  <input type="radio" name="radioButton" onChange={() => { setOverallRating(rating); }}></input>
+                  <label htmlFor="rating" id="radioButton">{rating}</label>
                 </span>
               );
             })}
@@ -140,9 +151,9 @@ const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
           <b>Do you recommend this product?</b>
           <span>
             <input type="radio" id="recommend" name="recommend" onChange={() => { setUserRecommended(true); }}></input>
-            <label htmlFor="recommend">Yes</label>
+            <label htmlFor="recommend" className="recommend" id="radioButton">Yes</label>
             <input type="radio" id="recommend" name="recommend" onChange={() => { setUserRecommended(false); }}></input>
-            <label htmlFor="recommend">No</label>
+            <label htmlFor="recommend" className="recommend" id="radioButton">No</label>
           </span>
         </div>
         <b style={{ marginTop: '10px' }}>Characteristics</b> {/* REQUIRED */}

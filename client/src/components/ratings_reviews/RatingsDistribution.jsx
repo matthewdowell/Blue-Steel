@@ -8,6 +8,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import ratingsReviewsHelpers from './ratingsReviewsHelpers';
+// import Stars from '../shared/Stars.jsx';
 import Stars from '../stars/Stars.jsx';
 
 const RatingsDistribution = ({ ratings, ratingsToDisplay, setRatingsToDisplay }) => {

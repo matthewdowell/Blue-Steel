@@ -4,7 +4,7 @@
   "description": "// README",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose --config ./jest.config.js product-overview.test.js",
+    "test": "jest --verbose --config ./jest.config.js",
     "start": "nodemon server/index.js",
     "react-dev": "webpack --config ./webpack.config.js  -w"
   },
@@ -37,6 +37,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "file-system": "^2.2.2",
+    "graceful-fs": "^4.2.8",
     "jquery": "^3.6.0",
     "lodash": "^4.17.21",
     "nodemon": "^2.0.14",

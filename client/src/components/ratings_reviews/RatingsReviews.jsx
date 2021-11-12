@@ -5,7 +5,6 @@
 /* eslint-disable import/extensions */
 import React, { useContext, useState, useEffect } from 'react';
 import { ProductContext } from '../../context/globalContext.js';
-// import { RatingsReviewsContext } from '../../context/ratingsReviewsContext.js';
 import { getReviewMetadata, getReviewsOfProduct } from '../../utils/reviewUtils.js';
 import ratingsReviewsHelpers from './ratingsReviewsHelpers.js';
 import Stars from '../stars/Stars.jsx';
@@ -43,7 +42,7 @@ const RatingsReviews = () => {
   return (
     <div className="ratingsReviewsAll">
       <div className="aggregateReviewInfo">
-        <h1 className="ratingsReviewsHeader">Ratings {'&'} Reviews</h1>
+        <h2 className="ratingsReviewsHeader" style={{ fontSize: '28px' }}><b>Ratings {'&'} Reviews</b></h2>
         {/* AGGREGATE RATING */}
         <div className="aggregateRating">
           <div><b>Aggregate Rating</b></div>
@@ -57,7 +56,7 @@ const RatingsReviews = () => {
           <div>
             <Stars
               rating={currentMetaData.ratings
-                ? Math.round(ratingsReviewsHelpers.getAverageRating(currentMetaData.ratings))
+                ? ratingsReviewsHelpers.getAverageRating(currentMetaData.ratings)
                 : null}
             />
           </div>
