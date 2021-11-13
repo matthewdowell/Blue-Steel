@@ -72,10 +72,11 @@ const YourOutfitList = ({ product_id }) => {
               position: 'relative',
               zIndex: '2',
               boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
-              borderRadius: '15',
+              borderRadius: '15px',
+              background: 'linear-gradient(45deg, rgba(40,62,110,1) 0%, rgba(16,56,110,1) 14%, rgba(17,75,130,1) 49%, rgba(16,56,110,1) 91%, rgba(40,62,110,1) 100%)'
             }}
           >
-            <div data-testid="addition-card" className="product-card add-card" onClick={(_event) => addNewOutfitClick(product_id)} onKeyUp={(_event) => addNewOutfitClick(product_id)}>
+            <div style={{display:'flex', flexDirection: 'column', marginTop: '140px', justifyContent: 'center', alignItems: 'center' }} data-testid="addition-card" className="product-card add-card" onClick={(_event) => addNewOutfitClick(product_id)} onKeyUp={(_event) => addNewOutfitClick(product_id)}>
               <PlusCircle
                 size={55}
                 style={{
@@ -98,6 +99,7 @@ const YourOutfitList = ({ product_id }) => {
                 position: 'relative',
                 boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
                 borderRadius: '15px',
+                background: 'linear-gradient(45deg, rgba(40,62,110,1) 0%, rgba(16,56,110,1) 14%, rgba(17,75,130,1) 49%, rgba(16,56,110,1) 91%, rgba(40,62,110,1) 100%)'
               }}
             >
               <OutfitCard

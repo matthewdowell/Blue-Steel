@@ -13,6 +13,7 @@ import RelatedProductCard from './RelatedProductCard.jsx';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import api from '../../utils/api.js';
 
+
 const RelatedProductsList = ({ product_id, renderNewProductId }) => {
   const [relatedItems, setRelatedItems] = useState([]);
   const [relatedItemsData, setRelatedItemsData] = useState([]);
@@ -68,49 +69,48 @@ const RelatedProductsList = ({ product_id, renderNewProductId }) => {
 
   return (
     <div className="product-list">
-      <h1 className="heading-list">RELATED PRODUCTS</h1>
-      <CarouselProvider
-        className="items-carousel"
-        totalSlides={relatedItems.length}
-        visibleSlides={3}
-        dragEnabled={false}
-      >
-        <Slider className="carousel_slider">
-          {relatedItemsData.map((relatedItem) => (
-            <Slide
-              key={relatedItems.id}
-              index={Math.random()}
-              style={{
-                width: '23rem',
-                height: '32rem',
-                marginRight: '3rem',
-                position: 'relative',
-                boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
-                borderRadius: '15px',
-                background: 'linear-gradient(45deg, rgba(40,62,110,1) 0%, rgba(16,56,110,1) 14%, rgba(17,75,130,1) 49%, rgba(16,56,110,1) 91%, rgba(40,62,110,1) 100%)'
-              }}
-            >
-              <RelatedProductCard
-                key={relatedItem.id}
-                id={relatedItem.id}
-                image={relatedItem.image}
-                name={relatedItem.name}
-                category={relatedItem.category}
-                price={relatedItem.default_price}
-                starRating={relatedItem.ratings}
-                sendProductId={sendProductId}
-                currentProductId={product_id}
-                relatedItemsStyles={relatedItemsStyles}
-                features={relatedItem.features}
-              />
-            </Slide>
-          ))}
-        </Slider>
-        <div className="buttons" style={{ display: 'inline-flex', alignContent: 'center' }}>
-          <ButtonBack className="button-back"><i className="fas fa-arrow-left" /></ButtonBack>
-          <ButtonNext className="button-next"><i className="fas fa-arrow-right" /></ButtonNext>
-        </div>
-      </CarouselProvider>
+    <h1 className="heading-list">RELATED PRODUCTS</h1>
+    <CarouselProvider
+      className="items-carousel"
+      totalSlides={relatedItems.length}
+      visibleSlides={3}
+      dragEnabled={false}
+    >
+         <Slider className="carousel_slider">
+           {relatedItemsData.map((relatedItem) => (
+             <Slide
+               key={relatedItems.id}
+               index={Math.random()}
+               style={{
+                 width: '23rem',
+                 height: '32rem',
+                 marginRight: '3rem',
+                 position: 'relative',
+                 boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
+                 borderRadius: '15px',
+                 background: 'linear-gradient(45deg, rgba(40,62,110,1) 0%, rgba(16,56,110,1) 14%, rgba(17,75,130,1) 49%, rgba(16,56,110,1) 91%, rgba(40,62,110,1) 100%)'
+               }}
+             >
+               <RelatedProductCard
+                 key={relatedItem.id}
+                 id={relatedItem.id}
+                 image={relatedItem.image}
+                 name={relatedItem.name}
+                 category={relatedItem.category}
+                 price={relatedItem.default_price}
+                 starRating={relatedItem.ratings}
+                 sendProductId={sendProductId}
+                 currentProductId={product_id}
+                 relatedItemsStyles={relatedItemsStyles}
+                 features={relatedItem.features} />
+             </Slide>
+           ))}
+         </Slider>
+         <div className="buttons" style={{ display: 'inline-flex', alignContent: 'center', marginTop: '40px', marginLeft: '43%'}}>
+           <ButtonBack className="button-back"><i className="fas fa-arrow-left" /></ButtonBack>
+           <ButtonNext className="button-next"><i className="fas fa-arrow-right" /></ButtonNext>
+         </div>
+       </CarouselProvider>
     </div>
   );
 };
