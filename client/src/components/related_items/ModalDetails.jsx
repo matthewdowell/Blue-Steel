@@ -10,7 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 const ModalDetails = ({ currentProduct, currentProductStyles, relatedItemsStyles, name, category, price, features }) => {
   const useStyles = makeStyles({
     table: {
-      minWidth: 700,
+      minWidth: 700
     },
   })
 

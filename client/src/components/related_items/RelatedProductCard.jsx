@@ -5,6 +5,7 @@ import ModalDetails from './ModalDetails.jsx';
 import api from '../../utils/api.js';
 import { StaticRating } from '../starRating.jsx';
 
+
 const RelatedProductCard = ({ id, currentProductId, relatedItemsStyles, name, category, image, price, sendProductId, features, starRating }) => {
   const [openModal, setOpenModal] = useState(false);
   const [currentProduct, setCurrentProduct] = useState([]);
@@ -27,6 +28,20 @@ const RelatedProductCard = ({ id, currentProductId, relatedItemsStyles, name, ca
     getCurrentProductInfo(currentProductId)
   }, [currentProductId])
 
+  const getImage = (currentProductId) => {
+    if (currentProductId === 44389) {
+      return (
+        <img src="../../assets/sunglasses.png" alt="sunnies" loading="lazy" style={{ borderRadius: '15px' }} />
+      );
+    }
+    if (currentProductId !== 44389) {
+      return (
+        <img src={image} alt={name} loading="lazy" style={{ borderRadius: '15px' }} />
+      );
+    }
+  }
+
+
   return (
     <div className="product-card" onClick={() => sendProductId(id)} >
       <StarFill size={21} className="star" onClick={toggleModal}
@@ -37,7 +52,7 @@ const RelatedProductCard = ({ id, currentProductId, relatedItemsStyles, name, ca
           color: 'e8e8e8',
         }}
       />
-      <img className="product-image" src={image} alt={name} loading="lazy" style={{ borderRadius: '15px' }}/>
+      <img className="product-image" src={image} alt={name} loading="lazy" style={{borderRadius: '15px 15px 0px 0px'}} />
       <div className="bottom-half-card" style={{display: 'inline-block'}} onClick={() => { sendProductId(id)}}>
         <p className="product-category">{category.toUpperCase()}</p>
         <p className="product-name">{name}</p>

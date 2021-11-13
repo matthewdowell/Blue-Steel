@@ -50,6 +50,10 @@ function getMetadata(params) {
   return handleGetRequests('reviews/meta', params)
 };
 
+function addSunglassPhoto(src) {
+  
+}
+
 export default{
   getAllProducts,
   getProduct,
