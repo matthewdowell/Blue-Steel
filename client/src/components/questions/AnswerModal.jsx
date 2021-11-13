@@ -15,7 +15,7 @@ const AnswerModal = ({ setModalDisplayed, question }) => (
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      zIndex: '2',
+      zIndex: '150',
     }}
     onClick={(e) => {
       if (e.target === e.currentTarget) {
