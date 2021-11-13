@@ -84,6 +84,7 @@ const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
       && emailInputVal.includes('@')
     ) {
       addReview(
+        () => {},
         currentProduct.id,
         overallRating,
         reviewSummary,
@@ -124,7 +125,7 @@ const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
         alignItems: 'center'
       }}
       >
-        <div>
+        <div style={{ color: '#DEB992' }}>
           Write Your Review
         </div>
         <div style={{ marginTop: '5px', fontSize: '24px', marginBottom: '7px', color: '#DEB992' }}>
@@ -133,7 +134,7 @@ const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
           {currentProduct.name}
         </div>
       </h2>
-      <div style={{ margin: '10px' }}>
+      <div style={{ margin: '10px', color: '#DEB992' }}>
         <div className="reviewFormOverallRating"> {/* REQUIRED */}
           <b>Overall Rating</b>
           <div>
@@ -203,7 +204,7 @@ const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
                 {' '}
                 {50 - reviewBody.length}
               </div>
-            : <div style={{ color: 'rgb(8, 0, 252)' }}>
+            : <div style={{ color: '#DEB992' }}>
                 Minimum review length reached.
               </div>}
         </div>
