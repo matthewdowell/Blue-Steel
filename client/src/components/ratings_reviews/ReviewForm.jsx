@@ -113,7 +113,7 @@ const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
         border: '2px solid black',
         borderRadius: '15px',
         padding: '11px',
-        backgroundColor: 'white',
+        backgroundColor: '#051622',
       }}
     >
       <h2 style={{

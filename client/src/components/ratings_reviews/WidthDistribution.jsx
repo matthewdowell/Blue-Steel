@@ -34,11 +34,13 @@ const WidthDistribution = ({ width }) => {
         value={width ? (width.value - 1) / 4 : 0}
       >
       </progress>
-      {widthDescription === 'Not available'
-        ? '(0.0)'
-        : `(${((value * (5 - 1) + 1).toFixed(1))})`}
-      {' '}
-      {widthDescription}
+      <div style={{ color: '#DEB992' }}>
+        {widthDescription === 'Not available'
+          ? '(0.0)'
+          : `(${((value * (5 - 1) + 1).toFixed(1))})`}
+        {' '}
+        {widthDescription}
+      </div>
     </div>
   );
 };

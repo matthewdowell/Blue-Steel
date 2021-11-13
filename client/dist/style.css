@@ -50,9 +50,11 @@ html {
 .reviewScroll {
   height: 530px;
 }
-.ratingBarContainer,
+.ratingBarsContainer,
 .reviewScroll {
   background: linear-gradient(45deg, rgba(40,62,110,1) 0%, rgba(16,56,110,1) 14%, rgba(17,75,130,1) 49%, rgba(16,56,110,1) 91%, rgba(40,62,110,1) 100%);
+  border-radius: 15px;
+  border: 1px solid #DEB992;
 }
 .aggregateReviewInfo {
   width: 600px;
@@ -61,17 +63,20 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  margin-left: 7px;
   margin-bottom: 20px;
 }
-.ratingBars,
-.reviewScroll {
+
+.reviewScroll,
+.ratingBars {
   box-shadow: inset 0px 0px 20px 0px rgba(0,0,0,0.1);
   padding: 7px;
-  border-style: solid;
-  border-width: 1px;
+  border: 1px solid #DEB992;
   border-radius: 15px;
-  border-color: rgba(0, 0, 0, 0.05);
   overflow-y: scroll;
+}
+.ratingBars {
+  height: 540px;
 }
 .ratingsReviewsHeader {
   display: flex;
@@ -86,7 +91,7 @@ html {
   font-weight: bold;
 }
 .reviewList {
-  margin-top: 80px;
+  margin-top: 100px;
 }
 .sortByDropdown,
 .sortDirectionDropdown {

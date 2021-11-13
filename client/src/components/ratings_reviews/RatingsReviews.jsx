@@ -61,43 +61,44 @@ const RatingsReviews = () => {
             />
           </div>
         </div>
-        <div className="ratingBars" width="600px">
-          {/* USER RECOMMENDATION */}
-          <div>
-            <b>User Feedback</b>
-            <PercentRecommended currentRatingsReviewsList={currentRatingsReviewsList} />
+        <div className="ratingBarsContainer">
+          <div className="ratingBars" width="600px">
+            {/* USER RECOMMENDATION */}
+            <div>
+              <b>User Feedback</b>
+              <PercentRecommended currentRatingsReviewsList={currentRatingsReviewsList} />
+            </div>
+            {/* RATINGS */}
+            {currentMetaData.ratings
+              ? <RatingsDistribution
+                  ratings={currentMetaData.ratings}
+                  ratingsToDisplay={ratingsToDisplay}
+                  setRatingsToDisplay={setRatingsToDisplay}
+              />
+              : null}
+            {/* CHARACTERISTICS */}
+            <div className="characteristics">
+              <b>Characteristics</b>
+              {(currentMetaData.characteristics)
+                ? <SizeDistribution size={currentMetaData.characteristics.Size} />
+                : null}
+              {(currentMetaData.characteristics)
+                ? <WidthDistribution width={currentMetaData.characteristics.Width} />
+                : null}
+              {(currentMetaData.characteristics)
+                ? <ComfortDistribution comfort={currentMetaData.characteristics.Comfort} />
+                : null}
+              {(currentMetaData.characteristics)
+                ? <QualityDistribution quality={currentMetaData.characteristics.Quality} />
+                : null}
+              {(currentMetaData.characteristics)
+                ? <LengthDistribution length={currentMetaData.characteristics.Length} />
+                : null}
+              {(currentMetaData.characteristics)
+                ? <FitDistribution fit={currentMetaData.characteristics.Fit} />
+                : null}
+            </div>
           </div>
-          {/* RATINGS */}
-          {currentMetaData.ratings
-            ? <RatingsDistribution
-                ratings={currentMetaData.ratings}
-                ratingsToDisplay={ratingsToDisplay}
-                setRatingsToDisplay={setRatingsToDisplay}
-            />
-            : null}
-          {/* CHARACTERISTICS */}
-          <div className="characteristics">
-            <b>Characteristics</b>
-            {(currentMetaData.characteristics)
-              ? <SizeDistribution size={currentMetaData.characteristics.Size} />
-              : null}
-            {(currentMetaData.characteristics)
-              ? <WidthDistribution width={currentMetaData.characteristics.Width} />
-              : null}
-            {(currentMetaData.characteristics)
-              ? <ComfortDistribution comfort={currentMetaData.characteristics.Comfort} />
-              : null}
-            {(currentMetaData.characteristics)
-              ? <QualityDistribution quality={currentMetaData.characteristics.Quality} />
-              : null}
-            {(currentMetaData.characteristics)
-              ? <LengthDistribution length={currentMetaData.characteristics.Length} />
-              : null}
-            {(currentMetaData.characteristics)
-              ? <FitDistribution fit={currentMetaData.characteristics.Fit} />
-              : null}
-          </div>
-
         </div>
         <div>
           <button

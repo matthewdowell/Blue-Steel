@@ -84,7 +84,7 @@ const RatingsReviewsTile = ({ tile }) => {
         {/* NOTE: Uncomment code below to only label reviews that recommended product */}
         {tile.recommend
           ? (<span style={{
-            color: 'rgb(8, 0, 252)',
+            color: '#DEB992',
             marginTop: '7px',
             marginBottom: '7px'}}>
               ✔ I recommended this product

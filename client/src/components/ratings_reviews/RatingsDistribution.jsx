@@ -80,7 +80,7 @@ const RatingsDistribution = ({ ratings, ratingsToDisplay, setRatingsToDisplay })
               {ratingsReviewsHelpers.countReviewsWithRating(ratings, rating)}
               )
               </div>)
-            : (<div className="ratingCount">
+            : (<div className="ratingCount" style={{ color: '#DEB992' }}>
               (
               {ratingsReviewsHelpers.countReviewsWithRating(ratings, rating)}
               )
@@ -95,7 +95,7 @@ const RatingsDistribution = ({ ratings, ratingsToDisplay, setRatingsToDisplay })
             setAnyRatingBarClicked(false);
             setRatingBarsClicked(unclickedBars);
             setRatingsToDisplay(ratingsArr);
-          }}>Remove Review Filters
+          }}>Reset Filters
         </button>
         <span style={{
           color: '#DEB992',

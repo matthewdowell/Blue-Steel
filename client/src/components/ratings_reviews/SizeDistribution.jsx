@@ -34,11 +34,13 @@ const SizeDistribution = ({ size }) => {
         value={value}
       >
       </progress>
-      {sizeDescription === 'Not available'
-        ? '(0.0)'
-        : `(${((value * (5 - 1) + 1).toFixed(1))})`}
-      {' '}
-      {sizeDescription}
+      <div style={{ color: '#DEB992' }}>
+        {sizeDescription === 'Not available'
+          ? '(0.0)'
+          : `(${((value * (5 - 1) + 1).toFixed(1))})`}
+        {' '}
+        {sizeDescription}
+      </div>
     </div>
   );
 };
