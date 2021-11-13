@@ -48,19 +48,35 @@ html {
 }
 .aggregateReviewInfo,
 .reviewScroll {
-    height: 500px;
+  height: 530px;
+}
+.ratingBarsContainer,
+.reviewScroll {
+  background: linear-gradient(45deg, rgba(40,62,110,1) 0%, rgba(16,56,110,1) 14%, rgba(17,75,130,1) 49%, rgba(16,56,110,1) 91%, rgba(40,62,110,1) 100%);
+  border-radius: 15px;
+  border: 1px solid #DEB992;
 }
 .aggregateReviewInfo {
-    width: 600px;
+  width: 600px;
 }
-.ratingBars,
-.reviewScroll {
-    box-shadow: inset 0px 0px 20px 0px rgba(0,0,0,0.1);
-    padding: 7px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgba(0, 0, 0, 0.05);
-    overflow-y: scroll;
+.aggregateRating {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 7px;
+  margin-bottom: 20px;
+}
+
+.reviewScroll,
+.ratingBars {
+  box-shadow: inset 0px 0px 20px 0px rgba(0,0,0,0.1);
+  padding: 7px;
+  border: 1px solid #DEB992;
+  border-radius: 15px;
+  overflow-y: scroll;
+}
+.ratingBars {
+  height: 540px;
 }
 .ratingsReviewsHeader {
   display: flex;
@@ -75,23 +91,24 @@ html {
   font-weight: bold;
 }
 .reviewList {
-  margin-top: 40px;
+  margin-top: 100px;
 }
 .sortByDropdown,
 .sortDirectionDropdown {
-    font-weight: bold;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    text-decoration: underline;
-    border: none;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-decoration: underline;
+  border: none;
 }
 .reviewButton {
-    font-size: medium;
-    font-weight: bold;
-    background-color: white;
-    width: 200px;
-    height: 65px;
-    margin-top: 15px;
+  font-size: medium;
+  font-weight: bold;
+  background-color: #DEB992;
+  border-radius: 15px;
+  width: 200px;
+  height: 60px;
+  margin-top: 15px;
 }
 .resetFiltersButton,
 .submitReviewButton {
@@ -100,11 +117,13 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px;
   border: 2px solid black;
-  background-color: white;
+  border-radius: 15px;
+  background-color: #DEB992;
   width: 200px;
-  height: 30px;
-  margin-bottom: 15px;
+  height: 40px;
+  margin-bottom: 10px;
 }
 /* RatingsReviewsTile.jsx */
 .ratingsReviewsTile {
@@ -119,11 +138,14 @@ html {
 .reviewerInfo {
   display: flex;
   justify-content: space-between;
-  color:rgb(65, 65, 65)
+  color: #DEB992;
+}
+.tileButtons {
+  color: #DEB992;
 }
 .reviewSummary {
   font-weight: bold;
-  color: rgb(0, 0, 0);
+  color: white;
   margin-top: 7px;
   margin-bottom: 7px;
 }
@@ -134,11 +156,12 @@ html {
 .showEntireReviewButton,
 .markReviewHelpfulButton,
 .reportReviewButton {
-    font-size: medium;
-    background-color: white;
-    text-decoration: underline;
-    border: none;
-    cursor: pointer
+  font-size: medium;
+  background: none;
+  color: #DEB992;
+  text-decoration: underline;
+  border: none;
+  cursor: pointer
 }
 /* RatingsDistribution.jsx */
 .aggregateRating,
@@ -157,7 +180,7 @@ html {
     align-self: center;
 }
 progress {
-  height: 30px;
+  height: 32px;
   width: 260px;
   margin-left: 10px;
   margin-right: 25px;
@@ -176,21 +199,51 @@ progress {
   width: 100%;
 }
 .characteristicsContainer {
-    display: flex;
-    margin-top: 7px;
-    gap: 60px;
+  display: flex;
+  margin-top: 7px;
+  gap: 60px;
+}
+.submitReviewButton {
+  height: 55px;
+}
+input[type="radio"] {
+  opacity: 0;
+  position: fixed;
+  transform: scale(2);
+  /* width: 0; */
+}
+#radioButton {
+  cursor: pointer;
+  display: inline-block;
+  background-color: white;
+  padding: 2.5px 6px;
+  font-family: sans-serif, Arial;
+  font-size: 14px;
+  border: 1px solid rgb(80, 80, 80);
+  border-radius: 20px;
+  margin: 2px;
+}
+input[type="radio"]:checked + #radioButton {
+  background-color:#bfb;
+  border-color: rgb(2, 130, 2);
+}
+input[type="radio"]:hover,
+#radioButton:hover{
+  cursor: pointer;
+  background-color: #bfb;
+  border-color: rgb(0, 184, 0);
 }
 /* .reviewCategory, */
 .reviewFormOverallRating,
 .reviewFormRecommendation {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 .reviewCategory {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    flex-wrap: nowrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
 }
 
 /* [Characteristic]Distribution.jsx */
@@ -205,18 +258,15 @@ progress {
   align-items: center;
 }
 .likedIcon, .ratingCount, .characteristic {
-  width: 100px;
+  width: 130px;
 }
 .ratingCountClicked {
-    font-weight: bold;
-    color: rgb(8, 0, 252);
+  font-weight: bold;
+  color: #DEB992;
 }
 /* Stars */
-.w-6 {
-  width: 20px;
-}
-.h-6 {
-  height: 20px;
+.starRating {
+  color: black;
 }
 
 .product-list {
@@ -239,7 +289,6 @@ color: #575757;
 .product-card{
   width:150px;
   height: 300px;
-  /* margin: auto; */
   display:flex;
   flex-direction:column;
   justify-content:inherit;
@@ -323,8 +372,6 @@ color: #575757;
   padding-bottom: 0.3rem;
 }
 
-
-
-.app {
+/* .app {
   transform: scale(0.8);
-}
+} */

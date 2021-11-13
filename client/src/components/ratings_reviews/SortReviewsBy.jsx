@@ -39,7 +39,9 @@ const SortReviewsBy = ({
           id="sortBy"
           style={{
             fontWeight: 'bold',
-            fontSize: '22px'
+            fontSize: '22px',
+            color: 'white',
+            background: '#051622'
           }}
           onChange={() => {
             const e = document.getElementById('sortBy');
@@ -64,7 +66,9 @@ const SortReviewsBy = ({
           id="sortDirection"
           style={{
             fontWeight: 'bold',
-            fontSize: '22px'
+            fontSize: '22px',
+            color: 'white',
+            background: '#051622'
           }}
           onChange={() => {
             const e = document.getElementById('sortDirection');

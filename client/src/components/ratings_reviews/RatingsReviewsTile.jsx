@@ -5,8 +5,7 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable no-unused-vars */
 /* eslint-disable import/extensions */
-import React, { useContext, useState } from 'react';
-import { ProductContext } from '../../context/globalContext.js';
+import React, { useState } from 'react';
 import { markReviewHelpful, reportReview } from '../../utils/reviewUtils.js';
 import Stars from '../stars/Stars.jsx';
 
@@ -17,10 +16,6 @@ const RatingsReviewsTile = ({ tile }) => {
   const [reported, setReported] = useState(false);
   const date = new Date(tile.date);
   const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-  // function showEntireReview() {
-
-  // }
 
   function findHelpful() {
     if (!foundHelpful) {
@@ -41,7 +36,7 @@ const RatingsReviewsTile = ({ tile }) => {
     <div className="ratingsReviewsTile" key={tile.review_id}>
       <span className="reviewerInfo">
         <span className="rating"><Stars rating={tile.rating} /></span>
-        <span>
+        <span className="reviewerName">
           <span>
             {tile.reviewer_name},
           </span>
@@ -89,7 +84,7 @@ const RatingsReviewsTile = ({ tile }) => {
         {/* NOTE: Uncomment code below to only label reviews that recommended product */}
         {tile.recommend
           ? (<span style={{
-            color: 'rgb(8, 0, 252)',
+            color: '#DEB992',
             marginTop: '7px',
             marginBottom: '7px'}}>
               ✔ I recommended this product
@@ -113,7 +108,7 @@ const RatingsReviewsTile = ({ tile }) => {
       {tile.response
         ? <div className="reviewResponse">Seller response: {tile.response}</div>
         : 'No response from seller.'}
-      <div>
+      <div className="tileButtons">
         Helpful?
         <button
           type="submit"

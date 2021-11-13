@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
     headers: { Authorization: process.env.REACT_APP_API_KEY }
   })
     .then((results) => { res.send(results.data); })
-    .catch((err) => { console.log(err); });
+    .catch((err) => { console.log('ROUTER POST ERROR:', err); });
 });
 
 router.put('/review_id/helpful', (req, res) => {
