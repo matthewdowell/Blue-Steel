@@ -5,7 +5,7 @@ const SRC_DIR = path.join(__dirname, '/client/src');
 const DIST_DIR = path.join(__dirname, '/client/dist');
 
 module.exports = {
-  mode: process.env.WEBPACK_MODE,
+  mode: 'development',
   entry: `${SRC_DIR}/index.js`,
   output: {
 
