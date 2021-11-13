@@ -30,32 +30,24 @@ export function getReviewMetadata(callback, product_id) {
 }
 
 export function addReview(
-  product_id,
-  rating,
-  summary,
-  body,
-  recommend,
-  name,
-  email,
-  photos = [],
-  characteristics
+  callback = () => {}, product_id, rating, summary, body, recommend, name, email, photos = [], characteristics
 ) {
   axios.post('/reviews', {
-    params: {
-      product_id: product_id,
-      rating: rating,
-      summary: summary,
-      body: body,
-      recommend: recommend,
-      name: name,
-      email: email,
-      photos: photos,
-      characteristics: characteristics
-    }
+    product_id,
+    rating,
+    summary,
+    body,
+    recommend,
+    name,
+    email,
+    photos,
+    characteristics
   })
     .then(() => {
+      console.log('Review has been posted!');
+      callback();
     })
-    .catch((err) => { console.log('UTIL POST ERROR:', err); });
+    .catch((err) => { console.log(err); });
 }
 
 export function markReviewHelpful(review_id) {

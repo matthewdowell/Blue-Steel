@@ -78,7 +78,10 @@ const RatingsDistribution = ({ ratings, ratingsToDisplay, setRatingsToDisplay })
             ? (<div className="ratingCountClicked">
               (
               {ratingsReviewsHelpers.countReviewsWithRating(ratings, rating)}
+
               )
+              {' '}
+              Displayed
               </div>)
             : (<div className="ratingCount" style={{ color: '#DEB992' }}>
               (
