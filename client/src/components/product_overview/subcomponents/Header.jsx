@@ -5,7 +5,7 @@ const Header = () => (
     border: 'none',
     backgroundColor: '#DEB992',
     opacity: 0.8,
-    backgroundImage: 'repeating-radial-gradient( circle at 0 0, transparent 0, #DEB992 10px ), repeating-linear-gradient( #1BA09855, #1BA098 )',
+    background: 'linear-gradient(45deg, rgba(40,62,110,1) 0%, rgba(16,56,110,1) 14%, rgba(17,75,130,1) 49%, rgba(16,56,110,1) 91%, rgba(40,62,110,1) 100%)',
     display: 'flex',
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -13,8 +13,7 @@ const Header = () => (
     marginTop: '0px',
   }}
   >
-    <h1 style={{ color: '#051622', fontStyle: 'italic', letterSpacing: '.5em' }}>Blue Steel Designs</h1>
-    <div style={{ color: '#051622', fontSize: '1.25em' }}>Search</div>
+    <img src="./assets/bluesteel.png" alt="" style={{ maxWidth: '100%', maxHeight: '60%' }} />
   </div>
 );
 

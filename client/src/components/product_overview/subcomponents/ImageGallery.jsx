@@ -90,8 +90,8 @@ const ImageGallery = ({
                               height: '70px',
                               objectFit: 'cover',
                               marginBottom: '1em',
-                              borderTop: (imageIndex == index) ? '6px solid purple' : '2px solid black',
-                              borderBottom: (imageIndex == index) ? '6px solid purple' : '2px solid black',
+                              borderTop: (imageIndex == index) ? '6px solid #5B5C92' : '2px solid black',
+                              borderBottom: (imageIndex == index) ? '6px solid #5B5C92' : '2px solid black',
                               display: (index >= low && index <= high) ? 'block' : 'none',
                             }}
                           />
@@ -164,7 +164,7 @@ const ImageGallery = ({
         style={{
           zIndex: '100',
           position: 'absolute',
-          top: '44%',
+          top: '14%',
           right: mainImgSize ? '20em' : '47em',
           height: '15px',
           width: '15px',
