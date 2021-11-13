@@ -8,6 +8,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import ratingsReviewsHelpers from './ratingsReviewsHelpers';
+// import Stars from '../shared/Stars.jsx';
 import Stars from '../stars/Stars.jsx';
 
 const RatingsDistribution = ({ ratings, ratingsToDisplay, setRatingsToDisplay }) => {
@@ -79,7 +80,7 @@ const RatingsDistribution = ({ ratings, ratingsToDisplay, setRatingsToDisplay })
               {ratingsReviewsHelpers.countReviewsWithRating(ratings, rating)}
               )
               </div>)
-            : (<div className="ratingCount">
+            : (<div className="ratingCount" style={{ color: '#DEB992' }}>
               (
               {ratingsReviewsHelpers.countReviewsWithRating(ratings, rating)}
               )
@@ -94,10 +95,10 @@ const RatingsDistribution = ({ ratings, ratingsToDisplay, setRatingsToDisplay })
             setAnyRatingBarClicked(false);
             setRatingBarsClicked(unclickedBars);
             setRatingsToDisplay(ratingsArr);
-          }}>Remove Review Filters
+          }}>Reset Filters
         </button>
         <span style={{
-          color: 'blue',
+          color: '#DEB992',
           fontWeight: 'bold'
         }}
         >

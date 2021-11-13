@@ -34,11 +34,13 @@ const FitDistribution = ({ fit }) => {
         value={fit ? (fit.value - 1) / 4 : 0}
       >
       </progress>
-      {fitDescription === 'Not available'
-        ? '(0.0)'
-        : `(${((value * (5 - 1) + 1).toFixed(1))})`}
-      {' '}
-      {fitDescription}
+      <div style={{ color: '#DEB992' }}>
+        {fitDescription === 'Not available'
+          ? '(0.0)'
+          : `(${((value * (5 - 1) + 1).toFixed(1))})`}
+        {' '}
+        {fitDescription}
+      </div>
     </div>
   );
 };

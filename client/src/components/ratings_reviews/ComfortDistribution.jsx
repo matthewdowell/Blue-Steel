@@ -34,11 +34,13 @@ const comfortDistribution = ({ comfort }) => {
         value={comfort ? (comfort.value - 1) / 4 : 0}
       >
       </progress>
-      {comfortDescription === 'Not available'
-        ? '(0.0)'
-        : `(${((value * (5 - 1) + 1).toFixed(1))})`}
-      {' '}
-      {comfortDescription}
+      <div style={{ color: '#DEB992' }}>
+        {comfortDescription === 'Not available'
+          ? '(0.0)'
+          : `(${((value * (5 - 1) + 1).toFixed(1))})`}
+        {' '}
+        {comfortDescription}
+      </div>
     </div>
   );
 };

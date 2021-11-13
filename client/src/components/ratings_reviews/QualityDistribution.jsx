@@ -34,11 +34,13 @@ const QualityDistribution = ({ quality }) => {
         value={quality ? (quality.value - 1) / 4 : 0}
       >
       </progress>
-      {qualityDescription === 'Not available'
-        ? '(0.0)'
-        : `(${((value * (5 - 1) + 1).toFixed(1))})`}
-      {' '}
-      {qualityDescription}
+      <div style={{ color: '#DEB992' }}>
+        {qualityDescription === 'Not available'
+          ? '(0.0)'
+          : `(${((value * (5 - 1) + 1).toFixed(1))})`}
+        {' '}
+        {qualityDescription}
+      </div>
     </div>
   );
 };

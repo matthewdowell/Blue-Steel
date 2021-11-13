@@ -4,20 +4,17 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable react/self-closing-comp */
 import React from 'react';
-import Star from './Star.jsx';
+import Rating from '@material-ui/lab/Rating';
 
 const Stars = ({ rating }) => {
-  const ratings = [];
-  for (let i = 1; i <= 5; i++) {
-    if (i <= rating) {
-      ratings.push(true);
-    } else {
-      ratings.push(false);
-    }
-  }
   return (
-    <div>
-      {ratings.map((filled) => <Star id={Math.random()} filled={filled} />)}
+    <div value={rating}>
+      <Rating
+        className="starRating"
+        name="starRating"
+        value={rating}
+        precision={0.25}
+      />
     </div>
   );
 };

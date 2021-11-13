@@ -3,9 +3,10 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable arrow-body-style */
 import React from 'react';
-import ratingsReviewsHelpers from './ratingsReviewsHelpers.js';
+import { getPercentRecommended } from './ratingsReviewsHelpers.js';
 
 const PercentRecommended = ({ currentRatingsReviewsList }) => {
+  const percentRecommended = getPercentRecommended(currentRatingsReviewsList);
   return (
     <div>
       {/* <b>User Recommendation</b> */}
@@ -16,13 +17,17 @@ const PercentRecommended = ({ currentRatingsReviewsList }) => {
         <div>
           <progress
             className="percentRecommendedBar"
-            value={ratingsReviewsHelpers.getPercentRecommended(currentRatingsReviewsList)}
+            value={percentRecommended}
           >
           </progress>
         </div>
-        <div>
-          {(ratingsReviewsHelpers.getPercentRecommended(currentRatingsReviewsList) * 100).toFixed(0)}
+        <div style={{ color: '#DEB992' }}>
+          {/* {(getPercentRecommended(currentRatingsReviewsList) * 100).toFixed(0)} */}
+          {(percentRecommended * 100).toFixed(0)}
           {'%'}
+          {percentRecommended >= 0.75
+            ? '  👍'
+            : null}
         </div>
       </div>
     </div>
