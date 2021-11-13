@@ -25,9 +25,6 @@ const PercentRecommended = ({ currentRatingsReviewsList }) => {
           {/* {(getPercentRecommended(currentRatingsReviewsList) * 100).toFixed(0)} */}
           {(percentRecommended * 100).toFixed(0)}
           {'%'}
-          {percentRecommended >= 0.75
-            ? '  👍'
-            : null}
         </div>
       </div>
     </div>
