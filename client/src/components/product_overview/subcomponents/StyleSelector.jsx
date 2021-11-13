@@ -1,10 +1,13 @@
+/* eslint-disable import/extensions */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
+import { getReviewMetadata } from '../../../utils/reviewUtils.js';
 // eslint-disable-next-line import/extensions
-import Stars from '../../shared/Stars.jsx';
+import Stars from '../../stars/Stars.jsx';
+import { getAverageRating } from '../../ratings_reviews/ratingsReviewsHelpers.js';
 
 const StyleSelector = ({
   product, styles, currentStyle, setCurrentStyle, mainImgSize,
@@ -18,6 +21,8 @@ const StyleSelector = ({
   const [checked, setChecked] = useState(0);
   const [onSale, setOnSale] = useState(false);
   const [cart, setCart] = useState({});
+  const [currentMetaData, setCurrentMetaData] = useState({});
+  const buttonColor = '#5B5C92';
 
   if (styles[0] !== undefined) {
     console.log(styles);
@@ -27,6 +32,12 @@ const StyleSelector = ({
       quantities.push(skus[sku].quantity);
     });
   }
+
+  useEffect(() => {
+    getReviewMetadata((data) => {
+      setCurrentMetaData(data);
+    }, product.id);
+  }, [product]);
 
   useEffect(() => {
     if (styles[0] !== undefined) {
@@ -52,11 +63,25 @@ const StyleSelector = ({
   return (
     <div style={{
       // eslint-disable-next-line no-dupe-keys
-      background: 'none', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', alignContent: 'center', flexBasis: '43%', padding: '25px', display: mainImgSize ? 'none' : 'block',
+      background: 'linear-gradient(45deg, rgba(40,62,110,1) 0%, rgba(16,56,110,1) 14%, rgba(17,75,130,1) 49%, rgba(16,56,110,1) 91%, rgba(40,62,110,1) 100%)',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      alignContent: 'center',
+      flexBasis: '43%',
+      gap: '5px',
+      padding: '25px',
+      // eslint-disable-next-line no-dupe-keys
+      display: mainImgSize ? 'none' : 'block',
     }}
     >
-      <a href="#moveToReviews">Read all reviews</a>
-      {/* <Stars style={{ display: 'hidden' }} /> */}
+      <a style={{ paddingBottom: '5em', color: 'white' }} href="#moveToReviews">Read all reviews</a>
+      <Stars
+        style={{ margin: '10px' }}
+        rating={currentMetaData.ratings
+          ? getAverageRating(currentMetaData.ratings)
+          : null}
+      />
       <span style={{ fontSize: '1.25em', display: 'block' }}>{product.category}</span>
       <span style={{ fontSize: '3em', fontWeight: 'bold', display: 'block' }}>{product.name}</span>
       <span style={{
@@ -79,7 +104,12 @@ const StyleSelector = ({
         {styles[0]
           ? styles.map((style, index) => (
             // eslint-disable-next-line react/no-array-index-key
-            <div key={index} style={{ width: '70px', height: '70px', padding: '.75em' }}>
+            <div
+              key={index}
+              style={{
+                width: '70px', height: '70px', padding: '.75em', color: 'black',
+              }}
+            >
               <i
                 style={{
                   zIndex: '100', background: 'white', borderRadius: '10px', position: 'absolute', visibility: (checked === index) ? 'visible' : 'hidden',
@@ -109,7 +139,7 @@ const StyleSelector = ({
           id="size"
           onChange={(e) => { setCurrentSize(e.target.value); }}
           style={{
-            background: '#DEB992', fontSize: '1.5em', paddingLeft: '50px', paddingRight: '70px', paddingTop: '20px', paddingBottom: '20px', marginLeft: '.2em', marginRight: '.25em',
+            background: buttonColor, color: 'white', borderRadius: '10px', fontSize: '1.5em', paddingLeft: '50px', paddingRight: '70px', paddingTop: '20px', paddingBottom: '20px', marginLeft: '.2em', marginRight: '.25em',
           }}
         >
           <option value="SELECT SIZE" selected="selected" disabled>SELECT SIZE</option>
@@ -123,7 +153,7 @@ const StyleSelector = ({
           name="quantity"
           id="quantity"
           style={{
-            background: '#DEB992', fontSize: '1.5em', paddingLeft: '50px', paddingRight: '70px', paddingTop: '20px', paddingBottom: '20px', marginLeft: '.2em', marginRight: '.2em',
+            background: buttonColor, color: 'white', borderRadius: '10px', fontSize: '1.5em', paddingLeft: '50px', paddingRight: '70px', paddingTop: '20px', paddingBottom: '20px', marginLeft: '.2em', marginRight: '.2em',
           }}
         >
           <option value="-" selected="selected" disabled>{currentQuantity ? '1' : '-'}</option>
@@ -133,7 +163,7 @@ const StyleSelector = ({
         </select>
       </div>
       {/* Add To Cart and Favorite  */}
-      <div>
+      <div style={{ display: 'flex' }}>
         <button
           aria-label="Add to Cart"
           type="button"
@@ -146,21 +176,21 @@ const StyleSelector = ({
             }
           }}
           style={{
-            backgroundColor: '#1BA098', fontSize: '1.5em', paddingLeft: '50px', paddingRight: '70px', paddingTop: '20px', paddingBottom: '20px', marginLeft: '.2em', marginRight: '.2em', marginTop: '1em',
+            backgroundColor: '#DEB992', color: '#051622', borderRadius: '10px', fontSize: '1.5em', paddingLeft: '50px', paddingRight: '70px', paddingTop: '20px', paddingBottom: '20px', marginLeft: '.2em', marginRight: '.2em', marginTop: '1em',
           }}
         >
           ADD TO CART
         </button>
 
-        <select
+        <div
           name="quantity"
           id="quantity"
           style={{
-            background: '#DEB992', fontSize: '1.5em', paddingLeft: '50px', paddingRight: '70px', paddingTop: '10px', paddingBottom: '10px', marginLeft: '.2em', marginRight: '.2em', marginTop: '1em',
+            display: 'flex', marginLeft: '.25em', justifyContent: 'center', alignItems: 'center', background: buttonColor, width: '1em', borderRadius: '10px', fontSize: '1.5em', paddingLeft: '50px', paddingRight: '70px', paddingTop: '10px', paddingBottom: '10px', marginRight: '.2em', marginTop: '1em',
           }}
         >
-          <option value="">&#9734;</option>
-        </select>
+          <span style={{ }}>&#9734;</span>
+        </div>
       </div>
     </div>
   );
