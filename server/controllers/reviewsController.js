@@ -32,10 +32,13 @@ router.get('/meta', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-den/reviews', req.body.params, {
+  axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-den/reviews', req.body, {
     headers: { Authorization: process.env.REACT_APP_API_KEY }
   })
-    .then((results) => { res.send(results.data); })
+    .then((results) => {
+      console.log('ROUTER POST SUCCESS');
+      res.send(results.data);
+    })
     .catch((err) => { console.log('ROUTER POST ERROR:', err); });
 });
 

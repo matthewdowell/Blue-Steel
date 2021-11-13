@@ -84,6 +84,7 @@ const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
       && emailInputVal.includes('@')
     ) {
       addReview(
+        () => {},
         currentProduct.id,
         overallRating,
         reviewSummary,
@@ -124,16 +125,16 @@ const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
         alignItems: 'center'
       }}
       >
-        <div>
+        <div style={{ color: '#DEB992' }}>
           Write Your Review
         </div>
-        <div style={{ marginTop: '5px', fontSize: '24px', marginBBottom: '7px' }}>
+        <div style={{ marginTop: '5px', fontSize: '24px', marginBottom: '7px', color: '#DEB992' }}>
           About the
           {' '}
           {currentProduct.name}
         </div>
       </h2>
-      <div style={{ margin: '10px' }}>
+      <div style={{ margin: '10px', color: '#DEB992' }}>
         <div className="reviewFormOverallRating"> {/* REQUIRED */}
           <b>Overall Rating</b>
           <div>
@@ -198,12 +199,12 @@ const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
           >
           </textarea>
           {reviewBody.length < 50
-            ? <div style={{ color: 'rgb(8, 0, 252)' }}>
+            ? <div style={{ color: '#DEB992' }}>
                 Minimum required characters left:
                 {' '}
                 {50 - reviewBody.length}
               </div>
-            : <div style={{ color: 'rgb(8, 0, 252)' }}>
+            : <div style={{ color: '#DEB992' }}>
                 Minimum review length reached.
               </div>}
         </div>
@@ -230,7 +231,7 @@ const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
           >
           </input>
         </div>
-        <div>For privacy reasons, do not use your full name or email address.</div>
+        <div style={{ color: '#DEB992' }}>For privacy reasons, do not use your full name or email address.</div>
         <div>
           <div style={{ marginTop: '10px' }}><b>Email </b></div>
           <input
@@ -242,7 +243,7 @@ const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
           >
           </input>
         </div>
-        <div>For authentication reasons, you will not be emailed.</div>
+        <div style={{ color: '#DEB992' }}>For authentication reasons, you will not be emailed.</div>
       </div>
       <button className="submitReviewButton" onClick={handleFormSubmit}>
         SUBMIT REVIEW
