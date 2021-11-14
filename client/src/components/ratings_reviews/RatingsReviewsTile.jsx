@@ -31,7 +31,7 @@ const RatingsReviewsTile = ({ tile }) => {
       setReported(true);
     }
   }
-
+  console.log(tile);
   return (
     <div className="ratingsReviewsTile" key={tile.review_id}>
       <span className="reviewerInfo">
@@ -79,6 +79,23 @@ const RatingsReviewsTile = ({ tile }) => {
                     </button>
                   </div>)}
             </div>)}
+      </div>
+      <div>
+        {/* {tile.photos.length > 0
+          ? <img
+              src={tile.photos[0].url}
+              alt="photo of reviewer"
+              style={{
+                maxHeight: '100px',
+                borderRadius: '5px',
+                marginTop: '10px',
+                marginLeft: '10px',
+                marginRight: '10px',
+                cursor: 'pointer',
+              }}
+            >
+            </img>
+          : null} */}
       </div>
       <div className="reviewRecommended">
         {/* NOTE: Uncomment code below to only label reviews that recommended product */}

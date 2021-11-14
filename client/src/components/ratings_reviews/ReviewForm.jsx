@@ -4,19 +4,25 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable arrow-body-style */
+import { FormatSizeOutlined } from '@material-ui/icons';
 import React, { useContext, useState } from 'react';
 import { ProductContext } from '../../context/globalContext';
 import { addReview } from '../../utils/reviewUtils.js';
-// import { getQuestionsAnswers, postQuestion } from '../../utils/questionsUtils';
 
-const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
+const ReviewForm = ({ setModalDisplayed, characteristicsObj, currentMetaData }) => {
+  const sizeID = currentMetaData.characteristics.Size ? currentMetaData.characteristics.Size.id : null;
+  const widthID = currentMetaData.characteristics.Width ? currentMetaData.characteristics.Width.id : null;
+  const comfortID = currentMetaData.characteristics.Comfort.id ? currentMetaData.characteristics.Comfort.id : null;
+  const qualityID = currentMetaData.characteristics.Quality.id ? currentMetaData.characteristics.Quality.id : null;
+  const lengthID = currentMetaData.characteristics.Length.id ? currentMetaData.characteristics.Length.id : null;
+  const fitID = currentMetaData.characteristics.Fit.id ? currentMetaData.characteristics.Fit.id : null;
   const characteristicIDs = {
-    Size: 14,
-    Width: 15,
-    Comfort: 16,
-    Quality: 17,
-    Length: 18,
-    Fit: 19
+    Size: sizeID,
+    Width: widthID,
+    Comfort: comfortID,
+    Quality: qualityID,
+    Length: lengthID,
+    Fit: fitID
   };
   const characteristicsA = ['Size', 'Width', 'Comfort'];
   const characteristicsB = ['Quality', 'Length', 'Fit'];
@@ -29,14 +35,7 @@ const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
   const [nameInputVal, setNameInputVal] = useState('');
   const [emailInputVal, setEmailInputVal] = useState('');
   const [photoURLs, setPhotoURLs] = useState([]);
-  const [characteristics, setCharacteristics] = useState({
-    14: 0,
-    15: 0,
-    16: 0,
-    17: 0,
-    18: 0,
-    19: 0
-  });
+  const [characteristicsInput, setCharacteristicsInput] = useState({});
   const [errorDisplayed, setErrorDisplayed] = useState(false);
 
   const getCharacteristicButtonArray = (characteristic) => {
@@ -56,8 +55,8 @@ const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
                     name={characteristic}
                     onChange={() => {
                       const id = characteristicIDs[characteristic];
-                      setCharacteristics({
-                        ...characteristics,
+                      setCharacteristicsInput({
+                        ...characteristicsInput,
                         [id]: rating
                       });
                     }}
@@ -84,7 +83,7 @@ const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
       && emailInputVal.includes('@')
     ) {
       addReview(
-        () => {},
+        // () => {},
         currentProduct.id,
         overallRating,
         reviewSummary,
@@ -93,7 +92,7 @@ const ReviewForm = ({ setModalDisplayed, characteristicsObj }) => {
         nameInputVal,
         emailInputVal,
         photoURLs,
-        characteristics
+        characteristicsInput
       );
       setModalDisplayed(false);
     } else {

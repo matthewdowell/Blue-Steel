@@ -119,7 +119,7 @@ const RatingsReviews = () => {
           ratingsToDisplay={ratingsToDisplay}
         />
         {modalDisplayed
-          && <ReviewFormModal setModalDisplayed={setModalDisplayed} characteristicsObj={currentMetaData.characteristics} />}
+          && <ReviewFormModal setModalDisplayed={setModalDisplayed} characteristicsObj={currentMetaData.characteristics} currentMetaData={currentMetaData}/>}
         {/* BUTTONS */}
         <div className="reviewButtons">
           {
