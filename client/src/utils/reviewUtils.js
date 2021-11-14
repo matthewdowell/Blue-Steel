@@ -43,7 +43,6 @@ export function addReview(product_id, rating, summary, body, recommend, name, em
     characteristics
   })
     .then(() => {
-      console.log('Review has been posted!');
     })
     .catch((err) => { console.log(err); });
 }
