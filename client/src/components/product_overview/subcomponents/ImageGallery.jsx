@@ -142,8 +142,8 @@ const ImageGallery = ({
         style={{
           zIndex: '100',
           position: 'absolute',
-          top: '44%',
-          left: '12.5em',
+          top: '74%',
+          left: '11.5em',
           height: '15px',
           width: '15px',
           visibility: displayLeftArrow,
@@ -164,7 +164,7 @@ const ImageGallery = ({
         style={{
           zIndex: '100',
           position: 'absolute',
-          top: '14%',
+          top: '74%',
           right: mainImgSize ? '20em' : '47em',
           height: '15px',
           width: '15px',
