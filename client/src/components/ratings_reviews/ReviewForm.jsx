@@ -4,7 +4,7 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable arrow-body-style */
-import { FormatSizeOutlined } from '@material-ui/icons';
+// import { FormatSizeOutlined } from '@material-ui/icons';
 import React, { useContext, useState } from 'react';
 import { ProductContext } from '../../context/globalContext';
 import { addReview } from '../../utils/reviewUtils.js';
@@ -12,10 +12,10 @@ import { addReview } from '../../utils/reviewUtils.js';
 const ReviewForm = ({ setModalDisplayed, characteristicsObj, currentMetaData }) => {
   const sizeID = currentMetaData.characteristics.Size ? currentMetaData.characteristics.Size.id : null;
   const widthID = currentMetaData.characteristics.Width ? currentMetaData.characteristics.Width.id : null;
-  const comfortID = currentMetaData.characteristics.Comfort.id ? currentMetaData.characteristics.Comfort.id : null;
-  const qualityID = currentMetaData.characteristics.Quality.id ? currentMetaData.characteristics.Quality.id : null;
-  const lengthID = currentMetaData.characteristics.Length.id ? currentMetaData.characteristics.Length.id : null;
-  const fitID = currentMetaData.characteristics.Fit.id ? currentMetaData.characteristics.Fit.id : null;
+  const comfortID = currentMetaData.characteristics.Comfort ? currentMetaData.characteristics.Comfort.id : null;
+  const qualityID = currentMetaData.characteristics.Quality ? currentMetaData.characteristics.Quality.id : null;
+  const lengthID = currentMetaData.characteristics.Length ? currentMetaData.characteristics.Length.id : null;
+  const fitID = currentMetaData.characteristics.Fit ? currentMetaData.characteristics.Fit.id : null;
   const characteristicIDs = {
     Size: sizeID,
     Width: widthID,
@@ -83,7 +83,6 @@ const ReviewForm = ({ setModalDisplayed, characteristicsObj, currentMetaData }) 
       && emailInputVal.includes('@')
     ) {
       addReview(
-        // () => {},
         currentProduct.id,
         overallRating,
         reviewSummary,

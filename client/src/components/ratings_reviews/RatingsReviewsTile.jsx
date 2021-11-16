@@ -31,7 +31,7 @@ const RatingsReviewsTile = ({ tile }) => {
       setReported(true);
     }
   }
-  console.log(tile);
+
   return (
     <div className="ratingsReviewsTile" key={tile.review_id}>
       <span className="reviewerInfo">
