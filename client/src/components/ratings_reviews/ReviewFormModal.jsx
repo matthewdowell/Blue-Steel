@@ -4,7 +4,7 @@
 import React from 'react';
 import ReviewForm from './ReviewForm.jsx';
 
-const ReviewFormModal = ({ setModalDisplayed, characteristicsObj }) => {
+const ReviewFormModal = ({ setModalDisplayed, characteristicsObj, currentMetaData }) => {
   return (
     <div
       style={{
@@ -32,7 +32,11 @@ const ReviewFormModal = ({ setModalDisplayed, characteristicsObj }) => {
       role="button"
       tabIndex={0}
     >
-      <ReviewForm setModalDisplayed={setModalDisplayed} characteristicsObj={characteristicsObj} />
+      <ReviewForm
+        setModalDisplayed={setModalDisplayed}
+        characteristicsObj={characteristicsObj}
+        currentMetaData={currentMetaData}
+      />
     </div>
   );
 };

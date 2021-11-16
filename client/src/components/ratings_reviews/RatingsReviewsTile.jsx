@@ -80,6 +80,23 @@ const RatingsReviewsTile = ({ tile }) => {
                   </div>)}
             </div>)}
       </div>
+      <div>
+        {/* {tile.photos.length > 0
+          ? <img
+              src={tile.photos[0].url}
+              alt="photo of reviewer"
+              style={{
+                maxHeight: '100px',
+                borderRadius: '5px',
+                marginTop: '10px',
+                marginLeft: '10px',
+                marginRight: '10px',
+                cursor: 'pointer',
+              }}
+            >
+            </img>
+          : null} */}
+      </div>
       <div className="reviewRecommended">
         {/* NOTE: Uncomment code below to only label reviews that recommended product */}
         {tile.recommend

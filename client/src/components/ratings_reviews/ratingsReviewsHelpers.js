@@ -3,7 +3,6 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable radix */
 /* eslint-disable no-plusplus */
-// TODO
 const sortRatingsReviewsList = (reviews, sortType, sortDirection) => {
   if (sortType === 'relevant') {
     if (sortDirection === 'descending') {

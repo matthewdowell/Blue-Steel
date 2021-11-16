@@ -25,7 +25,6 @@ const StyleSelector = ({
   const buttonColor = '#5B5C92';
 
   if (styles[0] !== undefined) {
-    console.log(styles);
     const { skus } = styles[currentStyle];
     Object.keys(skus).forEach((sku) => {
       sizes.push(skus[sku].size);

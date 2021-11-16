@@ -29,8 +29,7 @@ export function getReviewMetadata(callback, product_id) {
     .catch((err) => { console.log(err); });
 }
 
-export function addReview(
-  callback = () => {}, product_id, rating, summary, body, recommend, name, email, photos = [], characteristics
+export function addReview(product_id, rating, summary, body, recommend, name, email, photos = [], characteristics
 ) {
   axios.post('/reviews', {
     product_id,
@@ -44,8 +43,6 @@ export function addReview(
     characteristics
   })
     .then(() => {
-      console.log('Review has been posted!');
-      callback();
     })
     .catch((err) => { console.log(err); });
 }
