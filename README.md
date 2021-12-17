@@ -1,6 +1,6 @@
 // README
 
-# Front End Capstone Project - CATWALK
+# Blue Steel
 
 ## Table of Contents
   1. Description
