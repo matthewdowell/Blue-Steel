@@ -27,7 +27,6 @@ Widget Overview:
 Clone the repository to your local machine and use npm install.
 
 ```bash
-if you haven\'t, first go watch Zoolander
 open the repo folder in preferred code editor
 npm install
 add .env file and assign an API key/github token to REACT_APP_API_KEY variable
@@ -38,11 +37,11 @@ open localhost:3000 in your preferred browser
 
 ## Usage
 
-Project Catwalk is an e-commerce web application for buying various types of fashion products.  This application allows users to connect with their inner beauty, and communicate with like-minded individuals about current fashion trends.  Users can view products and build outfits. Users can also ask questions about particular products and post answers.  Users provide others with fashion insights by leaving reviews for any and all products.
+Blue Steel is an e-commerce web application for buying various types of fashion products.  This application allows users to connect with their inner beauty, and communicate with like-minded individuals about current fashion trends.  Users can view products and build outfits. Users can also ask questions about particular products and post answers.  Users provide others with fashion insights by leaving reviews for any and all products.
 
 ## Contributors
 
-Matthew, Evan, John, and Wilson
+Matthew Dowell, Evan Maestro, John Duval, and Wilson Wong
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
