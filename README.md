@@ -33,12 +33,16 @@ Open the repo folder in preferred code editor then install dependencies
 ```bash
 npm install
 ```
-Create .env file in root directory and assign an API key/github token to REACT_APP_API_KEY variable:\
-  REACT_APP_API_KEY=your github personal access token goes here\
-  for info on personal access tokens, visit (https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)\
+Create .env file in root directory and assign an API key/github token to REACT_APP_API_KEY variable:
+```bash
+REACT_APP_API_KEY=your github personal access token goes here
+```
+  for info on personal access tokens, visit https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
 
-Create config.js file in root directory and assign an API key/github token to TOKEN variable:\
-  export const TOKEN = 'your personal access token';\
+Create config.js file in root directory and assign an API key/github token to TOKEN variable:
+```bash
+export const TOKEN = 'your personal access token';
+```
 
 Start server
 ```bash
@@ -46,7 +50,11 @@ npm start
 ```
 open http://localhost:3000/ in your preferred browser
 
-If you want to make edits to the code base, npm run react-dev will have webpack rebuild your bundle every time you save new changes. 
+If you want to make edits to the code base, 
+```bash
+npm run react-dev
+``` 
+will have webpack rebuild your bundle every time you save new changes. 
 
 ## Usage
 
