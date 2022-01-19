@@ -24,15 +24,19 @@ Widget Overview:
 
 ## Installation
 
-Clone the repository to your local machine and use npm install.
-
 ```bash
+Clone the repository to your local machine
 open the repo folder in preferred code editor
 npm install
-add .env file and assign an API key/github token to REACT_APP_API_KEY variable
-npm run react-dev
+create .env file in root directory and assign an API key/github token to REACT_APP_API_KEY variable:
+  REACT_APP_API_KEY=<your github personal access token goes here>
+  for info on personal access tokens, visit (https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+create config.js file in root directory and assign an API key/github token to TOKEN variable:
+  export const TOKEN = 'your personal access token';
 npm start
 open localhost:3000 in your preferred browser
+
+if you want to make edits to the code base, npm run react-dev will have webpack rebuild your bundle every time you save new changes. 
 ```
 
 ## Usage
